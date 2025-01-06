@@ -6,7 +6,7 @@
 #    By: mstencel <mstencel@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/06 09:23:22 by mstencel      #+#    #+#                  #
-#    Updated: 2025/01/06 11:48:01 by mstencel      ########   odam.nl          #
+#    Updated: 2025/01/06 11:59:51 by mstencel      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,17 +41,17 @@ MLX42FLAGS = -Iinclude -ldl -lglfw -pthread -lm
 RM = rm -f
 RD = rm -rf
 
-all: $(MLX42) $(OBJ_PATH) $(NAME)
+all: $(MLX42) $(LIBFT) $(NAME)
 
 $(MLX42):
-	make -S $(MLX42_PATH) -B $(MLX42_PATH)/buil -DDEBUG=1
+	cmake -S $(MLX42_PATH) -B $(MLX42_PATH)/build
 	make -C $(MLX42_PATH)/build -j4
 
 $(LIBFT):
 	make -C $(LIBFT_PATH)
 
-$(NAME): $(LIBFT) $(MLX42) $(OBJ_FILES) $(HEADER)
-	$(CC) $(OBJ_FILES) $(CFLAGS) $(MLX42FLAGS) $(LIBFT) $(MLX42) -o $(NAME)
+$(NAME): $(OBJ_FILES) $(HEADER)
+	$(CC) $(OBJ_FILES) $(CFLAGS) $(MLX42FLAGS) -o $(NAME) $(LIBFT) $(MLX42)
 
 # the $(@D) - The directory part of the file name of the target,
 # with the trailing slash removed. 
