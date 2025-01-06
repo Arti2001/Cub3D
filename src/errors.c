@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
+/*   errors.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/06 14:51:44 by mstencel      ########   odam.nl         */
+/*   Created: 2025/01/06 14:38:20 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/06 14:42:15 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-#define CUB3D_H
+#include "../include/cub3d.h"
 
-# include "../include/libft/libft.h"
-# include "../include/mlx42/include/MLX42/MLX42.h"
-
-# include <stdio.h>
-# include <fcntl.h>
-# include <math.h>
-
-// map checks
-int	map_check(char *file);
-
-// errors
-void	error_p(char *str);
-
-#endif
+void	error_p(char *str)
+{
+	printf("Error\n%s\n",str);
+}

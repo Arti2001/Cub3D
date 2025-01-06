@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:07:53 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/06 12:12:38 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/06 14:43:34 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ int	main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		printf("Error\n");
+		error_p("Incorrect number of arguments");
 		return (1);
 	}
-	if (argv[0])
-		printf("this still needs to be changed!\n");
+	map_check(argv[1]);
 	return (0);
 }
