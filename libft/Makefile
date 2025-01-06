@@ -1,5 +1,8 @@
 .PHONY:	all clean fclean re
 
+RESET = \033[0m
+GREEN = \033[38;5;82m
+
 SRCFILES = ft_atoi.c\
 ft_atol.c\
 ft_bzero.c\
@@ -51,24 +54,20 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJFILES)
-	@echo "SOURCE FILES COMPILED"
-	@echo "CREATING LIBFT"
-	ar $(ARFLAGS) $(NAME) $(OBJFILES)
-	@echo "LIBFT CREATED"
+	@ar $(ARFLAGS) $(NAME) $(OBJFILES)
+	@echo "$(GREEN)LIBFT CREATED$(RESET)"
 
 # `$<' is the automatic variable that holds the name of the dependency and
 # `$@' is the automatic variable that holds the name of the target
 %.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo "REMOVING OBJECT FILES"
-	$(RM) $(OBJFILES)
-	@echo "OBJECT FILES REMOVED"
+	@$(RM) $(OBJFILES)
+	@echo "LIBFT OBJECT FILES REMOVED"
 
 fclean: clean
-	@echo "REMOVING LIBFT"
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 	@echo "LIBFT REMOVED"
 
 re: fclean all
