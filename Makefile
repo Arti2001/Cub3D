@@ -6,7 +6,7 @@
 #    By: mstencel <mstencel@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/06 09:23:22 by mstencel      #+#    #+#                  #
-#    Updated: 2025/01/06 13:05:05 by mstencel      ########   odam.nl          #
+#    Updated: 2025/01/06 13:09:10 by mstencel      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,10 @@ OBJ_FILES = $(SRC_FILES:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
 
 HEADER = include/cub3d.h
 
-LIBFT_PATH = libft
+LIBFT_PATH = include/libft
 LIBFT = $(LIBFT_PATH)/libft.a
 
-MLX42_PATH = ./mlx42
+MLX42_PATH = include/mlx42
 MLX42 = $(MLX42_PATH)/build/libmlx42.a
 
 CC = cc
