@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: mstencel <mstencel@student.codam.nl>         +#+                      #
-#                                                    +#+                       #
-#    Created: 2025/01/06 09:23:22 by mstencel      #+#    #+#                  #
-#    Updated: 2025/01/06 13:09:10 by mstencel      ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/01/06 09:23:22 by mstencel          #+#    #+#              #
+#    Updated: 2025/01/07 20:12:55 by amysiv           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,19 +16,20 @@ RED = \033[31;1m
 
 NAME = cub3D
 
-SRC_PATH = src
+SRC_DIR = src
 
 SRC_FILES = src/check_map.c \
 			src/main.c \
+			src/splitbywhite.c \
 			src/parse_map.c
 
-OBJ_PATH = obj
+OBJ_DIR = obj
 
 # this is a pattern substitution:
 # the SRC_FILES will have a list with their full paths
-# the SRC_PATH/%.c are the source of the files that will be replaced
-# the OBJ_PATH/%.o are the replacement of the /%.c
-OBJ_FILES = $(SRC_FILES:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
+# the SRC_DIR/%.c are the source of the files that will be replaced
+# the OBJ_DIR/%.o are the replacement of the /%.c
+OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 HEADER = include/cub3d.h
 
@@ -42,8 +43,8 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
 MLX42FLAGS = -Iinclude -ldl -lglfw -pthread -lm
 
-RM = rm -f
-RD = rm -rf
+RM = rm -rf
+
 
 all: $(MLX42) $(LIBFT) $(NAME)
 
@@ -64,13 +65,13 @@ $(NAME): $(OBJ_FILES) $(HEADER)
 # with the trailing slash removed. 
 # e.g. if the value of ‘$@’ is dir/foo.o then ‘$(@D)’ is dir. 
 # This value is . if ‘$@’ does not contain a slash.
-$(OBJ_PATH)/%.o:$(SRC_PATH)/%.c
+$(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
 	@if [ ! -d "$(@D)" ]; then mkdir $(@D); fi
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@$(RM) $(OBJ_FILES)
-	@$(RD) $(OBJ_PATH)
+	@$(RM) $(OBJ_DIR)
 	@echo ".o files & .obj $(RED)removed$(RESET)"
 
 fclean: clean
