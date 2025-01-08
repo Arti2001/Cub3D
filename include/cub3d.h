@@ -15,8 +15,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/06 14:51:44 by mstencel      ########   odam.nl         */
->>>>>>> ddb468a8ee46510a260f967a273c344d0196b789
+/*   Updated: 2025/01/08 09:09:07 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +29,10 @@
 # include <fcntl.h>
 # include <math.h>
 
-<<<<<<< HEAD
+#define ERR_NO_ARG "Incorrect number of arguments\n"
+#define ERR_MAP_NAME "Incorrect map name. Use \033[3mname\033[0m.cub format\n"
+
+
 typedef struct s_tex_map
 {
 	char*	no_path;
@@ -41,15 +43,14 @@ typedef struct s_tex_map
 	char*	floor;
 	char*	ceiling;
 
-	char	*map;
+	char	**map;
 }	t_texmap;
 
-
-char	**splitbywhite(char const *s);
-
-=======
 // map checks
-int	map_check(char *file);
+void	name_check(char *file);
+
+void	pars_texmap(char* arg);
+char	**splitbywhite(char const *s);
 
 // errors
 void	error_p(char *str);
