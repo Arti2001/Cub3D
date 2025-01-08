@@ -2,3 +2,4 @@
 obj
 cub3D
 *.a
+.vscode/settings.json

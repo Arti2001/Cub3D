@@ -1,21 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-<<<<<<< HEAD
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/07 20:03:06 by amysiv           ###   ########.fr       */
-=======
 /*                                                        ::::::::            */
 /*   cub3d.h                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/08 09:09:07 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/08 14:38:30 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +22,15 @@
 
 #define ERR_NO_ARG "Incorrect number of arguments\n"
 #define ERR_MAP_NAME "Incorrect map name. Use \033[3mname\033[0m.cub format\n"
+#define ERR_NEW_NODE "Error creating new node in add_node()\n"
+#define ERR_MAP_MALLOC "Error malloc creating the map in fill_map()\n"
+#define ERR_LINE_DUP "Error with ft_strdup() in fill_map()\n"
 
+typedef	struct s_map
+{
+	char			*line;
+	struct s_map	*next;
+} t_map;
 
 typedef struct s_tex_map
 {
@@ -39,21 +38,30 @@ typedef struct s_tex_map
 	char*	so_path;
 	char*	we_path;
 	char*	ea_path;
-
 	char*	floor;
 	char*	ceiling;
-
 	char	**map;
 }	t_texmap;
 
 // map checks
 void	name_check(char *file);
 
+//map parsing
 void	pars_texmap(char* arg);
+void	get_map(int fd, t_texmap *texmap);
+
+//parse utils
 char	**splitbywhite(char const *s);
+void	del_list(t_map *map);
+t_map	*add_node(char *line);
+long	node_count(t_map *map);
 
 // errors
 void	error_p(char *str);
->>>>>>> ddb468a8ee46510a260f967a273c344d0196b789
+void	error_bye_texmap(t_texmap *texmap, char *str);
+void	list_error(t_map *map_list, t_texmap *texmap, char *str);
+
+//freeing
+void	free_texmap(t_texmap *texmap);
 
 #endif
