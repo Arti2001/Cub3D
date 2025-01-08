@@ -15,19 +15,19 @@ static void	free_words(int i, char **ptr)
 	free(ptr);
 }
 
-static char	*ft_wl(const char *str)
+static char	*ft_wl(const char *str, char delim)
 {
 	char	*wl;
 	int		i;
 
 	i = 0;
-	while (str[i] && !is_white_space_nline(str[i]))
+	while (str[i] && str[i] != delim && !is_white_space_nline(str[i]))
 		i++;
 	wl = (char *)malloc(sizeof(char) * (i + 1));
 	if (!wl)
 		return (NULL);
 	i = 0;
-	while (str[i] && !is_white_space_nline(str[i]))
+	while (str[i] && str[i] != delim && !is_white_space_nline(str[i]))
 	{
 		wl[i] = str[i];
 		i++;
@@ -35,8 +35,9 @@ static char	*ft_wl(const char *str)
 	wl[i] = '\0';
 	return (wl);
 }
+
 //    NO     ./PARD/LSASD    
-static int	ft_wrdcnt(char const *str)
+static int	ft_wrdcnt(char const *str , char delim)
 {
 	int	w;
 	int i;
@@ -45,16 +46,17 @@ static int	ft_wrdcnt(char const *str)
 	i = 0;
 	while (str[i])
 	{
-		while (str[i] && is_white_space_nline(str[i]))
+		while (str[i] && (is_white_space_nline(str[i]) || str[i] == delim))
 			i++;
 		if (str[i] != '\0')
 			w++;
-		while (str[i] && (!is_white_space_nline(str[i])))
+		while(str[i] && str[i] != delim && !is_white_space_nline(str[i]))
 			i++;
 	}
 	return (w);
 }
-char	**splitbywhite(char const *s)
+
+char	**splitbywhite(char const *s, char delim)
 {
 	char	**ptr_words;
 	int		words;
@@ -62,19 +64,19 @@ char	**splitbywhite(char const *s)
 
 	if (s == NULL)
 		return (NULL);
-	words = ft_wrdcnt(s);
+	words = ft_wrdcnt(s, delim);
 	ptr_words = (char **)malloc(sizeof(char *) * (words + 1));
 	if (ptr_words == NULL)
 		return (NULL);
 	i = 0;
 	while (i < words)
 	{
-		while (*s && is_white_space_nline(*s))
+		while (*s && (is_white_space_nline(*s) || *s == delim))
 			s++;
-		ptr_words[i] = ft_wl(s);
+		ptr_words[i] = ft_wl(s, delim);
 		if (ptr_words[i] == NULL)
 			return (free_words(i, ptr_words), NULL);
-		while (*s && !is_white_space_nline(*s))
+		while (*s && *s != delim && !is_white_space_nline(*s))
 			s++;
 		i++;
 	}
@@ -82,15 +84,14 @@ char	**splitbywhite(char const *s)
 	return (ptr_words);
 }
 
-//      NO     ./PATH/HA        
 
-// int main()
+//int main()
 //{
 //	int i;
 //	char **arr;
 //	i = 0;
 //	//arr = ft_split("        hello     world ja ", ' ');
-//	arr = splitbywhite("hello!		\n	lol");
+//	arr = splitbywhite("hello!	 ,hjfhjgdhjgg,, \n	lol", ',');
 //	while (arr[i])
 //	{
 //		printf("%s\n", arr[i]);

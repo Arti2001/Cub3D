@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse_map.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 12:07:53 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/08 10:11:27 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 12:07:53 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/08 19:37:11 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,73 @@ void	free_texmap(t_texmap *texmap)
 	ft_free_string(&texmap->so_path);
 	ft_free_string(&texmap->we_path);
 	ft_free_string(&texmap->ea_path);
-	ft_free_string(&texmap->ceiling);
-	ft_free_string(&texmap->floor);
 }
-void	valid_textures(char *line, t_texmap *tex_map)
+
+
+int	is_full(t_texmap *texmap)
+{
+	if (texmap->ceiling != NULL && texmap->floor != NULL &&
+			texmap->no_path != NULL && texmap->so_path != NULL &&
+			texmap->ea_path != NULL && texmap->we_path != NULL)
+			return (0);
+		else
+			return(1);
+}
+//int	are_alldigit(char *str)
+//{
+//	int	i;
+
+//	i = 0;
+//	while (ft_isdigit(str[i]) || str[i] == ,)
+//	{
+//		/* code */
+//	}
+	
+//}
+
+void	ceiling_rgb(char* str)
+{
+	char**	no_comma;
+
+	no_comma = ft_split(str, ',');
+	printf("%s\n", no_comma[0]);
+	printf("%s\n", no_comma[0]);
+	printf("%s\n", no_comma[0]);
+}
+
+void	floor_rgb(char* str)
+{
+	char**	no_comma;
+
+	no_comma = ft_split(str, ',');
+	
+	printf("%s\n", no_comma[0]);
+	printf("%s\n", no_comma[0]);
+	printf("%s\n", no_comma[0]);
+}
+void	valid_textures(char *line, t_texmap *texmap)
 {
 	char	**splited_line;
 	
-	splited_line = splitbywhite(line);
-	if (ft_strncmp(splited_line[0], "NO", 3) == 0 && (!tex_map->no_path))
-		tex_map->no_path = splited_line[1];
-	else if(ft_strncmp(splited_line[0], "SO", 3) == 0 && (!tex_map->so_path))
-		tex_map->so_path = splited_line[1];
-	else if (ft_strncmp(splited_line[0], "WE", 3) == 0 && (!tex_map->we_path))
-		tex_map->we_path = splited_line[1];
-	else if (ft_strncmp(splited_line[0], "EA", 3) == 0 && (!tex_map->ea_path))
-		tex_map->ea_path = splited_line[1];
-	else if (ft_strncmp(splited_line[0], "C", 2) == 0 && (!tex_map->ceiling))
-		tex_map->ceiling = splited_line[1];
-	else if (ft_strncmp(splited_line[0], "F", 2) == 0 && (!tex_map->floor))
-		tex_map->floor = splited_line[1];
-	//free_db_array(splited_line);
+	splited_line = splitbywhite(line, '\0');
+	if (splited_line [0] == NULL)
+		return ;
+	else if (splited_line[1] == NULL)
+		error_bye_texmap(texmap, NO_PATH_FOUND);
+	else if (ft_strncmp(splited_line[0], "NO", 3) == 0 && !texmap->no_path)
+		texmap->no_path = splited_line[1];
+	else if(ft_strncmp(splited_line[0], "SO", 3) == 0 && !texmap->so_path)
+		texmap->so_path = splited_line[1];
+	else if (ft_strncmp(splited_line[0], "WE", 3) == 0 && !texmap->we_path)
+		texmap->we_path = splited_line[1];
+	else if (ft_strncmp(splited_line[0], "EA", 3) == 0 && !texmap->ea_path)
+		texmap->ea_path = splited_line[1];
+	else if (ft_strncmp(splited_line[0], "C", 2) == 0 && !texmap->ceiling)
+		ceiling_rgb(splited_line[1]);
+	else if (ft_strncmp(splited_line[0], "F", 2) == 0 && !texmap->floor)
+		floor_rgb(splited_line[1]);
 }
+
 
 void	if_valid_add(char *line, t_texmap* texmap)
 {
@@ -73,19 +118,10 @@ void	if_valid_add(char *line, t_texmap* texmap)
 	{
 		return ;
 	}
-	if (*line == '\t' || *line == ' ' || *line == '\v' || *line == '\r')
-	{
-		int length = ft_strlen(line);
-		int i = 0;
-		while (i < length)
-		{
-			if (!ft_isalnum(line[i]))
-				return ;
-			i++;
-		}
-	}
 	valid_textures(line, texmap);
+
 }
+
 
 void	validate_taxmap(char *file, t_texmap *texmap)
 {
@@ -94,30 +130,21 @@ void	validate_taxmap(char *file, t_texmap *texmap)
 
 	fd = open_texmapfile(file);
 	file_content = get_next_line(fd);
-
 	if (!file_content)
-	{
 		return ;
-	}
-	while(file_content)
+	while(file_content && is_full(texmap))
 	{
 		if_valid_add(file_content, texmap);
 		ft_free_string(&file_content);
 		file_content = get_next_line(fd);
-		if (texmap->ceiling != NULL && texmap->floor != NULL &&
-			texmap->no_path != NULL && texmap->so_path != NULL &&
-			texmap->ea_path != NULL && texmap->we_path != NULL)
-			break ;
-		
 	}
 	
-	
-	printf("%s\n", texmap->no_path);
-	printf("%s\n", texmap->so_path);
-	printf("%s\n", texmap->ea_path);
-	printf("%s\n", texmap->we_path);
-	printf("%s\n", texmap->ceiling);
-	printf("%s\n", texmap->floor);
+	//printf("%s\n", texmap->no_path);
+	//printf("%s\n", texmap->so_path);
+	//printf("%s\n", texmap->ea_path);
+	//printf("%s\n", texmap->we_path);
+	//printf("%s\n", texmap->ceiling);
+	//printf("%s\n", texmap->floor);
 }
 
 

@@ -1,21 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-<<<<<<< HEAD
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/07 20:03:06 by amysiv           ###   ########.fr       */
-=======
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/08 09:09:07 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/08 19:02:40 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +22,50 @@
 
 #define ERR_NO_ARG "Incorrect number of arguments\n"
 #define ERR_MAP_NAME "Incorrect map name. Use \033[3mname\033[0m.cub format\n"
+#define NO_PATH_FOUND "Some paths could not be found.\n"
 
+
+typedef struct s_ceiling
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_ceiling;
+
+typedef struct s_floor
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_floor;
 
 typedef struct s_tex_map
 {
-	char*	no_path;
-	char*	so_path;
-	char*	we_path;
-	char*	ea_path;
-
-	char*	floor;
-	char*	ceiling;
-
-	char	**map;
+	char*		no_path;
+	char*		so_path;
+	char*		we_path;
+	char*		ea_path;
+	
+	t_ceiling*	ceiling;
+	t_floor*	floor;
+	
+	char**		map;
 }	t_texmap;
+
+
 
 // map checks
 void	name_check(char *file);
+char	is_white_space_nline(char c);
 
 void	pars_texmap(char* arg);
-char	**splitbywhite(char const *s);
+char	**splitbywhite(char const *s, char c);
 
 // errors
 void	error_p(char *str);
->>>>>>> ddb468a8ee46510a260f967a273c344d0196b789
+void	error_bye_texmap(t_texmap *texmap, char *str);
+
+//free
+void	free_texmap(t_texmap *texmap);
 
 #endif

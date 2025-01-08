@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   check_map.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 12:30:12 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/08 10:15:27 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 12:30:12 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/08 10:22:52 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,4 @@ void	name_check(char *file)
 		error_p(ERR_MAP_NAME);
 		exit (EXIT_FAILURE);
 	}
-	else //to delete
-		printf("format correct - working\n");
 }
