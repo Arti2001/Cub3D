@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:07:53 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/07 21:16:33 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/08 10:08:01 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,10 +148,9 @@ int	main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		write(2, "ERROR!\n", 7);
+		error_p("Incorrect number of arguments");
 		return (1);
 	}
-	else
-		pars_texmap(argv[1]);
+	map_check(argv[1]);
 	return (0);
 }

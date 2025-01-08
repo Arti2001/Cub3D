@@ -6,7 +6,7 @@
 #    By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 09:23:22 by mstencel          #+#    #+#              #
-#    Updated: 2025/01/07 20:12:55 by amysiv           ###   ########.fr        #
+#    Updated: 2025/01/08 10:06:28 by amysiv           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ NAME = cub3D
 SRC_DIR = src
 
 SRC_FILES = src/check_map.c \
+			src/errors.c \
 			src/main.c \
 			src/splitbywhite.c \
 			src/parse_map.c

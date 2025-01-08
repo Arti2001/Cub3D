@@ -1,5 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
+<<<<<<< HEAD
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -7,6 +8,15 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
 /*   Updated: 2025/01/07 20:03:06 by amysiv           ###   ########.fr       */
+=======
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/06 14:51:44 by mstencel      ########   odam.nl         */
+>>>>>>> ddb468a8ee46510a260f967a273c344d0196b789
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +30,7 @@
 # include <fcntl.h>
 # include <math.h>
 
+<<<<<<< HEAD
 typedef struct s_tex_map
 {
 	char*	no_path;
@@ -36,5 +47,12 @@ typedef struct s_tex_map
 
 char	**splitbywhite(char const *s);
 
+=======
+// map checks
+int	map_check(char *file);
+
+// errors
+void	error_p(char *str);
+>>>>>>> ddb468a8ee46510a260f967a273c344d0196b789
 
 #endif
