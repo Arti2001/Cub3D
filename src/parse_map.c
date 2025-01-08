@@ -6,11 +6,34 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:07:53 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/08 10:11:27 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/08 14:51:25 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+			/*to delete*/
+void	print_texmap(t_texmap *texmap)
+{
+	int	i = 0;
+	printf("NO: %s\n", texmap->no_path);
+	printf("SO: %s\n", texmap->so_path);
+	printf("EA: %s\n", texmap->ea_path);
+	printf("WE: %s\n", texmap->we_path);
+	printf("C: %s\n", texmap->ceiling);
+	printf("F: %s\n", texmap->floor);
+	if (texmap->map)
+	{
+		while (texmap->map[i])
+		{
+			printf("%s", texmap->map[i]);
+			i++;
+		}
+	}
+	else
+		printf("no map yet!\n");
+	printf("\n");
+}
 
 int	open_texmapfile(char *file)
 {
@@ -38,15 +61,7 @@ char* skipspace(char* line)
 	return (line);
 }
 
-void	free_texmap(t_texmap *texmap)
-{
-	ft_free_string(&texmap->no_path);
-	ft_free_string(&texmap->so_path);
-	ft_free_string(&texmap->we_path);
-	ft_free_string(&texmap->ea_path);
-	ft_free_string(&texmap->ceiling);
-	ft_free_string(&texmap->floor);
-}
+
 void	valid_textures(char *line, t_texmap *tex_map)
 {
 	char	**splited_line;
@@ -64,7 +79,6 @@ void	valid_textures(char *line, t_texmap *tex_map)
 		tex_map->ceiling = splited_line[1];
 	else if (ft_strncmp(splited_line[0], "F", 2) == 0 && (!tex_map->floor))
 		tex_map->floor = splited_line[1];
-	//free_db_array(splited_line);
 }
 
 void	if_valid_add(char *line, t_texmap* texmap)
@@ -97,27 +111,22 @@ void	validate_taxmap(char *file, t_texmap *texmap)
 
 	if (!file_content)
 	{
+		//TODO -> error msg & exit?
 		return ;
 	}
 	while(file_content)
 	{
 		if_valid_add(file_content, texmap);
 		ft_free_string(&file_content);
-		file_content = get_next_line(fd);
 		if (texmap->ceiling != NULL && texmap->floor != NULL &&
 			texmap->no_path != NULL && texmap->so_path != NULL &&
 			texmap->ea_path != NULL && texmap->we_path != NULL)
 			break ;
-		
+		file_content = get_next_line(fd);
 	}
-	
-	
-	printf("%s\n", texmap->no_path);
-	printf("%s\n", texmap->so_path);
-	printf("%s\n", texmap->ea_path);
-	printf("%s\n", texmap->we_path);
-	printf("%s\n", texmap->ceiling);
-	printf("%s\n", texmap->floor);
+	// printf("I got'em all\n");
+	get_map(fd, texmap);
+	print_texmap(texmap);
 }
 
 
@@ -128,4 +137,5 @@ void	pars_texmap(char* arg)
 	ft_memset(&textmap, 0, sizeof(textmap));
 	
 	validate_taxmap(arg, &textmap);
+	free_texmap(&textmap); //to delete or move!
 }
