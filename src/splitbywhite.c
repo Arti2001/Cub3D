@@ -36,7 +36,6 @@ static char	*ft_wl(const char *str)
 	return (wl);
 }
 
-//    NO     ./PARD/LSASD    
 static int	ft_wrdcnt(char const *str)
 {
 	int	w;

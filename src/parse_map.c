@@ -6,34 +6,11 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:07:53 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/09 09:59:44 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/09 12:02:05 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-			/*to delete*/
-void	print_texmap(t_texmap *texmap)
-{
-	int	i = 0;
-	printf("NO: %s\n", texmap->no_path);
-	printf("SO: %s\n", texmap->so_path);
-	printf("EA: %s\n", texmap->ea_path);
-	printf("WE: %s\n", texmap->we_path);
-	printf("C: %s\n", texmap->ceiling);
-	printf("F: %s\n", texmap->floor);
-	if (texmap->map)
-	{
-		while (texmap->map[i])
-		{
-			printf("%s\n", texmap->map[i]);
-			i++;
-		}
-	}
-	else
-		printf("no map yet!\n");
-	// printf("\n");
-}
 
 int	open_texmapfile(char *file)
 {
@@ -101,6 +78,7 @@ void	if_valid_add(char *line, t_texmap* texmap)
 	valid_textures(line, texmap);
 }
 
+//TODO -> add error msg & exit if no file_content?
 void	validate_taxmap(char *file, t_texmap *texmap)
 {
 	char*	file_content;
@@ -108,10 +86,8 @@ void	validate_taxmap(char *file, t_texmap *texmap)
 
 	fd = open_texmapfile(file);
 	file_content = get_next_line(fd);
-
 	if (!file_content)
 	{
-		//TODO -> error msg & exit?
 		return ;
 	}
 	while(file_content)
@@ -124,11 +100,9 @@ void	validate_taxmap(char *file, t_texmap *texmap)
 			break ;
 		file_content = get_next_line(fd);
 	}
-	// printf("I got'em all\n");
 	get_map(fd, texmap);
 	print_texmap(texmap);
 }
-
 
 void	pars_texmap(char* arg)
 {

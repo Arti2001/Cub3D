@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:30:12 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/09 11:47:16 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/09 12:27:03 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	player_found(t_texmap *tmap, long y, long x, bool *position)
 		tmap->p.y_pos = y;
 		*position = true;
 		tmap->p.pos = tmap->map[y][x];
-		tmap->map[y][x] = '0';
+		// tmap->map[y][x] = '0';
+		ft_strlcpy(&tmap->map[y][x], "0", 1);
 	}
 	else
 		error_bye_texmap(tmap, ERR_TOO_MANY_PLAYERS);
@@ -88,7 +89,7 @@ void	map_check(t_texmap *tmap)
 			if (tmap->map[y][x] == 'N' || tmap->map[y][x] == 'S' ||
 				tmap->map[y][x] == 'E' || tmap->map[y][x] == 'W')
 				player_found(tmap, y, x, &position);
-			else if (tmap->map[y][x] == '0' && !space_wall_check(tmap, y, x))
+			if (tmap->map[y][x] == '0' && !space_wall_check(tmap, y, x))
 				error_bye_texmap(tmap, ERR_OPEN_MAP);
 			x++;
 		}

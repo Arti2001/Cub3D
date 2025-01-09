@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/08 13:23:45 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/09 11:57:36 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/09 12:02:17 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,26 @@ long	node_count(t_map *map)
 		i++;
 	}
 	return (i);
+}
+
+			/*to delete*/
+void	print_texmap(t_texmap *texmap)
+{
+	int	i = 0;
+	printf("NO: %s\n", texmap->no_path);
+	printf("SO: %s\n", texmap->so_path);
+	printf("EA: %s\n", texmap->ea_path);
+	printf("WE: %s\n", texmap->we_path);
+	printf("C: %s\n", texmap->ceiling);
+	printf("F: %s\n", texmap->floor);
+	if (texmap->map)
+	{
+		while (texmap->map[i])
+		{
+			printf("%s\n", texmap->map[i]);
+			i++;
+		}
+	}
+	else
+		printf("no map yet!\n");
 }
