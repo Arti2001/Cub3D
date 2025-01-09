@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/09 12:06:52 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/09 12:41:39 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 # define ERR_TOO_MANY_PLAYERS "Provide only 1 player's starting position!\n"
 # define ERR_PLAYER_MISSING "Missing player's starting position!\n"
 # define ERR_OPEN_MAP "Provide an enclosed map!\n"
+# define ERR_NO_PATH_FOUND "Some paths could not be found.\n"
+# define ERR_OUT_OF_RANGE_F "Incorrect floor color input\n"
+# define ERR_OUT_OF_RANGE_C "Incorrect ceiling color input\n"
 
 typedef struct s_map
 {
@@ -44,18 +47,35 @@ typedef struct s_player
 	char	pos;
 }	t_player;
 
+
+typedef struct s_ceiling
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_ceiling;
+
+typedef struct s_floor
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_floor;
+
 typedef struct s_tex_map
 {
 	char		*no_path;
 	char		*so_path;
 	char		*we_path;
 	char		*ea_path;
-	char		*floor;
-	char		*ceiling;
+	t_ceiling	*ceiling;
+	t_floor		*floor;
 	char		**map;
 	long		map_height;
 	t_player	p;
 }	t_texmap;
+
+
 
 // map checks
 void	name_check(char *file);
@@ -64,9 +84,10 @@ void	map_check(t_texmap *tmap);
 //map parsing
 void	pars_texmap(char *arg);
 void	get_map(int fd, t_texmap *texmap);
+char	is_white_space_nline(char c);
 
 //parse utils
-char	**splitbywhite(char const *s);
+char	**splitbywhite(char const *s, char c);
 void	del_list(t_map *map);
 t_map	*add_node(char *line);
 long	node_count(t_map *map);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse_utils.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/08 13:23:45 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/09 12:02:17 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/08 13:23:45 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/09 12:43:20 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	print_texmap(t_texmap *texmap)
 	printf("SO: %s\n", texmap->so_path);
 	printf("EA: %s\n", texmap->ea_path);
 	printf("WE: %s\n", texmap->we_path);
-	printf("C: %s\n", texmap->ceiling);
-	printf("F: %s\n", texmap->floor);
+	//printf("C: %s\n", texmap->ceiling);
+	//printf("F: %s\n", texmap->floor);
 	if (texmap->map)
 	{
 		while (texmap->map[i])
