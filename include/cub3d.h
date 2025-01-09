@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/08 14:38:30 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/09 11:22:58 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@
 #define ERR_NEW_NODE "Error creating new node in add_node()\n"
 #define ERR_MAP_MALLOC "Error malloc creating the map in fill_map()\n"
 #define ERR_LINE_DUP "Error with ft_strdup() in fill_map()\n"
+#define ERR_GARBAGE_IN_THE_MAP "Alien character detected in the map!\n"
+#define ERR_GARBAGE_AFTER_MAP "Invalid map - alien object detected after the map\n"
+#define ERR_TOO_MANY_PLAYERS "Provide only 1 player's starting position\n"
+#define ERR_PLAYER_MISSING "Missing player's starting position!\n"
+#define ERR_OPEN_MAP "Provide an enclosed map!\n"
 
 typedef	struct s_map
 {
@@ -32,19 +37,31 @@ typedef	struct s_map
 	struct s_map	*next;
 } t_map;
 
+typedef struct s_player
+{
+	double	x_pos;
+	double	y_pos;
+	char	pos;
+} t_player;
+
 typedef struct s_tex_map
 {
-	char*	no_path;
-	char*	so_path;
-	char*	we_path;
-	char*	ea_path;
-	char*	floor;
-	char*	ceiling;
-	char	**map;
+	char*		no_path;
+	char*		so_path;
+	char*		we_path;
+	char*		ea_path;
+	char*		floor;
+	char*		ceiling;
+	char		**map;
+	long		map_height;
+	t_player	p;
 }	t_texmap;
+
+
 
 // map checks
 void	name_check(char *file);
+void	map_check(t_texmap *tmap);
 
 //map parsing
 void	pars_texmap(char* arg);

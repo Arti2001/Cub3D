@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:07:53 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/08 14:51:25 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/09 09:59:44 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	print_texmap(t_texmap *texmap)
 	{
 		while (texmap->map[i])
 		{
-			printf("%s", texmap->map[i]);
+			printf("%s\n", texmap->map[i]);
 			i++;
 		}
 	}
 	else
 		printf("no map yet!\n");
-	printf("\n");
+	// printf("\n");
 }
 
 int	open_texmapfile(char *file)

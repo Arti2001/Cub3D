@@ -1,10 +1,10 @@
 #include "../include/cub3d.h"
 
-
 char	is_white_space_nline(char c)
 {
 	return (c == '\n' || c == ' ' || c == '\t' || c == '\v' || c == '\r');
 }
+
 static void	free_words(int i, char **ptr)
 {
 	while (i > 0)
@@ -35,11 +35,12 @@ static char	*ft_wl(const char *str)
 	wl[i] = '\0';
 	return (wl);
 }
+
 //    NO     ./PARD/LSASD    
 static int	ft_wrdcnt(char const *str)
 {
 	int	w;
-	int i;
+	int	i;
 
 	w = 0;
 	i = 0;
@@ -54,6 +55,7 @@ static int	ft_wrdcnt(char const *str)
 	}
 	return (w);
 }
+
 char	**splitbywhite(char const *s)
 {
 	char	**ptr_words;
@@ -81,19 +83,3 @@ char	**splitbywhite(char const *s)
 	ptr_words[i] = NULL;
 	return (ptr_words);
 }
-
-//      NO     ./PATH/HA        
-
-// int main()
-//{
-//	int i;
-//	char **arr;
-//	i = 0;
-//	//arr = ft_split("        hello     world ja ", ' ');
-//	arr = splitbywhite("hello!		\n	lol");
-//	while (arr[i])
-//	{
-//		printf("%s\n", arr[i]);
-//		i++;
-//	}
-// }

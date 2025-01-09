@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/08 13:23:45 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/08 14:51:05 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/09 11:57:36 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	list_error(t_map *map_list, t_texmap *texmap, char *str)
 void	del_list(t_map *map)
 {
 	t_map	*current;
-	
+
 	while (map->next != NULL)
 	{
 		ft_free_string(&map->line);
@@ -34,13 +34,18 @@ void	del_list(t_map *map)
 
 t_map	*add_node(char *line)
 {
-	t_map	*new_node;
+	t_map			*new_node;
+	const size_t	len = ft_strlen(line);
 
 	new_node = malloc(sizeof(t_map));
 	if (!new_node)
 		return (NULL);
-	new_node->line = ft_strdup(line);
-	// printf("dupped: %s\n", new_node->line);
+	if (ft_strchr(line, '\n') != NULL)
+		new_node->line = ft_substr(line, 0, len - 1);
+	else
+		new_node->line = ft_strdup(line);
+	if (!new_node->line)
+		return (NULL);
 	new_node->next = NULL;
 	return (new_node);
 }
@@ -49,7 +54,7 @@ long	node_count(t_map *map)
 {
 	t_map	*current;
 	long	i;
-	
+
 	current = map;
 	i = 0;
 	while (current != NULL)
@@ -57,6 +62,5 @@ long	node_count(t_map *map)
 		current = current->next;
 		i++;
 	}
-	// printf("i in the node_count: %ld\n", i);
 	return (i);
 }
