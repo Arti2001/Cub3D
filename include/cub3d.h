@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/08 19:02:40 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/09 11:01:22 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 
 #define ERR_NO_ARG "Incorrect number of arguments\n"
 #define ERR_MAP_NAME "Incorrect map name. Use \033[3mname\033[0m.cub format\n"
-#define NO_PATH_FOUND "Some paths could not be found.\n"
+#define ERR_NO_PATH_FOUND "Some paths could not be found.\n"
+#define ERR_OUT_OF_RANGE_F "Incorrect floor color input\n"
+#define ERR_OUT_OF_RANGE_C "Incorrect ceiling color input\n"
 
 
 typedef struct s_ceiling

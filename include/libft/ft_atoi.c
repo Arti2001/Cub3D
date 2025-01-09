@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ft_atoi.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/10/11 10:34:22 by mstencel      #+#    #+#                 */
-/*   Updated: 2024/02/26 11:34:03 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/11 10:34:22 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/09 09:53:34 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_atoi(const char *nptr)
 	int	sign;
 	int	digit;
 	int	number;
-
+	
 	digit = 0;
 	number = 0;
 	while (ft_isspace(*nptr))

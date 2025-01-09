@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 12:07:53 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/08 19:37:11 by amysiv           ###   ########.fr       */
-/*                                                                            */
+/*	*/
+/*	:::	  ::::::::   */
+/*   parse_map.c	:+:	  :+:	:+:   */
+/*	+:+ +:+	 +:+	 */
+/*   By: amysiv <amysiv@student.42.fr>	  +#+  +:+	   +#+	*/
+/*	+#+#+#+#+#+   +#+	   */
+/*   Created: 2025/01/06 12:07:53 by mstencel	  #+#	#+#	 */
+/*   Updated: 2025/01/09 10:51:17 by amysiv	   ###   ########.fr	   */
+/*	*/
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
@@ -68,25 +68,62 @@ int	is_full(t_texmap *texmap)
 	
 //}
 
-void	ceiling_rgb(char* str)
+int is_struct_full(t_ceiling *ceiling, t_floor *floor)
 {
-	char**	no_comma;
+	if (ceiling!= NULL)
+	{
+		if (ceiling->r == 0 || ceiling->g == 0 || ceiling->b == 0)
+		{
+		return 0;
+		}
+	}
+	if (floor != NULL)
+	{
+		if (floor->r == 0 || floor->g == 0 || floor->b == 0)
+		{
+		return 0;
+		}
+	}
 
-	no_comma = ft_split(str, ',');
-	printf("%s\n", no_comma[0]);
-	printf("%s\n", no_comma[0]);
-	printf("%s\n", no_comma[0]);
+	return 1;
 }
 
-void	floor_rgb(char* str)
+void	ceiling_rgb(char* str, t_texmap *texmap)
 {
-	char**	no_comma;
-
-	no_comma = ft_split(str, ',');
+	char**	ceiling_arg;
 	
-	printf("%s\n", no_comma[0]);
-	printf("%s\n", no_comma[0]);
-	printf("%s\n", no_comma[0]);
+	ceiling_arg = splitbywhite(str, ',');
+	texmap->ceiling->r = ft_atoi(ceiling_arg[1]);
+	texmap->ceiling->g = ft_atoi(ceiling_arg[2]);
+	texmap->ceiling->b = ft_atoi(ceiling_arg[3]);
+	if (texmap->ceiling->r > 255 ||
+		texmap->ceiling->g > 255 ||
+		texmap->ceiling->b > 255)
+	{
+		error_bye_texmap(texmap, ERR_OUT_OF_RANGE_C);
+	}
+
+}
+
+void	floor_rgb(char* str, t_texmap *texmap)
+{
+	char**	floor_arg;
+
+	floor_arg = splitbywhite(str, ',');
+	
+	
+	texmap->floor->r = ft_atoi(floor_arg[1]);
+	texmap->floor->g = ft_atoi(floor_arg[2]);
+	texmap->floor->b = ft_atoi(floor_arg[3]);
+
+	
+	if (texmap->floor->r > 255 ||
+		texmap->floor->g > 255 ||
+		texmap->floor->b > 255)
+	{
+		error_bye_texmap(texmap, ERR_OUT_OF_RANGE_F);
+	}
+	
 }
 void	valid_textures(char *line, t_texmap *texmap)
 {
@@ -96,7 +133,7 @@ void	valid_textures(char *line, t_texmap *texmap)
 	if (splited_line [0] == NULL)
 		return ;
 	else if (splited_line[1] == NULL)
-		error_bye_texmap(texmap, NO_PATH_FOUND);
+		error_bye_texmap(texmap, ERR_NO_PATH_FOUND);
 	else if (ft_strncmp(splited_line[0], "NO", 3) == 0 && !texmap->no_path)
 		texmap->no_path = splited_line[1];
 	else if(ft_strncmp(splited_line[0], "SO", 3) == 0 && !texmap->so_path)
@@ -105,10 +142,16 @@ void	valid_textures(char *line, t_texmap *texmap)
 		texmap->we_path = splited_line[1];
 	else if (ft_strncmp(splited_line[0], "EA", 3) == 0 && !texmap->ea_path)
 		texmap->ea_path = splited_line[1];
-	else if (ft_strncmp(splited_line[0], "C", 2) == 0 && !texmap->ceiling)
-		ceiling_rgb(splited_line[1]);
-	else if (ft_strncmp(splited_line[0], "F", 2) == 0 && !texmap->floor)
-		floor_rgb(splited_line[1]);
+	else if (ft_strncmp(splited_line[0], "C", 2) == 0 && texmap->ceiling != NULL)
+	{
+		ft_free_array(splited_line);	
+		ceiling_rgb(line, texmap);
+	}
+	else if (ft_strncmp(splited_line[0], "F", 2) == 0 && texmap->floor != NULL)
+	{
+		ft_free_array(splited_line);
+		floor_rgb(line, texmap);
+	}
 }
 
 
@@ -138,13 +181,18 @@ void	validate_taxmap(char *file, t_texmap *texmap)
 		ft_free_string(&file_content);
 		file_content = get_next_line(fd);
 	}
+	printf("%s\n", texmap->no_path);
+	printf("%s\n", texmap->so_path);
+	printf("%s\n", texmap->ea_path);
+	printf("%s\n", texmap->we_path);
+	printf("ceiling value r: %d\n", texmap->ceiling->r);
+	printf("ceiling value g: %d\n", texmap->ceiling->g);
+	printf("ceiling value b: %d\n", texmap->ceiling->b);
+	printf("floor value r: %d\n", texmap->floor->r);
+	printf("floor value g: %d\n", texmap->floor->g);
+	printf("floor value b: %d\n", texmap->floor->b);
 	
-	//printf("%s\n", texmap->no_path);
-	//printf("%s\n", texmap->so_path);
-	//printf("%s\n", texmap->ea_path);
-	//printf("%s\n", texmap->we_path);
-	//printf("%s\n", texmap->ceiling);
-	//printf("%s\n", texmap->floor);
+
 }
 
 
@@ -153,6 +201,8 @@ void	pars_texmap(char* arg)
 	t_texmap	textmap;
 
 	ft_memset(&textmap, 0, sizeof(textmap));
-	
+	textmap.ceiling = (t_ceiling*)malloc(sizeof(t_ceiling));
+	textmap.floor = (t_floor*)malloc(sizeof(t_floor));
+
 	validate_taxmap(arg, &textmap);
 }
