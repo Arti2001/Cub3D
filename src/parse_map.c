@@ -74,56 +74,110 @@ int is_struct_full(t_ceiling *ceiling, t_floor *floor)
 	{
 		if (ceiling->r == 0 || ceiling->g == 0 || ceiling->b == 0)
 		{
-		return 0;
+			return 0;
 		}
 	}
 	if (floor != NULL)
 	{
 		if (floor->r == 0 || floor->g == 0 || floor->b == 0)
 		{
-		return 0;
+			return 0;
 		}
 	}
 
 	return 1;
 }
 
+//int	comma_checker(char *str)
+//{
+//	int	i;
+//	int	comma_count;
+
+
+//	comma_count = 0;
+//	i = 0;
+//	while(str[i])
+//	{
+//		if(ft_isdigit(str[i]) || str[i] == ',' && comma_count <= 2)
+//		{
+//			if(str[i] == ',')
+//			{
+//				comma_count++;
+//				if(str[i + 1] ==)
+
+//			}
+//		}
+
+//	}
+
+//}
+int	are_digits(char *str)
+{
+	int	i;
+
+	i = 0;
+	while(str[i])
+	{
+		if(!ft_isdigit(str[i]))
+		{
+			return (0);
+		}
+			
+		i++;
+	}
+	return (1);
+
+}
 void	ceiling_rgb(char* str, t_texmap *texmap)
 {
-	char**	ceiling_arg;
+	char**	c_arg;
 	
-	ceiling_arg = splitbywhite(str, ',');
-	texmap->ceiling->r = ft_atoi(ceiling_arg[1]);
-	texmap->ceiling->g = ft_atoi(ceiling_arg[2]);
-	texmap->ceiling->b = ft_atoi(ceiling_arg[3]);
+	c_arg = splitbywhite(str, ',');
+	if (c_arg == NULL)
+		return ;
+	if (!c_arg[1] || !c_arg[2] || !c_arg[3])
+		error_bye_texmap(texmap, ERR_TO_FEW_PARAM_C);
+	if (c_arg[4] != NULL)
+		error_bye_texmap(texmap, ERR_TO_MANY_PARAM_C);
+	if (!are_digits(c_arg[1]) || !are_digits(c_arg[2]) || !are_digits(c_arg[3]))
+		error_bye_texmap(texmap, "Incorrect color value: Only digits allowed");
+	if (ft_strlen(c_arg[1]) > 3 || ft_strlen(c_arg[2]) > 3 || ft_strlen(c_arg[3]) > 3)
+		error_bye_texmap(texmap, ERR_OUT_OF_RANGE_C);
+	texmap->ceiling->r = ft_atoi(c_arg[1]);
+	texmap->ceiling->g = ft_atoi(c_arg[2]);
+	texmap->ceiling->b = ft_atoi(c_arg[3]);
 	if (texmap->ceiling->r > 255 ||
 		texmap->ceiling->g > 255 ||
 		texmap->ceiling->b > 255)
 	{
 		error_bye_texmap(texmap, ERR_OUT_OF_RANGE_C);
 	}
-
 }
 
 void	floor_rgb(char* str, t_texmap *texmap)
 {
-	char**	floor_arg;
+	char**	f_arg;
 
-	floor_arg = splitbywhite(str, ',');
-	
-	
-	texmap->floor->r = ft_atoi(floor_arg[1]);
-	texmap->floor->g = ft_atoi(floor_arg[2]);
-	texmap->floor->b = ft_atoi(floor_arg[3]);
-
-	
+	f_arg = splitbywhite(str, ',');
+	if (f_arg == NULL)
+		return ;
+	if (!f_arg[1] || !f_arg[2] || !f_arg[3])
+		error_bye_texmap(texmap, ERR_TO_FEW_PARAM_F);
+	if (f_arg[4] != NULL)
+		error_bye_texmap(texmap, ERR_TO_MANY_PARAM_C);
+	if (!are_digits(f_arg[1]) || !are_digits(f_arg[2]) || !are_digits(f_arg[3]))
+		error_bye_texmap(texmap, "Incorrect color value: Only digits allowed");
+	if (ft_strlen(f_arg[1]) > 3 || ft_strlen(f_arg[2]) > 3 || ft_strlen(f_arg[3]) > 3)
+		error_bye_texmap(texmap, ERR_OUT_OF_RANGE_F);
+	texmap->floor->r = ft_atoi(f_arg[1]);
+	texmap->floor->g = ft_atoi(f_arg[2]);
+	texmap->floor->b = ft_atoi(f_arg[3]);
 	if (texmap->floor->r > 255 ||
 		texmap->floor->g > 255 ||
 		texmap->floor->b > 255)
 	{
 		error_bye_texmap(texmap, ERR_OUT_OF_RANGE_F);
 	}
-	
 }
 void	valid_textures(char *line, t_texmap *texmap)
 {

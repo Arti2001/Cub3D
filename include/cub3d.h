@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/09 11:01:22 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/09 17:59:12 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@
 #define ERR_NO_ARG "Incorrect number of arguments\n"
 #define ERR_MAP_NAME "Incorrect map name. Use \033[3mname\033[0m.cub format\n"
 #define ERR_NO_PATH_FOUND "Some paths could not be found.\n"
-#define ERR_OUT_OF_RANGE_F "Incorrect floor color input\n"
-#define ERR_OUT_OF_RANGE_C "Incorrect ceiling color input\n"
+#define ERR_OUT_OF_RANGE_F "Incorrect floor's color value: Out of range: 0...255\n"
+#define ERR_OUT_OF_RANGE_C "Incorrect ceiling's color value: Out of range: 0...255\n"
+#define ERR_TO_FEW_PARAM_F "To few parameters to make a floor's color.\n"
+#define ERR_TO_FEW_PARAM_C "To few parameters to make a ceiling's color.\n"
+#define ERR_TO_MANY_PARAM_C "To many parameters to make a ceiling's color.\n"
+#define ERR_TO_MANY_PARAM_F "To many parameters to make a floor's color.\n"
 
 
 typedef struct s_ceiling
