@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: mstencel <mstencel@student.codam.nl>         +#+                      #
-#                                                    +#+                       #
-#    Created: 2025/01/06 09:23:22 by mstencel      #+#    #+#                  #
-#    Updated: 2025/01/08 13:54:27 by mstencel      ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/01/06 09:23:22 by mstencel          #+#    #+#              #
+#    Updated: 2025/01/10 14:46:06 by amysiv           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,11 @@ SRC_FILES = src/check_map.c \
 			src/errors.c \
 			src/free.c \
 			src/main.c \
-			src/parse_map.c \
-			src/parse_map2.c \
-			src/parse_utils.c \
-			src/splitbywhite.c
+			src/splitbywhite.c \
+			src/parse_map_utils.c \
+			src/parse_texture2.c \
+			src/parse_texture.c \
+			src/parse_texture_utils.c
 
 OBJ_DIR = obj
 
