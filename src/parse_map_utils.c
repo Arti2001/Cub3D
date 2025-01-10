@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parse_utils.c                                      :+:    :+:            */
+/*   parse_map_utils.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/08 13:23:45 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/09 12:02:17 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/10 12:17:21 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	list_error(t_map *map_list, t_texmap *texmap, char *str)
+void	list_error(t_cublist *map_list, t_texmap *texmap, char *str)
 {
 	del_list(map_list);
-	error_bye_texmap(texmap, str);
+	error_bye_data(texmap, str);
 }
 
-void	del_list(t_map *map)
+void	del_list(t_cublist *map)
 {
-	t_map	*current;
+	t_cublist	*current;
 
 	while (map->next != NULL)
 	{
@@ -32,27 +32,36 @@ void	del_list(t_map *map)
 	free(map);
 }
 
-t_map	*add_node(char *line)
+t_cublist	*add_node(char *line)
 {
-	t_map			*new_node;
+	t_cublist			*new_node;
 	const size_t	len = ft_strlen(line);
 
-	new_node = malloc(sizeof(t_map));
+	new_node = malloc(sizeof(t_cublist));
 	if (!new_node)
+	{
+		error_p(ERR_MAP_MALLOC);
 		return (NULL);
+	}
 	if (ft_strchr(line, '\n') != NULL)
 		new_node->line = ft_substr(line, 0, len - 1);
 	else
 		new_node->line = ft_strdup(line);
 	if (!new_node->line)
+	{
+		error_p(ERR_MALLOC_LINE);
 		return (NULL);
+	}
+	new_node->height++;
+	// printf("line: \"%s\"\n", new_node->line);
+	// printf("height: %d\n", new_node->height);
 	new_node->next = NULL;
 	return (new_node);
 }
 
-long	node_count(t_map *map)
+long	node_count(t_cublist *map)
 {
-	t_map	*current;
+	t_cublist	*current;
 	long	i;
 
 	current = map;

@@ -6,7 +6,7 @@
 #    By: mstencel <mstencel@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/06 09:23:22 by mstencel      #+#    #+#                  #
-#    Updated: 2025/01/08 13:54:27 by mstencel      ########   odam.nl          #
+#    Updated: 2025/01/10 12:17:31 by mstencel      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC_FILES = src/check_map.c \
 			src/main.c \
 			src/parse_map.c \
 			src/parse_map2.c \
-			src/parse_utils.c \
+			src/parse_map_utils.c \
 			src/splitbywhite.c
 
 OBJ_DIR = obj
