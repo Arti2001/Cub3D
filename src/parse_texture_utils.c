@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:52:36 by amysiv            #+#    #+#             */
-/*   Updated: 2025/01/10 14:31:05 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/10 18:08:51 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,32 @@ char* skipspace(char* line)
 
 bool	is_full(t_texmap *texmap)
 {
-	if (!is_struct_full(texmap->ceiling, texmap->floor))
-		return (false);
-	else if ( texmap->ceiling != NULL && texmap->floor != NULL &&
+	if (	is_struct_full(texmap->ceiling, texmap->floor) &&
 			texmap->no_path != NULL && texmap->so_path != NULL &&
 			texmap->ea_path != NULL && texmap->we_path != NULL)
+			return (true);
+	else
+		return(false);
+}
+
+
+bool	is_struct_full(t_ceiling *ceiling, t_floor *floor)
+{
+	if (ceiling!= NULL)
+	{
+		if (ceiling->r == -1 || ceiling->g == -1 || ceiling->b == -1)
+		{
 			return (false);
-		else
-			return(true);
+		}
+	}
+	if (floor != NULL)
+	{
+		if (floor->r == -1 || floor->g == -1 || floor->b == -1)
+		{
+			return (false);
+		}
+	}
+	return (true);
 }
 
 int	are_digits(char *str)

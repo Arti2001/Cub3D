@@ -41,24 +41,6 @@ int	open_texmapfile(char *file)
 	
 //}
 
-bool	is_struct_full(t_ceiling *ceiling, t_floor *floor)
-{
-	if (ceiling!= NULL)
-	{
-		if (ceiling->r == -1 || ceiling->g == -1 || ceiling->b == -1)
-		{
-			return (false);
-		}
-	}
-	if (floor != NULL)
-	{
-		if (floor->r == -1 || floor->g == -1 || floor->b == -1)
-		{
-			return (false);
-		}
-	}
-	return (true);
-}
 
 //	return 1;
 //}
@@ -75,11 +57,63 @@ bool	is_struct_full(t_ceiling *ceiling, t_floor *floor)
 //		i++;
 
 //}
+void	tex_paths_valid(char **splited_line, t_cube *data)
+{
+	if (ft_strncmp(splited_line[0], "NO", 3) == 0)
+	{
+		if(data->texmap->no_path)
+			error_bye_data(data, "NO: Is definied more then one time");
+		data->texmap->no_path = splited_line[1];
+	}
+	else if(ft_strncmp(splited_line[0], "SO", 3) == 0)
+	{
+		if (data->texmap->so_path)
+			error_bye_data(data, "SO: Is definied more then one time");
+		data->texmap->so_path = splited_line[1];
+	}
+	else if (ft_strncmp(splited_line[0], "WE", 3) == 0)
+	{
+		if (data->texmap->we_path)
+			error_bye_data(data, "WE: Is definied more then one time");
+		data->texmap->we_path = splited_line[1];
+	}
+	else if (ft_strncmp(splited_line[0], "EA", 3) == 0)
+	{
+		if (data->texmap->ea_path)
+			error_bye_data(data, "EA: Is definied more then one time");
+		data->texmap->ea_path = splited_line[1];
+	}
+}
 
+void	ceiling_floor_valid(char **splited_line, char *line, t_cube *data)
+{
+	if (ft_strncmp(splited_line[0], "C", 2) == 0)
+	{
+		ft_free_array(splited_line);
+		if (data->texmap->ceiling)
+		{
+			if(!is_struct_full(data->texmap->ceiling, data->texmap->floor))
+				error_bye_data(data, "C: does not have all values defined");
+			else
+				error_bye_data(data, "C: Is definied more then one time");
+		}
+		ceiling_rgb(line, data);
+	}
+	else if (ft_strncmp(splited_line[0], "F", 2) == 0)
+	{
+		ft_free_array(splited_line);
+		if (!data->texmap->floor)
+		{
+			if(!is_struct_full(data->texmap->ceiling, data->texmap->floor))
+				error_bye_data(data, "F: does not have all values defined");
+			else
+				error_bye_data(data, "F: Is definied more then one time");
+		}
+		floor_rgb(line, data);
+	}
+}
 
-
-
-void	valid_textures(char *line, t_cube *data)
+void	tex_validation(char *line, t_cube *data)
 {
 	char	**splited_line;
 	
@@ -88,26 +122,8 @@ void	valid_textures(char *line, t_cube *data)
 		return ;
 	else if (splited_line[1] == NULL)
 		error_bye_data(data, ERR_NO_PATH_FOUND);
-	//else if (splited_line[2] != NULL)
-	//	error_bye_data(data, "Invalid amount of texture's paths values");
-	else if (ft_strncmp(splited_line[0], "NO", 3) == 0 && !data->texmap->no_path)
-		data->texmap->no_path = splited_line[1];
-	else if(ft_strncmp(splited_line[0], "SO", 3) == 0 && !data->texmap->so_path)
-		data->texmap->so_path = splited_line[1];
-	else if (ft_strncmp(splited_line[0], "WE", 3) == 0 && !data->texmap->we_path)
-		data->texmap->we_path = splited_line[1];
-	else if (ft_strncmp(splited_line[0], "EA", 3) == 0 && !data->texmap->ea_path)
-		data->texmap->ea_path = splited_line[1];
-	else if (ft_strncmp(splited_line[0], "C", 2) == 0 && data->texmap->ceiling != NULL)
-	{
-		ft_free_array(splited_line);	
-		ceiling_rgb(line, data);
-	}
-	else if (ft_strncmp(splited_line[0], "F", 2) == 0 && data->texmap->floor != NULL)
-	{
-		ft_free_array(splited_line);
-		floor_rgb(line, data);
-	}
+	tex_paths_valid(splited_line, data);
+	ceiling_floor_valid(splited_line, line, data);
 }
 
 
@@ -116,14 +132,12 @@ void	if_valid_add(t_cube *data)
 	t_cublist	*curr;
 
 	curr = data->cub_file;
-
 	while(curr != NULL && !is_full(data->texmap))
 	{
 		if(curr->line[0] != '\n')
 		{
-			valid_textures(curr->line, data);
+			tex_validation(curr->line, data);
 		}
-
 		curr = curr->next;
 	}
 
