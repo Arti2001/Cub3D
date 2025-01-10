@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/08 11:03:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/10 11:31:57 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/10 15:20:08 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,25 @@
 
 void	fill_map(t_cublist *map_list, t_cube *data)
 {
-	long	y;
+	int	y;
 	t_cublist	*current;
 
-	tmap->map_height = node_count(map_list);
 	y = 0;
+	data->texmap->height = node_count(map_list);
 	current = map_list;
-	tmap->map = malloc(sizeof(char **) * tmap->map_height + 1);
-	if (!tmap->map)
-		list_error(map_list, tmap, ERR_MAP_MALLOC);
-	while (y < tmap->map_height)
+	data->texmap->map = malloc(sizeof(char **) * data->texmap->height + 1);
+	if (!data->texmap->map)
+		//update the error handling
+		list_error(map_list, data, ERR_MAP_MALLOC);
+	while (y < data->texmap->height)
 	{
-		tmap->map[y] = ft_strdup(current->line);
-		if (!tmap->map[y])
-			list_error(map_list, tmap, ERR_LINE_DUP);
+		data->texmap->map[y] = ft_strdup(current->line);
+		if (!data->texmap->map[y])
+			list_error(map_list, data, ERR_LINE_DUP);
 		y++;
 		current = current->next;
 	}
-	tmap->map[y] = NULL;
+	data->texmap->map[y] = NULL;
 	del_list(map_list);
 }
 
@@ -59,7 +60,7 @@ void	fill_map(t_cublist *map_list, t_cube *data)
 // 			list_error(map, tmap, ERR_NEW_NODE);
 // 		current = current->next;
 // 	}
-	fill_map(map, tmap);
+	// fill_map(map, tmap);
 // }
 
 // void	get_cublist(int fd, t_texmap *texmap)

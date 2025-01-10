@@ -6,34 +6,71 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:07:53 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/10 12:17:07 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/10 15:22:26 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-
-void	init_data(t_cube *data)
+t_ceiling *init_ceiling(void)
 {
-	ft_memset(data->texmap, 0, sizeof(t_texmap));
-	ft_memset(data->cub_file, 0, sizeof(t_cublist));
-	ft_memset(data->p, 0, sizeof(t_player));
+	t_ceiling *ceiling = malloc(sizeof(t_ceiling));
+	if (!ceiling)
+		return NULL;
+	ceiling->r = -1;
+	ceiling->g = -1;
+	ceiling->b = -1;
+	return (ceiling);
 }
 
-	//TODO free all (in respective functions!)
+
+t_floor *init_floor(void)
+{
+	t_floor *floor = malloc(sizeof(t_floor));
+	if (!floor)
+		return NULL;
+	floor->r = -1;
+	floor->g = -1;
+	floor->b = -1;
+	return (floor);
+}
+
+t_texmap	*init_texmap(void)
+{
+	t_texmap	*texmap;
+
+	texmap = malloc(sizeof(t_texmap));
+	if (!texmap)
+		return (NULL);
+	ft_memset(texmap, 0, sizeof(t_texmap));
+	texmap->ceiling = init_ceiling();
+	texmap->floor = init_floor();
+	texmap->map = NULL;
+	return (texmap);
+}
+void	init_cube(t_cube *data)
+{	
+	ft_memset(data, 0, sizeof(t_cube));
+	
+	data->texmap = init_texmap();
+	data->cub_file = NULL;
+	data->p = NULL;
+}
+
 int	main(int argc, char **argv)
 {
 	t_cube	data;
-
+	
 	if (argc != 2)
 	{
 		error_p(ERR_NO_ARG);
 		return (1);
 	}
-	init_data(&data);
+	init_cube(&data);
 	name_check(argv[1]);
 	read_taxmap(argv[1], &data);
-	fill_map(data);
+	printf("here???\n");
+	if_valid_add(&data);
 	// pars_texmap(argv[1]);
 	return (0);
 }

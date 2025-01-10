@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:30:08 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/10 12:30:41 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/10 15:13:50 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	read_taxmap(char *file, t_cube *data)
 		if (file_content == NULL)
 			break ;
 		current->next = add_node(file_content);
-		if (!current->next == NULL)
+		if (current->next != NULL)
 			return ; //to be changed!
 			//free data, close fd & exit
 		current = current->next;

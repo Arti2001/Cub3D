@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/10 12:29:23 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/10 15:19:01 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@
 
 # define ERR_NO_ARG "Incorrect number of arguments\n"
 # define ERR_MAP_NAME "Incorrect map name. Use \033[3mname\033[0m.cub format\n"
+# define ERR_NO_PATH_FOUND "Some paths could not be found.\n"
+# define ERR_OUT_OF_RANGE_F "Incorrect floor's color value: Out of range: 0...255\n"
+# define ERR_OUT_OF_RANGE_C "Incorrect ceiling's color value: Out of range: 0...255\n"
+# define ERR_TO_FEW_PARAM_F "To few parameters to make a floor's color.\n"
+# define ERR_TO_FEW_PARAM_C "To few parameters to make a ceiling's color.\n"
+# define ERR_TO_MANY_PARAM_C "To many parameters to make a ceiling's color.\n"
+# define ERR_TO_MANY_PARAM_F "To many parameters to make a floor's color.\n"
+
+
+
 # define ERR_MAL_NEW_NODE "malloc failed while creating node in add_node()\n"
 # define ERR_MAP_MALLOC "malloc failed while creating the map in fill_map()\n"
 # define ERR_MALLOC_LINE "malloc failed in coping the line in add_node()\n"
@@ -55,9 +65,9 @@ typedef struct s_cublist
 
 typedef struct s_player
 {
-	double	x_pos;
-	double	y_pos;
-	char	pos;
+	double		x_pos;
+	double		y_pos;
+	char		pos;
 }	t_player;
 
 typedef struct s_texmap
@@ -67,6 +77,7 @@ typedef struct s_texmap
 	char		*we_path;
 	char		*ea_path;
 	char		**map;
+	int			height;
 	t_floor		*floor;
 	t_ceiling	*ceiling;
 }	t_texmap;
@@ -84,10 +95,12 @@ void	name_check(char *file);
 void	map_check(t_cube *data);
 
 //map parsing
-void	read_taxmap(char *file, t_cube *data);
+void	pars_texmap(char *arg);
+void	get_map(int fd, t_texmap *texmap);
+char	is_white_space_nline(char c);
 
 //parse utils
-char	**splitbywhite(char const *s);
+char	**splitbywhite(char const *s, char c);
 void	del_list(t_cublist *map);
 t_cublist	*add_node(char *line);
 long	node_count(t_cublist *map);
@@ -100,7 +113,19 @@ void	list_error(t_cublist *map_list, t_cube *data, char *str);
 //freeing
 void	free_data(t_cube *data);
 
-// to delete
-void	print_texmap(t_cube *data);
+void	read_taxmap(char *file, t_cube *data);
+
+void	if_valid_add(t_cube *data);
+
+void	floor_rgb(char* str, t_cube *data);
+void	ceiling_rgb(char* str, t_cube *data);
+
+int		are_digits(char *str);
+bool	is_full(t_texmap *texmap);
+
+int		open_texmapfile(char *file);
+void	read_taxmap(char *file, t_cube *data);
+bool	is_struct_full(t_ceiling *ceiling, t_floor *floor);
+void	del_list(t_cublist *map);
 
 #endif

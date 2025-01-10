@@ -6,16 +6,16 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/08 13:23:45 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/10 12:17:21 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/10 15:12:00 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	list_error(t_cublist *map_list, t_texmap *texmap, char *str)
+void	list_error(t_cublist *map_list, t_cube *data, char *str)
 {
 	del_list(map_list);
-	error_bye_data(texmap, str);
+	error_bye_data(data, str);
 }
 
 void	del_list(t_cublist *map)
@@ -82,8 +82,6 @@ void	print_texmap(t_texmap *texmap)
 	printf("SO: %s\n", texmap->so_path);
 	printf("EA: %s\n", texmap->ea_path);
 	printf("WE: %s\n", texmap->we_path);
-	printf("C: %s\n", texmap->ceiling);
-	printf("F: %s\n", texmap->floor);
 	if (texmap->map)
 	{
 		while (texmap->map[i])

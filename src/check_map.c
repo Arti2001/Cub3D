@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:30:12 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/10 11:30:59 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/10 15:05:10 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ bool	valid_char(char c)
 /// @return true if the map is correct and false if there is an issue
 bool	space_wall_check(t_cube *data, long y, long x)
 {
-	int			i;
+	int		 i;
 	long		new_y;
 	long		new_x;
-	const int	dir[8][2] = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, \
+	const int   dir[8][2] = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, \
 		{1, -1}, {1, 0}, {1, 1}};
 	long		len;
 
@@ -48,8 +48,11 @@ bool	space_wall_check(t_cube *data, long y, long x)
 	while (i < 8)
 	{
 		len = (long)ft_strlen(data->texmap->map[new_y]);
+		len = (long)ft_strlen(data->texmap->map[new_y]);
 		new_y = y + dir[i][0];
 		new_x = x + dir[i][1];
+		if (new_x < 0 || new_x > len || new_y < 0 || new_y > data->cub_file->height
+			|| !valid_char(data->texmap->map[new_y][new_x]))
 		if (new_x < 0 || new_x > len || new_y < 0 || new_y > data->cub_file->height
 			|| !valid_char(data->texmap->map[new_y][new_x]))
 			return (false);
@@ -77,7 +80,6 @@ void	map_check(t_cube *data)
 	long	x;
 	long	y;
 	bool	position;
-
 	position = false;
 	y = 0;
 	while (y < data->cub_file->height)
