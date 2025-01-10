@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:07:53 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/10 15:22:26 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/10 15:25:46 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	main(int argc, char **argv)
 	init_cube(&data);
 	name_check(argv[1]);
 	read_taxmap(argv[1], &data);
-	printf("here???\n");
 	if_valid_add(&data);
 	// pars_texmap(argv[1]);
 	return (0);
