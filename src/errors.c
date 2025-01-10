@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:38:20 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/08 14:21:54 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/10 13:30:11 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,31 @@
 // 	exit(EXIT_FAILURE);
 // }
 
-void	error_bye_texmap(t_texmap *texmap, char *str)
+void    free_data(t_data *data)
 {
-	free_texmap(texmap);
+    if (data->p)
+        free (data->p);
+    if (data->cub_file)
+        del_list(data->cub_file);
+    if (data->texmap->map)
+        ft_free_array(data->texmap->map);
+    if (data->texmap->ceiling)
+        free (data->texmap->ceiling);
+    if (data->texmap->floor)
+        free (data->texmap->floor);
+    if (data->texmap->no_path)
+        ft_free_string(&data->texmap->no_path);
+    if (data->texmap->so_path)
+        ft_free_string(&data->texmap->so_path);
+    if (data->texmap->ea_path)
+        ft_free_string(&data->texmap->ea_path);
+    if (data->texmap->we_path)
+        ft_free_string(&data->texmap->ea_path);
+}
+
+void	error_bye_data(t_data *data, char *str)
+{
+	free_data(data);
 	error_p(str);
 	exit(EXIT_FAILURE);
 }
