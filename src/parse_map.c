@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:30:08 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/10 15:13:50 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/10 15:24:03 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,15 @@ void	read_taxmap(char *file, t_cube *data)
 	int			fd;
 	t_cublist	*current;
 	
-	data->cub_file->height = 0;
 	fd = open_texmapfile(file);
+	printf("hereee?\n");
 	file_content = get_next_line(fd);
 	if (file_content == NULL)
 		return ; // to be changed!
 		//free data, close fd & exit
 	data->cub_file = add_node(file_content);
 	current = data->cub_file;
+	data->cub_file->height = 0;
 	while (1)
 	{
 		ft_free_string(&file_content);
