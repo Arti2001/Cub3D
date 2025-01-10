@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/10 14:43:50 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/10 14:57:28 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,18 @@
 # define ERR_TO_FEW_PARAM_C "To few parameters to make a ceiling's color.\n"
 # define ERR_TO_MANY_PARAM_C "To many parameters to make a ceiling's color.\n"
 # define ERR_TO_MANY_PARAM_F "To many parameters to make a floor's color.\n"
+
+
+
+# define ERR_MAL_NEW_NODE "malloc failed while creating node in add_node()\n"
 # define ERR_MAP_MALLOC "malloc failed while creating the map in fill_map()\n"
 # define ERR_MALLOC_LINE "malloc failed in coping the line in add_node()\n"
-
+# define ERR_LINE_DUP "ft_strdup() failed in fill_map()!\n"
+# define ERR_GARBAGE_IN_THE_MAP "Alien character detected in the map!\n"
+# define ERR_GARBAGE_AFTER_MAP "Alien object detected after the map!\n"
+# define ERR_TOO_MANY_PLAYERS "Provide only 1 player's starting position!\n"
+# define ERR_PLAYER_MISSING "Missing player's starting position!\n"
+# define ERR_OPEN_MAP "Provide an enclosed map!\n"
 
 
 typedef struct s_ceiling
@@ -78,12 +87,12 @@ typedef struct s_cub3d
 	t_cublist	*cub_file;
 	t_texmap	*texmap;
 	t_player	*p;
-}	t_data;
+}	t_cube;
 
 
 // map checks
 void	name_check(char *file);
-void	map_check(t_texmap *tmap);
+void	map_check(t_cube *data);
 
 //map parsing
 void	pars_texmap(char *arg);
@@ -92,29 +101,29 @@ char	is_white_space_nline(char c);
 
 //parse utils
 char	**splitbywhite(char const *s, char c);
-void	del_list(t_map *map);
-t_map	*add_node(char *line);
-long	node_count(t_map *map);
+void	del_list(t_cublist *map);
+t_cublist	*add_node(char *line);
+long	node_count(t_cublist *map);
 
 // errors
 void	error_p(char *str);
-void	error_bye_data(t_data *data, char *str);
+void	error_bye_data(t_cube *data, char *str);
 
 //freeing
 void	free_texmap(t_texmap *texmap);
 
-void	read_taxmap(char *file, t_data *data);
+void	read_taxmap(char *file, t_cube *data);
 
-void	if_valid_add(t_data *data);
+void	if_valid_add(t_cube *data);
 
-void	floor_rgb(char* str, t_data *data);
-void	ceiling_rgb(char* str, t_data *data);
+void	floor_rgb(char* str, t_cube *data);
+void	ceiling_rgb(char* str, t_cube *data);
 
 int		are_digits(char *str);
 bool		is_full(t_texmap *texmap);
 
 int		open_texmapfile(char *file);
-void	read_taxmap(char *file, t_data *data);
+void	read_taxmap(char *file, t_cube *data);
 bool	is_struct_full(t_ceiling *ceiling, t_floor *floor);
 void	del_list(t_cublist *map);
 

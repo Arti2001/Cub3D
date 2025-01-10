@@ -6,14 +6,14 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 13:23:45 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/10 13:30:11 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/10 14:55:28 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
 
-void	list_error(t_cublist *map_list, t_data *data, char *str)
+void	list_error(t_cublist *map_list, t_cube *data, char *str)
 {
 	del_list(map_list);
 	error_bye_data(data, str);
@@ -85,7 +85,7 @@ void	print_texmap(t_texmap *texmap)
 	else
 		printf("no map yet!\n");
 }
-void	read_taxmap(char *file, t_data *data)
+void	read_taxmap(char *file, t_cube *data)
 {
 	char*       file_content;
 	int         fd;

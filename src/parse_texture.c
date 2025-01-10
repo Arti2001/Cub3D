@@ -79,7 +79,7 @@ bool	is_struct_full(t_ceiling *ceiling, t_floor *floor)
 
 
 
-void	valid_textures(char *line, t_data *data)
+void	valid_textures(char *line, t_cube *data)
 {
 	char	**splited_line;
 	
@@ -111,7 +111,7 @@ void	valid_textures(char *line, t_data *data)
 }
 
 
-void	if_valid_add(t_data *data)
+void	if_valid_add(t_cube *data)
 {
 	t_cublist	*curr;
 

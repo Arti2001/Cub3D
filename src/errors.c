@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:38:20 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/10 14:46:45 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/10 14:55:28 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 // 	exit(EXIT_FAILURE);
 // }
 
-void    free_data(t_data *data)
+void    free_data(t_cube *data)
 {
     if (data->p)
         free (data->p);
@@ -41,7 +41,7 @@ void    free_data(t_data *data)
         ft_free_string(&data->texmap->ea_path);
 }
 
-void	error_bye_data(t_data *data, char *str)
+void	error_bye_data(t_cube *data, char *str)
 {
 	free_data(data);
 	error_p(str);

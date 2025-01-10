@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 12:30:12 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/09 12:41:49 by amysiv           ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   check_map.c										:+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: amysiv <amysiv@student.42.fr>			  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2025/01/06 12:30:12 by mstencel		  #+#	#+#			 */
+/*   Updated: 2025/01/10 14:54:18 by amysiv		   ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
@@ -35,68 +35,67 @@ bool	valid_char(char c)
 /// @param x 
 /// @param y 
 /// @return true if the map is correct and false if there is an issue
-bool	space_wall_check(t_texmap *tmap, long y, long x)
+bool	space_wall_check(t_cube *data, long y, long x)
 {
-	int			i;
+	int		 i;
 	long		new_y;
 	long		new_x;
-	const int	dir[8][2] = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, \
+	const int   dir[8][2] = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, \
 		{1, -1}, {1, 0}, {1, 1}};
-
+	long		len;
 	i = 0;
 	while (i < 8)
 	{
+		len = (long)ft_strlen(data->texmap->map[new_y]);
 		new_y = y + dir[i][0];
 		new_x = x + dir[i][1];
-		if (new_x < 0 || new_x > (long)ft_strlen(tmap->map[new_y]) || new_y < 0
-			|| new_y > tmap->map_height || !valid_char(tmap->map[new_y][new_x]))
+		if (new_x < 0 || new_x > len || new_y < 0 || new_y > data->cub_file->height
+			|| !valid_char(data->texmap->map[new_y][new_x]))
 			return (false);
 		i++;
 	}
 	return (true);
 }
 
-void	player_found(t_texmap *tmap, long y, long x, bool *position)
+void	player_found(t_cube *data, long y, long x, bool *position)
 {
 	if (*position == false)
 	{
-		tmap->p.x_pos = x;
-		tmap->p.y_pos = y;
+		data->p->x_pos = x;
+		data->p->y_pos = y;
 		*position = true;
-		tmap->p.pos = tmap->map[y][x];
-		// tmap->map[y][x] = '0';
-		ft_strlcpy(&tmap->map[y][x], "0", 1);
+		data->p->pos = data->texmap->map[y][x];
+		data->texmap->map[y][x] = '0';
 	}
 	else
-		error_bye_texmap(tmap, ERR_TOO_MANY_PLAYERS);
+		error_bye_data(data, ERR_TOO_MANY_PLAYERS);
 }
 
-void	map_check(t_texmap *tmap)
+void	map_check(t_cube *data)
 {
 	long	x;
 	long	y;
 	bool	position;
-
 	position = false;
 	y = 0;
-	while (y < tmap->map_height)
+	while (y < data->cub_file->height)
 	{
 		x = 0;
-		while (tmap->map[y][x])
+		while (data->texmap->map[y][x])
 		{
-			if (!valid_char(tmap->map[y][x]) && tmap->map[y][x] != ' ')
-				error_bye_texmap(tmap, ERR_GARBAGE_IN_THE_MAP);
-			if (tmap->map[y][x] == 'N' || tmap->map[y][x] == 'S' ||
-				tmap->map[y][x] == 'E' || tmap->map[y][x] == 'W')
-				player_found(tmap, y, x, &position);
-			if (tmap->map[y][x] == '0' && !space_wall_check(tmap, y, x))
-				error_bye_texmap(tmap, ERR_OPEN_MAP);
+			if (!valid_char(data->texmap->map[y][x]) && data->texmap->map[y][x] != ' ')
+				error_bye_data(data, ERR_GARBAGE_IN_THE_MAP);
+			if (data->texmap->map[y][x] == 'N' || data->texmap->map[y][x] == 'S' ||
+				data->texmap->map[y][x] == 'E' || data->texmap->map[y][x] == 'W')
+				player_found(data, y, x, &position);
+			if (data->texmap->map[y][x] == '0' && !space_wall_check(data, y, x))
+				error_bye_data(data, ERR_OPEN_MAP);
 			x++;
 		}
 		y++;
 	}
 	if (position == false)
-		error_bye_texmap(tmap, ERR_PLAYER_MISSING);
+		error_bye_data(data, ERR_PLAYER_MISSING);
 }
 
 void	name_check(char *file)

@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:07:53 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/10 14:44:27 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/10 14:55:28 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ t_texmap	*init_texmap(void)
 	texmap->map = NULL;
 	return (texmap);
 }
-void	init_data(t_data *data)
+void	init_cube(t_cube *data)
 {	
-	ft_memset(data, 0, sizeof(t_data));
+	ft_memset(data, 0, sizeof(t_cube));
 	
 	data->texmap = init_texmap();
 	data->cub_file = NULL;
@@ -61,14 +61,14 @@ void	init_data(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_cube	data;
 	
 	if (argc != 2)
 	{
 		error_p(ERR_NO_ARG);
 		return (1);
 	}
-	init_data(&data);
+	init_cube(&data);
 	name_check(argv[1]);
 	read_taxmap(argv[1], &data);
 	if_valid_add(&data);
