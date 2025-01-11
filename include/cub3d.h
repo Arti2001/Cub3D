@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/10 14:57:28 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/11 17:22:25 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void	floor_rgb(char* str, t_cube *data);
 void	ceiling_rgb(char* str, t_cube *data);
 
 int		are_digits(char *str);
+int		first_digit(char *str);
 bool		is_full(t_texmap *texmap);
 
 int		open_texmapfile(char *file);
