@@ -1,39 +1,86 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse_map2.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/08 11:03:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/10 15:20:08 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse_map2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gosia <gosia@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/08 11:03:03 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/12 11:59:16 by gosia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	fill_map(t_cublist *map_list, t_cube *data)
+static ft_isspace(char c)
+{
+	return (c == '\t' || c == '\v' || c == '\f' || c == '\r' || c == ' ');
+}
+
+static char	*skip_space(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (!ft_isspace(line[i]))
+			return (line[i]);
+		i++;
+	}
+	return (line[i]);
+}
+
+static t_cublist	*find_map_start(t_cube *data)
+{
+	t_cublist	*current;
+	char		*line;
+	int			i;
+
+	current = data->end_texture;
+	while (current != NULL)
+	{
+		line = skip_space(current->line);
+		if (line[0] && line[0] == '1')
+			return (current);
+		if (line[0] && line[0] != '\n')
+			error_bye_data(data, ERR_GARBAGE_BEFORE_MAP);
+		current = current->next;
+	}
+	return (NULL);
+}
+
+void	fill_map(t_cube *data)
 {
 	int	y;
+	int	size;
+	int	len;
 	t_cublist	*current;
 
 	y = 0;
-	data->texmap->height = node_count(map_list);
-	current = map_list;
-	data->texmap->map = malloc(sizeof(char **) * data->texmap->height + 1);
+	current = find_map_start(data);
+	if (current == NULL)
+		error_bye_data(data, ERR_NO_MAP);
+	size = data->texmap->height - current->height + 1;
+	data->texmap->map = malloc(sizeof(char **) * size);
 	if (!data->texmap->map)
-		//update the error handling
-		list_error(map_list, data, ERR_MAP_MALLOC);
+		error_bye_data(data, ERR_MAP_MALLOC);
 	while (y < data->texmap->height)
 	{
-		data->texmap->map[y] = ft_strdup(current->line);
+		len = ft_strlen(current->line);
+		if (current->line[len] == '\n')
+		{
+			data->texmap->map[y] = malloc(sizeof(char) * len);
+			ft_strlcpy(data->texmap->map[y], current->line, len - 1);
+		}
+		else
+			data->texmap->map[y] = ft_strdup(current->line);
 		if (!data->texmap->map[y])
-			list_error(map_list, data, ERR_LINE_DUP);
+			error_bye_data(data, ERR_MALLOC_MAP_LINE);
 		y++;
 		current = current->next;
 	}
 	data->texmap->map[y] = NULL;
-	del_list(map_list);
 }
 
 // void	fill_list(char **line, int fd, t_cube *data)
