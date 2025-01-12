@@ -6,7 +6,7 @@
 /*   By: gosia <gosia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/12 11:58:33 by gosia            ###   ########.fr       */
+/*   Updated: 2025/01/12 12:07:05 by gosia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define ERR_NO_MAP "Incorrect file: no map found\n"
 # define ERR_EMPTY_MAP "Empty map! Provide file with correct content.\n"
 # define ERR_TOO_MANY_LINES "The file is too big. Max number of lines: 350\n"
+# define ERR_TOO_LONG_LINE "too long line in the file. max length: 300\n"
 # define ERR_TOO_MANY_TEXTURES "Incorrect file format: multiple textures\n"
 
 
@@ -42,6 +43,7 @@
 # define ERR_MAP_MALLOC "malloc failed while creating the map in fill_map()\n"
 # define ERR_MALLOC_LINE "malloc failed in coping the line in add_node()\n"
 # define ERR_MALLOC_MAP_LINE "malloc failed in fill_map()!\n"
+
 # define ERR_GARBAGE_BEFORE_MAP "Alien object detected before the map!\n"
 # define ERR_GARBAGE_IN_THE_MAP "Alien character detected in the map!\n"
 # define ERR_GARBAGE_AFTER_MAP "Alien object detected after the map!\n"

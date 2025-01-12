@@ -6,7 +6,7 @@
 /*   By: gosia <gosia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:03:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/12 11:59:16 by gosia            ###   ########.fr       */
+/*   Updated: 2025/01/12 12:07:14 by gosia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	fill_map(t_cube *data)
 	while (y < data->texmap->height)
 	{
 		len = ft_strlen(current->line);
+		if (len > 300)
+			error_bye_data(data, ERR_TOO_LONG_LINE);
 		if (current->line[len] == '\n')
 		{
 			data->texmap->map[y] = malloc(sizeof(char) * len);
