@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   splitbywhite.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/10 15:21:44 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/13 08:37:56 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   splitbywhite.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/10 15:21:44 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/13 16:54:50 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	*ft_wl(const char *str, char delim)
 	return (wl);
 }
 
-static int	ft_wrdcnt(char const *str , char delim)
+static int	ft_wrdcnt(char const *str, char delim)
 {
 	int	w;
 	int	i;
@@ -61,7 +61,7 @@ static int	ft_wrdcnt(char const *str , char delim)
 			i++;
 		if (str[i] != '\0')
 			w++;
-		while(str[i] && str[i] != delim && !is_white_space_nline(str[i]))
+		while (str[i] && str[i] != delim && !is_white_space_nline(str[i]))
 			i++;
 	}
 	return (w);

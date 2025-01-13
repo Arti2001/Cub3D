@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   free.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/08 10:49:16 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/13 12:27:35 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/08 10:49:16 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/13 16:45:11 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,4 @@ void	free_data(t_cube *data)
 			ft_free_string(&data->texmap->ea_path);
 		free(data->texmap);
 	}
-	//free all the data
 }

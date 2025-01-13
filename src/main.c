@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 12:07:53 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/13 12:32:41 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 12:07:53 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/13 16:45:37 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	name_check(char *file)
 int	main(int argc, char **argv)
 {
 	t_cube	data;
-	
+
 	if (argc != 2)
 	{
 		error_p(ERR_NO_ARG);
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 	if_valid_add(&data);
 	fill_map(&data);
 	map_check(&data);
-	print_texmap(data.texmap); //to delete
+	print_texmap(data.texmap);
 	free_data(&data);
 	return (0);
 }

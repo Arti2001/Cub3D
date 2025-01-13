@@ -3,7 +3,7 @@
 NO			         ./path_to_the_north_texture
 
 				
-F 244       ,       1 ,  100
+F 244       ,    55   ,   100
 
 
 
@@ -14,11 +14,6 @@ F 244       ,       1 ,  100
 			
 SO ./path_to_the_south_texture
 
-
-
-
-
-1
 
 
 
@@ -35,7 +30,6 @@ C 2,                    30,0
 
 
 WE ./path_to_the_west_texture
-C 2,                    30,0
 
         1111111111111111111111111
         1000000000110000000000001

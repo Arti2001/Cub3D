@@ -1,22 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-<<<<<<< HEAD
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/11 17:22:25 by amysiv           ###   ########.fr       */
-=======
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: gosia <gosia@student.42.fr>                  +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/13 08:08:12 by mstencel      ########   odam.nl         */
->>>>>>> 80da9fa26fe5e2ba7784c67060630dd4a7bbc8e6
+/*   Updated: 2025/01/13 16:55:47 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +27,15 @@
 # define ERR_TOO_MANY_LINES "The file is too big. Max number of lines: 350\n"
 # define ERR_TOO_LONG_LINE "too long line in the file. max length: 300\n"
 # define ERR_TOO_MANY_TEXTURES "Incorrect file format: multiple textures\n"
-
-
+# define ERR_COMMA "Incorrect color: values must be separeted by a comma\n"
+# define ERR_COLOR_DIGIT "Incorrect color value: Only digits allowed\n" 
 # define ERR_NO_PATH_FOUND "Some paths could not be found.\n"
-# define ERR_OUT_OF_RANGE_F "Incorrect floor's color value: Out of range: 0...255\n"
-# define ERR_OUT_OF_RANGE_C "Incorrect ceiling's color value: Out of range: 0...255\n"
+# define ERR_OUT_OF_RANGE_F "Incorrect color value: Out of range: 0..255\n"
+# define ERR_OUT_OF_RANGE_C "Incorrect color value: Out of range: 0...255\n"
 # define ERR_TO_FEW_PARAM_F "To few parameters to make a floor's color.\n"
 # define ERR_TO_FEW_PARAM_C "To few parameters to make a ceiling's color.\n"
 # define ERR_TO_MANY_PARAM_C "To many parameters to make a ceiling's color.\n"
 # define ERR_TO_MANY_PARAM_F "To many parameters to make a floor's color.\n"
-
-
 
 # define ERR_MAL_NEW_NODE "malloc failed while creating node in add_node()\n"
 # define ERR_MAP_MALLOC "malloc failed while creating the map in fill_map()\n"
@@ -109,51 +97,38 @@ typedef	struct s_cub3d
 	t_player	*p;
 }	t_cube;
 
-
-void	init_cube(t_cube *data);
-
+void		init_cube(t_cube *data);
 // map checks
 void		name_check(char *file);
 void		map_check(t_cube *data);
-
 //map parsing
 void		read_taxmap(char *file, t_cube *data);
 void		fill_map(t_cube *data);
-
 //parse utils
 char		is_white_space_nline(char c);
 char		**splitbywhite(char const *s, char c);
 t_cublist	*add_node(char *line, t_cube *data);
 void		del_list(t_cublist *map);
-
 // errors
 void		error_p(char *str);
 void		err_fd_data_bye(t_cube *data, int fd, int flag);
 void		error_bye_data(t_cube *data, char *str);
-
+void		free_data_arr(t_cube *data, char *str, char **arr);
 //freeing
 void		free_data(t_cube *data);
-
 //texture
 void		floor_rgb(char* str, t_cube *data);
 void		ceiling_rgb(char* str, t_cube *data);
-bool		is_struct_full(t_ceiling *ceiling, t_floor *floor);
-
+bool		is_cf_full(t_ceiling *ceiling, t_floor *floor);
 void		if_valid_add(t_cube *data);
-
-<<<<<<< HEAD
-void	floor_rgb(char* str, t_cube *data);
-void	ceiling_rgb(char* str, t_cube *data);
-
-int		are_digits(char *str);
-int		first_digit(char *str);
-=======
-int			first_digit(char *str);
+void		floor_rgb(char* str, t_cube *data);
+void		ceiling_rgb(char* str, t_cube *data);
 int			are_digits(char *str);
->>>>>>> 80da9fa26fe5e2ba7784c67060630dd4a7bbc8e6
+int			first_digit(char *str);
 bool		is_full(t_texmap *texmap);
+bool		comma_checker(char *str);
 
 //to delete
-void	print_texmap(t_texmap *texmap);
+void		print_texmap(t_texmap *texmap);
 
 #endif
