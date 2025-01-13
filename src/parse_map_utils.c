@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse_map_utils.c                                  :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/08 13:23:45 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/10 15:12:00 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse_map_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gosia <gosia@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/08 13:23:45 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/12 11:10:13 by gosia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-void	list_error(t_cublist *map_list, t_cube *data, char *str)
-{
-	del_list(map_list);
-	error_bye_data(data, str);
-}
 
 void	del_list(t_cublist *map)
 {
@@ -35,7 +29,6 @@ void	del_list(t_cublist *map)
 t_cublist	*add_node(char *line)
 {
 	t_cublist			*new_node;
-	const size_t	len = ft_strlen(line);
 
 	new_node = malloc(sizeof(t_cublist));
 	if (!new_node)
@@ -43,16 +36,18 @@ t_cublist	*add_node(char *line)
 		error_p(ERR_MAP_MALLOC);
 		return (NULL);
 	}
-	if (ft_strchr(line, '\n') != NULL)
-		new_node->line = ft_substr(line, 0, len - 1);
-	else
-		new_node->line = ft_strdup(line);
+	new_node->line = ft_strdup(line);
 	if (!new_node->line)
 	{
 		error_p(ERR_MALLOC_LINE);
 		return (NULL);
 	}
 	new_node->height++;
+	if (new_node->height > 350)
+	{
+		error_p(ERR_TOO_MANY_LINES);
+		return (NULL);
+	}
 	// printf("line: \"%s\"\n", new_node->line);
 	// printf("height: %d\n", new_node->height);
 	new_node->next = NULL;

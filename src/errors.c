@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   errors.c                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 14:38:20 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/10 15:20:31 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   errors.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gosia <gosia@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 14:38:20 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/12 10:55:21 by gosia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@
 // }
 
 
+void	err_fd_data_bye(t_cube *data, int fd, int flag)
+{
+	if (flag == 1)
+		error_p(ERR_EMPTY_MAP);
+	close(fd);
+	free_data(data);
+	exit(EXIT_FAILURE);
+}
 
 void	error_bye_data(t_cube *data, char *str)
 {

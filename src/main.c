@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:07:53 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/10 15:34:53 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/13 07:24:22 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ int	main(int argc, char **argv)
 	name_check(argv[1]);
 	read_taxmap(argv[1], &data);
 	if_valid_add(&data);
-	// pars_texmap(argv[1]);
+	fill_map(&data);
 	return (0);
 }
