@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:07:53 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/10 15:25:46 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/10 15:34:53 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_ceiling *init_ceiling(void)
 	ceiling->b = -1;
 	return (ceiling);
 }
-
 
 t_floor *init_floor(void)
 {
