@@ -1,22 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-<<<<<<< HEAD
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/11 17:22:25 by amysiv           ###   ########.fr       */
-=======
 /*                                                        ::::::::            */
 /*   cub3d.h                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: gosia <gosia@student.42.fr>                  +#+                     */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/13 08:08:12 by mstencel      ########   odam.nl         */
->>>>>>> 80da9fa26fe5e2ba7784c67060630dd4a7bbc8e6
+/*   Updated: 2025/01/13 13:29:25 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,16 +131,11 @@ bool		is_struct_full(t_ceiling *ceiling, t_floor *floor);
 
 void		if_valid_add(t_cube *data);
 
-<<<<<<< HEAD
 void	floor_rgb(char* str, t_cube *data);
 void	ceiling_rgb(char* str, t_cube *data);
 
 int		are_digits(char *str);
 int		first_digit(char *str);
-=======
-int			first_digit(char *str);
-int			are_digits(char *str);
->>>>>>> 80da9fa26fe5e2ba7784c67060630dd4a7bbc8e6
 bool		is_full(t_texmap *texmap);
 
 //to delete

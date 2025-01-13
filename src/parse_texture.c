@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 15:21:28 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/13 08:17:35 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/13 13:29:07 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,19 +127,6 @@ void	if_valid_add(t_cube *data)
 		}
 		curr = curr->next;
 	}
-<<<<<<< HEAD
-
-	printf("%s\n",data->texmap->no_path);
-	printf("%s\n",data->texmap->so_path);
-	printf("%s\n",data->texmap->ea_path);
-	printf("%s\n",data->texmap->we_path);
-	printf("ceiling value r: %d\n",data->texmap->ceiling->r);
-	printf("ceiling value g: %d\n",data->texmap->ceiling->g);
-	printf("ceiling value b: %d\n",data->texmap->ceiling->b);
-	printf("floor value r: %d\n",data->texmap->floor->r);
-	printf("floor value g: %d\n",data->texmap->floor->g);
-	printf("floor value b: %d\n",data->texmap->floor->b);
-=======
 	data->end_texture = curr;
 	// printf("%s\n",data->texmap->no_path);
 	// printf("%s\n",data->texmap->so_path);
@@ -151,5 +138,4 @@ void	if_valid_add(t_cube *data)
 	// printf("floor value r: %d\n",data->texmap->floor->r);
 	// printf("floor value g: %d\n",data->texmap->floor->g);
 	// printf("floor value b: %d\n",data->texmap->floor->b);
->>>>>>> 80da9fa26fe5e2ba7784c67060630dd4a7bbc8e6
 }
