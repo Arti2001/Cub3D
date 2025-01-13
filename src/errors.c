@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gosia <gosia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:38:20 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/10 14:55:28 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/12 10:55:21 by gosia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,14 @@
 // 	exit(EXIT_FAILURE);
 // }
 
-void    free_data(t_cube *data)
+
+void	err_fd_data_bye(t_cube *data, int fd, int flag)
 {
-    if (data->p)
-        free (data->p);
-    if (data->cub_file)
-        del_list(data->cub_file);
-    if (data->texmap->map)
-        ft_free_array(data->texmap->map);
-    if (data->texmap->ceiling)
-        free (data->texmap->ceiling);
-    if (data->texmap->floor)
-        free (data->texmap->floor);
-    if (data->texmap->no_path)
-        ft_free_string(&data->texmap->no_path);
-    if (data->texmap->so_path)
-        ft_free_string(&data->texmap->so_path);
-    if (data->texmap->ea_path)
-        ft_free_string(&data->texmap->ea_path);
-    if (data->texmap->we_path)
-        ft_free_string(&data->texmap->ea_path);
+	if (flag == 1)
+		error_p(ERR_EMPTY_MAP);
+	close(fd);
+	free_data(data);
+	exit(EXIT_FAILURE);
 }
 
 void	error_bye_data(t_cube *data, char *str)

@@ -1,33 +1,16 @@
 /* ************************************************************************** */
-/*	*/
-/*	:::	  ::::::::   */
-/*   parse_map.c	:+:	  :+:	:+:   */
-/*	+:+ +:+	 +:+	 */
-/*   By: amysiv <amysiv@student.42.fr>	  +#+  +:+	   +#+	*/
-/*	+#+#+#+#+#+   +#+	   */
-/*   Created: 2025/01/06 12:07:53 by mstencel	  #+#	#+#	 */
-/*   Updated: 2025/01/09 10:51:17 by amysiv	   ###   ########.fr	   */
-/*	*/
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   parse_texture.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/10 15:21:28 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/13 08:17:35 by mstencel      ########   odam.nl         */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-int	open_texmapfile(char *file)
-{
-	int	fd;
-	
-	if (!file)
-	{
-		return (1);
-	}
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-	{
-		perror(file);
-		exit(EXIT_FAILURE);
-	}
-	return (fd);
-}
 
 //int	are_alldigit(char *str)
 //{
@@ -131,7 +114,6 @@ void	tex_validation(char *line, t_cube *data)
 	error_bye_data(data, "Invalid information detected in '.cub' file");
 }
 
-
 void	if_valid_add(t_cube *data)
 {
 	t_cublist	*curr;
@@ -145,6 +127,7 @@ void	if_valid_add(t_cube *data)
 		}
 		curr = curr->next;
 	}
+<<<<<<< HEAD
 
 	printf("%s\n",data->texmap->no_path);
 	printf("%s\n",data->texmap->so_path);
@@ -156,7 +139,17 @@ void	if_valid_add(t_cube *data)
 	printf("floor value r: %d\n",data->texmap->floor->r);
 	printf("floor value g: %d\n",data->texmap->floor->g);
 	printf("floor value b: %d\n",data->texmap->floor->b);
+=======
+	data->end_texture = curr;
+	// printf("%s\n",data->texmap->no_path);
+	// printf("%s\n",data->texmap->so_path);
+	// printf("%s\n",data->texmap->ea_path);
+	// printf("%s\n",data->texmap->we_path);
+	// printf("ceiling value r: %d\n",data->texmap->ceiling->r);
+	// printf("ceiling value g: %d\n",data->texmap->ceiling->g);
+	// printf("ceiling value b: %d\n",data->texmap->ceiling->b);
+	// printf("floor value r: %d\n",data->texmap->floor->r);
+	// printf("floor value g: %d\n",data->texmap->floor->g);
+	// printf("floor value b: %d\n",data->texmap->floor->b);
+>>>>>>> 80da9fa26fe5e2ba7784c67060630dd4a7bbc8e6
 }
-
-
-

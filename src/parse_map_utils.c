@@ -1,42 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_map_utils.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 13:23:45 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/10 14:55:28 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_map_utils.c                                  :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: gosia <gosia@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/08 13:23:45 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/13 08:40:28 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-
-void	list_error(t_cublist *map_list, t_cube *data, char *str)
-{
-	del_list(map_list);
-	error_bye_data(data, str);
-}
-
-void	del_list(t_cublist *map)
-{
-	t_cublist	*current;
-
-	while (map->next != NULL)
-	{
-		ft_free_string(&map->line);
-		current = map->next;
-		free(map);
-		map = current;
-	}
-	free(map);
-}
-
-t_cublist	*add_node(char *line)
+t_cublist	*add_node(char *line, t_cube *data)
 {
 	t_cublist			*new_node;
-	//const size_t	len = ft_strlen(line);
 
 	new_node = malloc(sizeof(t_cublist));
 	if (!new_node)
@@ -50,30 +28,27 @@ t_cublist	*add_node(char *line)
 		error_p(ERR_MALLOC_LINE);
 		return (NULL);
 	}
-	new_node->height++;
+	new_node->height = data->texmap->height + 1;
+	data->texmap->height = new_node->height;
+	if (new_node->height > 350)
+	{
+		error_p(ERR_TOO_MANY_LINES);
+		return (NULL);
+	}
 	new_node->next = NULL;
 	return (new_node);
-}
-
-long	node_count(t_cublist *map)
-{
-	t_cublist	*current;
-	long	i;
-
-	current = map;
-	i = 0;
-	while (current != NULL)
-	{
-		current = current->next;
-		i++;
-	}
-	return (i);
 }
 
 			/*to delete*/
 void	print_texmap(t_texmap *texmap)
 {
-	int	i = 0;
+	int	i;
+
+	i = 0;
+	printf("NO: %s\n", texmap->no_path);
+	printf("SO: %s\n", texmap->so_path);
+	printf("EA: %s\n", texmap->ea_path);
+	printf("WE: %s\n", texmap->we_path);
 	if (texmap->map)
 	{
 		while (texmap->map[i])
@@ -84,32 +59,4 @@ void	print_texmap(t_texmap *texmap)
 	}
 	else
 		printf("no map yet!\n");
-}
-void	read_taxmap(char *file, t_cube *data)
-{
-	char*       file_content;
-	int         fd;
-	t_cublist   *current;
-	
-	fd = open_texmapfile(file);
-	file_content = get_next_line(fd);
-	if (file_content == NULL)
-		return ; // to be changed!
-		//free data, close fd & exit
-	data->cub_file = add_node(file_content);
-	current = data->cub_file;
-	current->height = 0;
-	while (1)
-	{
-		ft_free_string(&file_content);
-		file_content = get_next_line(fd);
-		if (file_content == NULL)
-			break ;
-		current->next = add_node(file_content);
-		if (current->next == NULL)
-			break ; //to be changed!
-			//free data, close fd & exit
-		current = current->next;
-	}
-	close(fd);
 }
