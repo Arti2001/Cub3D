@@ -6,11 +6,25 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/08 10:49:16 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/10 15:07:45 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/13 08:37:06 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	del_list(t_cublist *map)
+{
+	t_cublist	*current;
+
+	while (map != NULL)
+	{
+		ft_free_string(&map->line);
+		current = map->next;
+		free(map);
+		map = current;
+	}
+	free(map);
+}
 
 void	free_data(t_cube *data)
 {

@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 15:21:44 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/10 15:21:45 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/13 08:37:56 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static char	*ft_wl(const char *str, char delim)
 	return (wl);
 }
 
-//    NO     ./PARD/LSASD    
 static int	ft_wrdcnt(char const *str , char delim)
 {
 	int	w;
@@ -95,18 +94,3 @@ char	**splitbywhite(char const *s, char delim)
 	ptr_words[i] = NULL;
 	return (ptr_words);
 }
-
-
-//int main()
-//{
-//	int i;
-//	char **arr;
-//	i = 0;
-//	//arr = ft_split("        hello     world ja ", ' ');
-//	arr = splitbywhite("hello!	 ,hjfhjgdhjgg,, \n	lol", ',');
-//	while (arr[i])
-//	{
-//		printf("%s\n", arr[i]);
-//		i++;
-//	}
-// }

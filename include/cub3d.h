@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: gosia <gosia@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/12 12:07:05 by gosia            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: gosia <gosia@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/13 08:08:12 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,37 +100,42 @@ typedef	struct s_cub3d
 }	t_cube;
 
 
+void	init_cube(t_cube *data);
+
 // map checks
-void	name_check(char *file);
-void	map_check(t_cube *data);
+void		name_check(char *file);
+void		map_check(t_cube *data);
 
 //map parsing
-char	is_white_space_nline(char c);
+void		read_taxmap(char *file, t_cube *data);
+void		fill_map(t_cube *data);
 
 //parse utils
-char	**splitbywhite(char const *s, char c);
-void	del_list(t_cublist *map);
-t_cublist	*add_node(char *line);
-long	node_count(t_cublist *map);
+char		is_white_space_nline(char c);
+char		**splitbywhite(char const *s, char c);
+t_cublist	*add_node(char *line, t_cube *data);
+void		del_list(t_cublist *map);
 
 // errors
-void	error_p(char *str);
-void	err_fd_data_bye(t_cube *data, int fd, int flag);
-void	error_bye_data(t_cube *data, char *str);
+void		error_p(char *str);
+void		err_fd_data_bye(t_cube *data, int fd, int flag);
+void		error_bye_data(t_cube *data, char *str);
 
 //freeing
-void	free_data(t_cube *data);
+void		free_data(t_cube *data);
 
-void	if_valid_add(t_cube *data);
+//texture
+void		floor_rgb(char* str, t_cube *data);
+void		ceiling_rgb(char* str, t_cube *data);
+bool		is_struct_full(t_ceiling *ceiling, t_floor *floor);
 
-void	floor_rgb(char* str, t_cube *data);
-void	ceiling_rgb(char* str, t_cube *data);
+void		if_valid_add(t_cube *data);
 
-int		are_digits(char *str);
-bool	is_full(t_texmap *texmap);
+int			first_digit(char *str);
+int			are_digits(char *str);
+bool		is_full(t_texmap *texmap);
 
-void	read_taxmap(char *file, t_cube *data);
-bool	is_struct_full(t_ceiling *ceiling, t_floor *floor);
-void	del_list(t_cublist *map);
+//to delete
+void	print_texmap(t_texmap *texmap);
 
 #endif
