@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/13 07:35:14 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/13 08:33:51 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/13 10:54:29 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ void	init_cube(t_cube *data)
 	ft_memset(data, 0, sizeof(t_cube));
 	
 	data->texmap = init_texmap();
-	data->cub_file = NULL;
 	data->p = init_player();
+	data->cub_file = NULL;
 }
