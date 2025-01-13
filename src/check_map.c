@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:30:12 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/13 12:40:38 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/13 13:38:28 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,13 @@ bool	space_wall_check(t_cube *data, int y, int x)
 		{1, -1}, {1, 0}, {1, 1}};
 
 	i = 0;
+	len = ft_strlen(data->texmap->map[y]);
 	while (i < 8)
 	{
 		new_y = y + dir[i][0];
 		new_x = x + dir[i][1];
-		len = ft_strlen(data->texmap->map[new_y]);
-		printf("new_x = %d\tnew_y = %d\n", new_x, new_y);
 		if (new_x < 0 || new_x > len || new_y < 0
-			|| new_y > data->texmap->height
+			|| new_y >= data->texmap->height
 			|| !valid_char(data->texmap->map[new_y][new_x]))
 			return (false);
 		i++;
@@ -101,6 +100,3 @@ void	map_check(t_cube *data)
 	if (position == false)
 		error_bye_data(data, ERR_PLAYER_MISSING);
 }
-
-
-//garbage after the map & player on the edge & north edge & south edge
