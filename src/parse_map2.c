@@ -6,16 +6,11 @@
 /*   By: gosia <gosia@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/08 11:03:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/14 07:45:00 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/14 09:12:33 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-static int	ft_isspace(char c)
-{
-	return (c == '\t' || c == '\v' || c == '\f' || c == '\r' || c == ' ');
-}
 
 static char	*skip_space(char *line)
 {
@@ -24,7 +19,8 @@ static char	*skip_space(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (!ft_isspace(line[i]))
+		if (line[i] != '\t' || line[i] != '\v' || line[i] != '\f'
+			|| line[i] != '\r' || line[i] != ' ')
 			return (&line[i]);
 		i++;
 	}

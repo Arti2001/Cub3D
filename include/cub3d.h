@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/13 13:29:25 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/14 09:14:12 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # define ERR_TOO_LONG_LINE "too long line in the file. max length: 300\n"
 # define ERR_TOO_MANY_TEXTURES "Incorrect file format: multiple textures\n"
 
-
 # define ERR_NO_PATH_FOUND "Some paths could not be found.\n"
 # define ERR_OUT_OF_RANGE_F "Incorrect floor's color value: Out of range: 0...255\n"
 # define ERR_OUT_OF_RANGE_C "Incorrect ceiling's color value: Out of range: 0...255\n"
@@ -36,8 +35,6 @@
 # define ERR_TO_FEW_PARAM_C "To few parameters to make a ceiling's color.\n"
 # define ERR_TO_MANY_PARAM_C "To many parameters to make a ceiling's color.\n"
 # define ERR_TO_MANY_PARAM_F "To many parameters to make a floor's color.\n"
-
-
 
 # define ERR_MAL_NEW_NODE "malloc failed while creating node in add_node()\n"
 # define ERR_MAP_MALLOC "malloc failed while creating the map in fill_map()\n"
@@ -91,7 +88,7 @@ typedef struct s_texmap
 	t_ceiling	*ceiling;
 }	t_texmap;
 
-typedef	struct s_cub3d
+typedef struct s_cub3d
 {
 	t_texmap	*texmap;
 	t_cublist	*cub_file;
@@ -99,16 +96,15 @@ typedef	struct s_cub3d
 	t_player	*p;
 }	t_cube;
 
-
-void	init_cube(t_cube *data);
-
-// map checks
-void		name_check(char *file);
-void		map_check(t_cube *data);
+//initialisations
+void		init_cube(t_cube *data);
 
 //map parsing
 void		read_taxmap(char *file, t_cube *data);
 void		fill_map(t_cube *data);
+
+// map checks
+void		map_check(t_cube *data);
 
 //parse utils
 char		is_white_space_nline(char c);
@@ -125,20 +121,15 @@ void		error_bye_data(t_cube *data, char *str);
 void		free_data(t_cube *data);
 
 //texture
-void		floor_rgb(char* str, t_cube *data);
-void		ceiling_rgb(char* str, t_cube *data);
-bool		is_struct_full(t_ceiling *ceiling, t_floor *floor);
-
 void		if_valid_add(t_cube *data);
-
-void	floor_rgb(char* str, t_cube *data);
-void	ceiling_rgb(char* str, t_cube *data);
-
-int		are_digits(char *str);
-int		first_digit(char *str);
+bool		is_struct_full(t_ceiling *ceiling, t_floor *floor);
 bool		is_full(t_texmap *texmap);
+int			are_digits(char *str);
+int			first_digit(char *str);
+void		floor_rgb(char *str, t_cube *data);
+void		ceiling_rgb(char *str, t_cube *data);
 
 //to delete
-void	print_texmap(t_texmap *texmap);
+void		print_texmap(t_texmap *texmap);
 
 #endif
