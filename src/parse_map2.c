@@ -6,7 +6,7 @@
 /*   By: gosia <gosia@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/08 11:03:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/13 08:39:49 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/14 07:45:00 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,27 @@ static t_cublist	*find_map_start(t_cube *data)
 	return (NULL);
 }
 
+static bool	valid_char(char c)
+{
+	const char	check[] = "NSWE01 ";
+	int			i;
+
+	i = 0;
+	while (check[i])
+	{
+		if (c == check[i])
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
 static void	get_line(t_cube *data, t_cublist *current, int y, int len)
 {
+	if (current->line[0] && valid_char(current->line[0]) == false)
+	{
+		error_bye_data(data, ERR_GARBAGE_AFTER_MAP);
+	}
 	if (current->line[len - 1] == '\n')
 	{
 		data->texmap->map[y] = malloc(sizeof(char) * len);
@@ -74,7 +93,7 @@ void	fill_map(t_cube *data)
 	if (current == NULL)
 		error_bye_data(data, ERR_NO_MAP);
 	size = data->texmap->height - current->height + 2;
-	data->texmap->map = malloc(sizeof(char **) * size);
+	data->texmap->map = ft_calloc(size, sizeof(char **));
 	if (!data->texmap->map)
 		error_bye_data(data, ERR_MAP_MALLOC);
 	while (current && (current->height <= data->texmap->height))

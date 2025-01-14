@@ -1,24 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: gosia <gosia@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 14:38:20 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/12 10:55:21 by gosia            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   errors.c                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: gosia <gosia@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 14:38:20 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/13 13:59:32 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-// void	error_bye()
-// {
-// 	free_all
-// 	error_p(....)
-// 	exit(EXIT_FAILURE);
-// }
-
 
 void	err_fd_data_bye(t_cube *data, int fd, int flag)
 {

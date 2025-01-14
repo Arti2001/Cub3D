@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/08 10:49:16 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/13 12:27:35 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/14 07:50:38 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,4 @@ void	free_data(t_cube *data)
 			ft_free_string(&data->texmap->ea_path);
 		free(data->texmap);
 	}
-	//free all the data
 }
