@@ -6,11 +6,11 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 15:21:28 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/13 13:29:07 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/14 10:10:16 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 //int	are_alldigit(char *str)
 //{

@@ -6,11 +6,11 @@
 /*   By: gosia <gosia@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/08 13:23:45 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/13 08:40:28 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/14 10:10:01 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 t_cublist	*add_node(char *line, t_cube *data)
 {

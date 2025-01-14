@@ -6,11 +6,11 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 15:21:44 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/13 08:37:56 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/14 10:10:31 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 char	is_white_space_nline(char c)
 {

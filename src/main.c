@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:07:53 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/14 09:12:18 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/14 10:09:04 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ static void	name_check(char *file)
 	}
 }
 
+static void	file_parse(t_cube *data, char *str)
+{
+	read_taxmap(str, data);
+	if_valid_add(data);
+	fill_map(data);
+	map_check(data);
+}
+
 //to delete print_texmap
 int	main(int argc, char **argv)
 {
@@ -33,12 +41,9 @@ int	main(int argc, char **argv)
 		error_p(ERR_NO_ARG);
 		return (1);
 	}
-	init_cube(&data);
 	name_check(argv[1]);
-	read_taxmap(argv[1], &data);
-	if_valid_add(&data);
-	fill_map(&data);
-	map_check(&data);
+	init_cube(&data);
+	file_parse(&data, argv[1]);
 	print_texmap(data.texmap);
 	free_data(&data);
 	return (0);

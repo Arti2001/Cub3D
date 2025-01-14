@@ -6,13 +6,11 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 10:52:36 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/01/13 13:29:35 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/14 10:10:13 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
-
-
+#include "../../include/cub3d.h"
 
 char* skipspace(char* line)
 {

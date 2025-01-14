@@ -6,11 +6,11 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:30:12 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/14 07:51:49 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/14 10:09:56 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 /// @brief 
 /// @param c 

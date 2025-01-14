@@ -6,11 +6,11 @@
 /*   By: gosia <gosia@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/08 11:03:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/14 09:12:33 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/14 10:32:22 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 static char	*skip_space(char *line)
 {
@@ -19,12 +19,12 @@ static char	*skip_space(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != '\t' || line[i] != '\v' || line[i] != '\f'
-			|| line[i] != '\r' || line[i] != ' ')
-			return (&line[i]);
+		if (line[i] != '\t' && line[i] != '\v' && line[i] != '\f' &&
+			line[i] != '\r' && line[i] != ' ')
+			return (line + i);
 		i++;
 	}
-	return (&line[i]);
+	return (line);
 }
 
 static t_cublist	*find_map_start(t_cube *data)

@@ -6,7 +6,7 @@
 #    By: mstencel <mstencel@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/06 09:23:22 by mstencel      #+#    #+#                  #
-#    Updated: 2025/01/13 07:36:40 by mstencel      ########   odam.nl          #
+#    Updated: 2025/01/14 10:09:40 by mstencel      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,18 +18,18 @@ NAME = cub3D
 
 SRC_DIR = src
 
-SRC_FILES = src/check_map.c \
-			src/errors.c \
+SRC_FILES = src/errors.c \
 			src/free.c \
 			src/init.c \
 			src/main.c \
-			src/parse_map_utils.c \
-			src/parse_map.c \
-			src/parse_map2.c \
-			src/parse_texture_utils.c \
-			src/parse_texture.c \
-			src/parse_texture2.c \
-			src/splitbywhite.c
+			src/parsing/check_map.c \
+			src/parsing/parse_map_utils.c \
+			src/parsing/parse_map.c \
+			src/parsing/parse_map2.c \
+			src/parsing/parse_texture_utils.c \
+			src/parsing/parse_texture.c \
+			src/parsing/parse_texture2.c \
+			src/parsing/splitbywhite.c
 
 OBJ_DIR = obj
 

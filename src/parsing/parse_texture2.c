@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_texture2.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 10:49:30 by amysiv            #+#    #+#             */
-/*   Updated: 2025/01/10 14:55:28 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_texture2.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/10 10:49:30 by amysiv        #+#    #+#                 */
+/*   Updated: 2025/01/14 10:10:24 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
-#include "../include/cub3d.h"
-
+#include "../../include/cub3d.h"
 
 void	ceiling_rgb(char* str, t_cube *data)
 {
