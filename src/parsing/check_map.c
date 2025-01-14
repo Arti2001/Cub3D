@@ -6,11 +6,11 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:30:12 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/14 12:26:45 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/14 12:31:35 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 bool	valid_char(char c)
 {

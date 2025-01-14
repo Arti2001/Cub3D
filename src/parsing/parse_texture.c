@@ -6,11 +6,11 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:21:28 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/14 12:29:45 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/14 12:31:45 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 bool	comma_checker(char *str)
 {

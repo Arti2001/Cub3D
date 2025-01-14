@@ -6,11 +6,11 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:21:44 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/14 12:27:51 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/14 12:31:58 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 char	is_white_space_nline(char c)
 {

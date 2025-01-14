@@ -6,13 +6,13 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:49:30 by amysiv            #+#    #+#             */
-/*   Updated: 2025/01/14 12:27:42 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/14 12:31:53 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 
 void	ceiling_rgb(char* str, t_cube *data)
