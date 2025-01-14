@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 12:30:12 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/14 12:31:35 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   check_map.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 12:30:12 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/14 12:35:33 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ bool	space_wall_check(t_cube *data, int y, int x)
 		new_y = y + dir[i][0];
 		new_x = x + dir[i][1];
 		len = ft_strlen(data->texmap->map[new_y]);
-		printf("new_x = %d\tnew_y = %d\n", new_x, new_y);
 		if (new_x < 0 || new_x > len || new_y < 0
 			|| new_y > data->texmap->height
 			|| !valid_char(data->texmap->map[new_y][new_x]))
