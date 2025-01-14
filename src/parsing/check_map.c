@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:30:12 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/13 16:44:57 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/14 12:26:45 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,3 +101,6 @@ void	map_check(t_cube *data)
 	if (position == false)
 		error_bye_data(data, ERR_PLAYER_MISSING);
 }
+
+
+//garbage after the map & player on the edge & north edge & south edge

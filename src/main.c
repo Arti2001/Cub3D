@@ -6,13 +6,13 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:07:53 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/13 16:45:37 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/14 12:26:32 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	name_check(char *file)
+static void	name_check(char *file)
 {
 	const int	name_len = ft_strlen(file) - 4;
 
@@ -23,6 +23,15 @@ void	name_check(char *file)
 	}
 }
 
+static void	file_parse(t_cube *data, char *str)
+{
+	read_taxmap(str, data);
+	if_valid_add(data);
+	fill_map(data);
+	map_check(data);
+}
+
+//to delete print_texmap
 int	main(int argc, char **argv)
 {
 	t_cube	data;
@@ -32,12 +41,9 @@ int	main(int argc, char **argv)
 		error_p(ERR_NO_ARG);
 		return (1);
 	}
-	init_cube(&data);
 	name_check(argv[1]);
-	read_taxmap(argv[1], &data);
-	if_valid_add(&data);
-	fill_map(&data);
-	map_check(&data);
+	init_cube(&data);
+	file_parse(&data, argv[1]);
 	print_texmap(data.texmap);
 	free_data(&data);
 	return (0);

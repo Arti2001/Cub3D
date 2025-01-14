@@ -6,11 +6,11 @@
 /*   By: gosia <gosia@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:30:08 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/13 08:39:13 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/14 10:10:04 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 static int	open_texmapfile(char *file, t_cube *data)
 {

@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/13 16:55:47 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/14 12:24:00 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct s_texmap
 	t_ceiling	*ceiling;
 }	t_texmap;
 
-typedef	struct s_cub3d
+typedef struct s_cub3d
 {
 	t_texmap	*texmap;
 	t_cublist	*cub_file;
@@ -97,13 +97,16 @@ typedef	struct s_cub3d
 	t_player	*p;
 }	t_cube;
 
+//initialisations
 void		init_cube(t_cube *data);
-// map checks
-void		name_check(char *file);
-void		map_check(t_cube *data);
+
 //map parsing
 void		read_taxmap(char *file, t_cube *data);
 void		fill_map(t_cube *data);
+
+// map checks
+void		map_check(t_cube *data);
+
 //parse utils
 char		is_white_space_nline(char c);
 char		**splitbywhite(char const *s, char c);
