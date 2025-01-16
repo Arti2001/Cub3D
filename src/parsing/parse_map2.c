@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_map2.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 11:03:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/16 11:06:09 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_map2.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/08 11:03:03 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/16 12:01:55 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static char	*skip_space(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != '\t' && line[i] != '\v' && line[i] != '\f' &&
-			line[i] != '\r' && line[i] != ' ')
+		if (line[i] != '\t' && line[i] != '\v' && line[i] != '\f'
+			&& line[i] != '\r' && line[i] != ' ')
 			return (line + i);
 		i++;
 	}

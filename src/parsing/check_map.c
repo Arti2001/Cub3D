@@ -1,22 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-<<<<<<< HEAD
 /*                                                        ::::::::            */
 /*   check_map.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:30:12 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/14 12:35:33 by mstencel      ########   odam.nl         */
-=======
-/*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 12:30:12 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/16 10:58:02 by amysiv           ###   ########.fr       */
->>>>>>> artem
+/*   Updated: 2025/01/16 11:53:26 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +43,7 @@ bool	space_wall_check(t_root *data, int y, int x)
 	{
 		new_y = y + dir[i][0];
 		new_x = x + dir[i][1];
-<<<<<<< HEAD
-		len = ft_strlen(data->texmap->map[new_y]);
-=======
 		len = ft_strlen(data->map->map[new_y]);
->>>>>>> artem
 		if (new_x < 0 || new_x > len || new_y < 0
 			|| new_y > data->map->height
 			|| !valid_char(data->map->map[new_y][new_x]))
@@ -114,6 +100,3 @@ void	map_check(t_root *data)
 	if (position == false)
 		error_bye_data(data, ERR_PLAYER_MISSING);
 }
-
-
-//garbage after the map & player on the edge & north edge & south edge

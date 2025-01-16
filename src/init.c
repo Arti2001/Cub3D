@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 07:35:14 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/16 11:41:33 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   init.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/13 07:35:14 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/16 12:01:35 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static t_player	*init_player(t_root *data)
 
 void	init_root(t_root *data)
 {
-	//printf("here?\n");
 	ft_memset(data, 0, sizeof(t_root));
 	data->map = init_map(data);
 	data->p = init_player(data);

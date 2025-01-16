@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_texture2.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 10:49:30 by amysiv            #+#    #+#             */
-/*   Updated: 2025/01/16 10:58:02 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_texture2.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/10 10:49:30 by amysiv        #+#    #+#                 */
+/*   Updated: 2025/01/16 12:02:57 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../../include/cub3d.h"
 
-
-void	ceiling_rgb(char* str, t_root *data)
+void	ceiling_rgb(char *str, t_root *data)
 {
-	char**	c_arg;
-	
+	char	**c_arg;
+
 	c_arg = splitbywhite(str, ',');
 	if (c_arg == NULL)
 		return ;
@@ -41,9 +38,9 @@ void	ceiling_rgb(char* str, t_root *data)
 	}
 }
 
-void	floor_rgb(char* str, t_root *data)
+void	floor_rgb(char *str, t_root *data)
 {
-	char**	f_arg;
+	char	**f_arg;
 
 	f_arg = splitbywhite(str, ',');
 	if (f_arg == NULL)

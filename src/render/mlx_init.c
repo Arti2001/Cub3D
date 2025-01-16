@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mlx_init.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 10:21:53 by amysiv            #+#    #+#             */
-/*   Updated: 2025/01/16 11:40:28 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   mlx_init.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/16 10:21:53 by amysiv        #+#    #+#                 */
+/*   Updated: 2025/01/16 12:20:58 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	cub_init(t_root *data)
 {
 	mlx_image_t	*map;
-	//mlx_image_t	*mini;
+	// mlx_image_t	*mini;
 
 	map = data->cub_mlx.img.img_ptr;
-	//mini = data->cub_mlx.mini_map.img_ptr;
-	data->cub_mlx.win = mlx_init(W, H, NAME, true);
+	// mini = data->cub_mlx.mini_map.img_ptr;
+	data->cub_mlx.win = mlx_init(W + 200, H, NAME, true);
 	if (data->cub_mlx.win == NULL)
 	{
 		mlx_terminate(data->cub_mlx.win);
@@ -32,11 +32,15 @@ void	cub_init(t_root *data)
 		mlx_terminate(data->cub_mlx.win);
 		error_bye_data(data, "Failure of mlx_init()\n");
 	}
-//	mini = mlx_new_image(data->cub_mlx.win, MMW, MMH);
-//	if (mini == NULL || \
-//	mlx_image_to_window(data->cub_mlx.win, mini, W - MMW, H - MMH) < 0)
-//	{
-//		mlx_terminate(data->cub_mlx.win);
-//		error_bye_data(data, "Failure of mlx_init()\n");
-//	}
+	// mini = mlx_new_image(data->cub_mlx.win, MMW, MMH);
+	// if (mini == NULL || \
+	// mlx_image_to_window(data->cub_mlx.win, mini, W - MMW, H - MMH) < 0)
+	// {
+	// 	mlx_terminate(data->cub_mlx.win);
+	// 	error_bye_data(data, "Failure of mlx_init()\n");
+	// }
+	mlx_loop(data->cub_mlx.win);
+	mlx_delete_image(data->cub_mlx.win, map);
+	// mlx_delete_image(data->cub_mlx.win, mini);
+	mlx_terminate(data->cub_mlx.win);
 }	
