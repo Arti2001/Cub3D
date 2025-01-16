@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:07:53 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/14 12:26:32 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/16 11:41:55 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	name_check(char *file)
 	}
 }
 
-static void	file_parse(t_cube *data, char *str)
+static void	file_parse(t_root *data, char *str)
 {
 	read_taxmap(str, data);
 	if_valid_add(data);
@@ -31,10 +31,10 @@ static void	file_parse(t_cube *data, char *str)
 	map_check(data);
 }
 
-//to delete print_texmap
+//to delete print_map
 int	main(int argc, char **argv)
 {
-	t_cube	data;
+	t_root	data;
 
 	if (argc != 2)
 	{
@@ -42,9 +42,11 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	name_check(argv[1]);
-	init_cube(&data);
+	init_root(&data);
+	printf("file: %s\n", argv[1]);
 	file_parse(&data, argv[1]);
-	print_texmap(data.texmap);
+	print_map(data.map);
+	cub_init(&data);
 	free_data(&data);
 	return (0);
 }

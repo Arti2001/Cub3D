@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse_map_utils.c                                  :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: gosia <gosia@student.42.fr>                  +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/08 13:23:45 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/14 10:10:01 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse_map_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/08 13:23:45 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/16 11:03:02 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-t_cublist	*add_node(char *line, t_cube *data)
+t_maplist	*add_node(char *line, t_root *data)
 {
-	t_cublist			*new_node;
+	t_maplist			*new_node;
 
-	new_node = malloc(sizeof(t_cublist));
+	new_node = malloc(sizeof(t_maplist));
 	if (!new_node)
 	{
 		error_p(ERR_MAP_MALLOC);
@@ -28,8 +28,8 @@ t_cublist	*add_node(char *line, t_cube *data)
 		error_p(ERR_MALLOC_LINE);
 		return (NULL);
 	}
-	new_node->height = data->texmap->height + 1;
-	data->texmap->height = new_node->height;
+	new_node->height = data->map->height + 1;
+	data->map->height = new_node->height;
 	if (new_node->height > 350)
 	{
 		error_p(ERR_TOO_MANY_LINES);
@@ -40,20 +40,20 @@ t_cublist	*add_node(char *line, t_cube *data)
 }
 
 			/*to delete*/
-void	print_texmap(t_texmap *texmap)
+void	print_map(t_map *map)
 {
 	int	i;
 
 	i = 0;
-	printf("NO: %s\n", texmap->no_path);
-	printf("SO: %s\n", texmap->so_path);
-	printf("EA: %s\n", texmap->ea_path);
-	printf("WE: %s\n", texmap->we_path);
-	if (texmap->map)
+	printf("NO: %s\n", map->no_path);
+	printf("SO: %s\n", map->so_path);
+	printf("EA: %s\n", map->ea_path);
+	printf("WE: %s\n", map->we_path);
+	if (map->map)
 	{
-		while (texmap->map[i])
+		while (map->map[i])
 		{
-			printf("%s\n", texmap->map[i]);
+			printf("%s\n", map->map[i]);
 			i++;
 		}
 	}

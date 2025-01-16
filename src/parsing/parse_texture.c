@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:21:28 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/14 12:31:45 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/16 11:06:10 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,41 +30,41 @@ bool	comma_checker(char *str)
 	return (false);
 }
 
-int	tex_paths_valid(char **split, t_cube *data)
+int	tex_paths_valid(char **split, t_root *data)
 {
 	if (ft_strncmp(split[0], "NO", 3) == 0)
 	{
-		if (data->texmap->no_path)
+		if (data->map->no_path)
 			free_data_arr(data, "NO: Is definied more then one time", split);
-		return (data->texmap->no_path = split[1], 1);
+		return (data->map->no_path = split[1], 1);
 	}
 	else if (ft_strncmp(split[0], "SO", 3) == 0)
 	{
-		if (data->texmap->so_path)
+		if (data->map->so_path)
 			free_data_arr(data, "SO: Is definied more then one time", split);
-		return (data->texmap->so_path = split[1], 1);
+		return (data->map->so_path = split[1], 1);
 	}
 	else if (ft_strncmp(split[0], "WE", 3) == 0)
 	{
-		if (data->texmap->we_path)
+		if (data->map->we_path)
 			free_data_arr(data, "WE: Is definied more then one time", split);
-		return (data->texmap->we_path = split[1], 1);
+		return (data->map->we_path = split[1], 1);
 	}
 	else if (ft_strncmp(split[0], "EA", 3) == 0)
 	{
-		if (data->texmap->ea_path)
+		if (data->map->ea_path)
 			free_data_arr(data, "EA: Is definied more then one time", split);
-		return (data->texmap->ea_path = split[1], 1);
+		return (data->map->ea_path = split[1], 1);
 	}
 	return (0);
 }
 
-int	ceiling_floor_valid(char **split_line, char *line, t_cube *data)
+int	ceiling_floor_valid(char **split_line, char *line, t_root *data)
 {
 	if (ft_strncmp(split_line[0], "C", 2) == 0)
 	{
 		ft_free_array(split_line);
-		if (data->texmap->ceiling && !is_cf_full(data->texmap->ceiling, NULL))
+		if (data->map->ceiling && !is_cf_full(data->map->ceiling, NULL))
 		{
 			ceiling_rgb(line, data);
 			return (1);
@@ -75,7 +75,7 @@ int	ceiling_floor_valid(char **split_line, char *line, t_cube *data)
 	else if (ft_strncmp(split_line[0], "F", 2) == 0)
 	{
 		ft_free_array(split_line);
-		if (data->texmap->floor && !is_cf_full(NULL, data->texmap->floor))
+		if (data->map->floor && !is_cf_full(NULL, data->map->floor))
 		{
 			floor_rgb(line, data);
 			return (1);
@@ -86,7 +86,7 @@ int	ceiling_floor_valid(char **split_line, char *line, t_cube *data)
 	return (0);
 }
 
-void	tex_validation(char *line, t_cube *data)
+void	tex_validation(char *line, t_root *data)
 {
 	char	**split_line;
 
@@ -104,12 +104,12 @@ void	tex_validation(char *line, t_cube *data)
 	free_data_arr(data, ERR_GARBAGE_BEFORE_MAP, split_line);
 }
 
-void	if_valid_add(t_cube *data)
+void	if_valid_add(t_root *data)
 {
-	t_cublist	*curr;
+	t_maplist	*curr;
 
-	curr = data->cub_file;
-	while (curr != NULL && !is_full(data->texmap))
+	curr = data->map_list;
+	while (curr != NULL && !is_full(data->map))
 	{
 		if (curr->line[0] != '\n')
 		{
@@ -117,15 +117,15 @@ void	if_valid_add(t_cube *data)
 		}
 		curr = curr->next;
 	}
-	data->end_texture = curr;
-	// printf("%s\n",data->texmap->no_path);
-	// printf("%s\n",data->texmap->so_path);
-	// printf("%s\n",data->texmap->ea_path);
-	// printf("%s\n",data->texmap->we_path);
-	// printf("ceiling value r: %d\n",data->texmap->ceiling->r);
-	// printf("ceiling value g: %d\n",data->texmap->ceiling->g);
-	// printf("ceiling value b: %d\n",data->texmap->ceiling->b);
-	// printf("floor value r: %d\n",data->texmap->floor->r);
-	// printf("floor value g: %d\n",data->texmap->floor->g);
-	// printf("floor value b: %d\n",data->texmap->floor->b);
+	data->map_search = curr;
+	// printf("%s\n",data->map->no_path);
+	// printf("%s\n",data->map->so_path);
+	// printf("%s\n",data->map->ea_path);
+	// printf("%s\n",data->map->we_path);
+	// printf("ceiling value r: %d\n",data->map->ceiling->r);
+	// printf("ceiling value g: %d\n",data->map->ceiling->g);
+	// printf("ceiling value b: %d\n",data->map->ceiling->b);
+	// printf("floor value r: %d\n",data->map->floor->r);
+	// printf("floor value g: %d\n",data->map->floor->g);
+	// printf("floor value b: %d\n",data->map->floor->b);
 }

@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 12:30:12 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/14 12:31:35 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/16 10:58:02 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	valid_char(char c)
 
 /// @brief checks all the fields next to the 0 in question
 /// @return true if the map is correct and false if there is an issue
-bool	space_wall_check(t_cube *data, int y, int x)
+bool	space_wall_check(t_root *data, int y, int x)
 {
 	int			i;
 	int			new_y;
@@ -43,26 +43,25 @@ bool	space_wall_check(t_cube *data, int y, int x)
 	{
 		new_y = y + dir[i][0];
 		new_x = x + dir[i][1];
-		len = ft_strlen(data->texmap->map[new_y]);
-		printf("new_x = %d\tnew_y = %d\n", new_x, new_y);
+		len = ft_strlen(data->map->map[new_y]);
 		if (new_x < 0 || new_x > len || new_y < 0
-			|| new_y > data->texmap->height
-			|| !valid_char(data->texmap->map[new_y][new_x]))
+			|| new_y > data->map->height
+			|| !valid_char(data->map->map[new_y][new_x]))
 			return (false);
 		i++;
 	}
 	return (true);
 }
 
-void	player_found(t_cube *data, long y, long x, bool *position)
+void	player_found(t_root *data, long y, long x, bool *position)
 {
 	if (*position == false)
 	{
 		data->p->x_pos = x;
 		data->p->y_pos = y;
 		*position = true;
-		data->p->pos = data->texmap->map[y][x];
-		data->texmap->map[y][x] = '0';
+		data->p->pos = data->map->map[y][x];
+		data->map->map[y][x] = '0';
 	}
 	else
 		error_bye_data(data, ERR_TOO_MANY_PLAYERS);
@@ -73,7 +72,7 @@ static int	player_char(char c)
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-void	map_check(t_cube *data)
+void	map_check(t_root *data)
 {
 	int		x;
 	int		y;
@@ -81,17 +80,17 @@ void	map_check(t_cube *data)
 
 	position = false;
 	y = 0;
-	while (y < data->texmap->height)
+	while (y < data->map->height)
 	{
 		x = 0;
-		while (data->texmap->map[y][x])
+		while (data->map->map[y][x])
 		{
-			if (!valid_char(data->texmap->map[y][x])
-				&& data->texmap->map[y][x] != ' ')
+			if (!valid_char(data->map->map[y][x])
+				&& data->map->map[y][x] != ' ')
 				error_bye_data(data, ERR_GARBAGE_IN_THE_MAP);
-			if (player_char(data->texmap->map[y][x]))
+			if (player_char(data->map->map[y][x]))
 				player_found(data, y, x, &position);
-			if (data->texmap->map[y][x] == '0'
+			if (data->map->map[y][x] == '0'
 				&& !space_wall_check(data, y, x))
 				error_bye_data(data, ERR_OPEN_MAP);
 			x++;

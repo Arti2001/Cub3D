@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:52:36 by amysiv            #+#    #+#             */
-/*   Updated: 2025/01/14 12:33:15 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/16 10:58:02 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ char* skipspace(char* line)
 	return (line);
 }
 
-bool	is_full(t_texmap *texmap)
+bool	is_full(t_map *map)
 {
-	if (	is_cf_full(texmap->ceiling, NULL) &&
-			is_cf_full(NULL, texmap->floor) &&
-			texmap->no_path != NULL && texmap->so_path != NULL &&
-			texmap->ea_path != NULL && texmap->we_path != NULL)
+	if (	is_cf_full(map->ceiling, NULL) &&
+			is_cf_full(NULL, map->floor) &&
+			map->no_path != NULL && map->so_path != NULL &&
+			map->ea_path != NULL && map->we_path != NULL)
 			return (true);
 	else
 		return(false);
