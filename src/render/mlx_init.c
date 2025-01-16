@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 10:21:53 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/01/16 12:20:58 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/16 14:04:57 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	cub_init(t_root *data)
 {
 	mlx_image_t	*map;
 	// mlx_image_t	*mini;
+	// mlx_texture_t	*waves;
 
 	map = data->cub_mlx.img.img_ptr;
 	// mini = data->cub_mlx.mini_map.img_ptr;
