@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/14 12:24:00 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/16 11:30:14 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,32 @@
 # define ERR_PLAYER_MISSING "Missing player's starting position!\n"
 # define ERR_OPEN_MAP "Provide an enclosed map!\n"
 
+# define H 900//screen height
+# define W 900//sree n width
+# define TH 64 //tile height
+# define TW 64 //tile width
+# define MMH 200//screen height
+# define MMW 200//sree n width
+# define MMTH 15 //tile height
+# define MMTW 15 //tile width
+# define ANG 60 //player's angle
+# define PH TH/2 //player's height
+# define NAME "cub3D"
+
+typedef struct s_img
+{
+	mlx_image_t	*img_ptr;
+	
+}	t_img;
+
+typedef struct s_cubmlx
+{
+	mlx_t	*win;
+	t_img	img;
+	t_img	mini_map;
+	
+}	t_cubmlx;
+
 typedef struct s_ceiling
 {
 	int	r;
@@ -63,12 +89,12 @@ typedef struct s_floor
 	int	b;
 }	t_floor;
 
-typedef struct s_cublist
+typedef struct s_maplist
 {
 	char				*line;
-	struct s_cublist	*next;
+	struct s_maplist	*next;
 	int					height;
-}	t_cublist;
+}	t_maplist;
 
 typedef struct s_player
 {
@@ -77,7 +103,7 @@ typedef struct s_player
 	char		pos;
 }	t_player;
 
-typedef struct s_texmap
+typedef struct s_map
 {
 	char		*no_path;
 	char		*so_path;
@@ -87,51 +113,54 @@ typedef struct s_texmap
 	int			height;
 	t_floor		*floor;
 	t_ceiling	*ceiling;
-}	t_texmap;
+}	t_map;
 
-typedef struct s_cub3d
+typedef struct s_root
 {
-	t_texmap	*texmap;
-	t_cublist	*cub_file;
-	t_cublist	*end_texture;
+	t_map		*map;
+	t_maplist	*map_list;
+	t_maplist	*map_search;
 	t_player	*p;
-}	t_cube;
+	t_cubmlx	cub_mlx;
+	
+}	t_root;
 
 //initialisations
-void		init_cube(t_cube *data);
+void		init_root(t_root *data);
+void	cub_init(t_root *data);
 
 //map parsing
-void		read_taxmap(char *file, t_cube *data);
-void		fill_map(t_cube *data);
+void		read_taxmap(char *file, t_root *data);
+void		fill_map(t_root *data);
 
 // map checks
-void		map_check(t_cube *data);
+void		map_check(t_root *data);
 
 //parse utils
 char		is_white_space_nline(char c);
 char		**splitbywhite(char const *s, char c);
-t_cublist	*add_node(char *line, t_cube *data);
-void		del_list(t_cublist *map);
+t_maplist	*add_node(char *line, t_root *data);
+void		del_list(t_maplist *map);
 // errors
 void		error_p(char *str);
-void		err_fd_data_bye(t_cube *data, int fd, int flag);
-void		error_bye_data(t_cube *data, char *str);
-void		free_data_arr(t_cube *data, char *str, char **arr);
+void		err_fd_data_bye(t_root *data, int fd, int flag);
+void		error_bye_data(t_root *data, char *str);
+void		free_data_arr(t_root *data, char *str, char **arr);
 //freeing
-void		free_data(t_cube *data);
+void		free_data(t_root *data);
 //texture
-void		floor_rgb(char* str, t_cube *data);
-void		ceiling_rgb(char* str, t_cube *data);
+void		floor_rgb(char* str, t_root *data);
+void		ceiling_rgb(char* str, t_root *data);
 bool		is_cf_full(t_ceiling *ceiling, t_floor *floor);
-void		if_valid_add(t_cube *data);
-void		floor_rgb(char* str, t_cube *data);
-void		ceiling_rgb(char* str, t_cube *data);
+void		if_valid_add(t_root *data);
+void		floor_rgb(char* str, t_root *data);
+void		ceiling_rgb(char* str, t_root *data);
 int			are_digits(char *str);
 int			first_digit(char *str);
-bool		is_full(t_texmap *texmap);
+bool		is_full(t_map *map);
 bool		comma_checker(char *str);
 
 //to delete
-void		print_texmap(t_texmap *texmap);
+void		print_map(t_map *map);
 
 #endif

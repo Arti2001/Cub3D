@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse_map2.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: gosia <gosia@student.42.fr>                  +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/08 11:03:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/14 10:32:22 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse_map2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/08 11:03:03 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/16 11:06:09 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static char	*skip_space(char *line)
 	return (line);
 }
 
-static t_cublist	*find_map_start(t_cube *data)
+static t_maplist	*find_map_start(t_root *data)
 {
-	t_cublist	*current;
+	t_maplist	*current;
 	char		*line;
 
-	current = data->end_texture;
+	current = data->map_search;
 	while (current != NULL)
 	{
 		line = skip_space(current->line);
@@ -60,7 +60,7 @@ static bool	valid_char(char c)
 	return (false);
 }
 
-static void	get_line(t_cube *data, t_cublist *current, int y, int len)
+static void	get_line(t_root *data, t_maplist *current, int y, int len)
 {
 	if (current->line[0] && valid_char(current->line[0]) == false)
 	{
@@ -68,31 +68,31 @@ static void	get_line(t_cube *data, t_cublist *current, int y, int len)
 	}
 	if (current->line[len - 1] == '\n')
 	{
-		data->texmap->map[y] = malloc(sizeof(char) * len);
-		ft_strlcpy(data->texmap->map[y], current->line, len);
+		data->map->map[y] = malloc(sizeof(char) * len);
+		ft_strlcpy(data->map->map[y], current->line, len);
 	}
 	else
-		data->texmap->map[y] = ft_strdup(current->line);
-	if (!data->texmap->map[y])
+		data->map->map[y] = ft_strdup(current->line);
+	if (!data->map->map[y])
 		error_bye_data(data, ERR_MALLOC_MAP_LINE);
 }
 
-void	fill_map(t_cube *data)
+void	fill_map(t_root *data)
 {
 	int			y;
 	int			size;
 	int			len;
-	t_cublist	*current;
+	t_maplist	*current;
 
 	y = 0;
 	current = find_map_start(data);
 	if (current == NULL)
 		error_bye_data(data, ERR_NO_MAP);
-	size = data->texmap->height - current->height + 2;
-	data->texmap->map = ft_calloc(size, sizeof(char **));
-	if (!data->texmap->map)
+	size = data->map->height - current->height + 2;
+	data->map->map = ft_calloc(size, sizeof(char **));
+	if (!data->map->map)
 		error_bye_data(data, ERR_MAP_MALLOC);
-	while (current && (current->height <= data->texmap->height))
+	while (current && (current->height <= data->map->height))
 	{
 		len = ft_strlen(current->line);
 		if (len > 300)
@@ -101,6 +101,6 @@ void	fill_map(t_cube *data)
 		y++;
 		current = current->next;
 	}
-	data->texmap->height = y;
-	data->texmap->map[y] = NULL;
+	data->map->height = y;
+	data->map->map[y] = NULL;
 }

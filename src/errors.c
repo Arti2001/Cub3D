@@ -6,13 +6,13 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:38:20 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/14 12:24:11 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/16 10:55:17 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	err_fd_data_bye(t_cube *data, int fd, int flag)
+void	err_fd_data_bye(t_root *data, int fd, int flag)
 {
 	if (flag == 1)
 		error_p(ERR_EMPTY_MAP);
@@ -21,7 +21,7 @@ void	err_fd_data_bye(t_cube *data, int fd, int flag)
 	exit(EXIT_FAILURE);
 }
 
-void	error_bye_data(t_cube *data, char *str)
+void	error_bye_data(t_root *data, char *str)
 {
 	free_data(data);
 	error_p(str);
@@ -42,7 +42,7 @@ void	error_p(char *str)
 	ft_free_string(&msg);
 }
 
-void	free_data_arr(t_cube *data, char *str, char **arr)
+void	free_data_arr(t_root *data, char *str, char **arr)
 {
 	free_data(data);
 	if (arr)
