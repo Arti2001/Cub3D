@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/16 11:30:14 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/17 14:48:38 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,12 @@
 # define ERR_PLAYER_MISSING "Missing player's starting position!\n"
 # define ERR_OPEN_MAP "Provide an enclosed map!\n"
 
-# define H 900//screen height
-# define W 900//sree n width
+# define H 600//screen height
+# define W 600//sreen width
 # define TH 64 //tile height
 # define TW 64 //tile width
-# define MMH 200//screen height
-# define MMW 200//sree n width
-# define MMTH 15 //tile height
-# define MMTW 15 //tile width
+# define MMTH 10 //tile height
+# define MMTW 10 //tile width
 # define ANG 60 //player's angle
 # define PH TH/2 //player's height
 # define NAME "cub3D"
@@ -71,7 +69,7 @@ typedef struct s_cubmlx
 {
 	mlx_t	*win;
 	t_img	img;
-	t_img	mini_map;
+	// t_img	mini_map;
 	
 }	t_cubmlx;
 
@@ -94,6 +92,7 @@ typedef struct s_maplist
 	char				*line;
 	struct s_maplist	*next;
 	int					height;
+	int					line_len;
 }	t_maplist;
 
 typedef struct s_player
@@ -111,6 +110,7 @@ typedef struct s_map
 	char		*ea_path;
 	char		**map;
 	int			height;
+	int			lenght;
 	t_floor		*floor;
 	t_ceiling	*ceiling;
 }	t_map;
@@ -159,6 +159,9 @@ int			are_digits(char *str);
 int			first_digit(char *str);
 bool		is_full(t_map *map);
 bool		comma_checker(char *str);
+
+//rendering
+void		get_mini_map(t_root *data);
 
 //to delete
 void		print_map(t_map *map);

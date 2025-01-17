@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/06 09:23:22 by mstencel          #+#    #+#              #
-#    Updated: 2025/01/16 10:21:32 by amysiv           ###   ########.fr        #
+#                                                         ::::::::             #
+#    Makefile                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: amysiv <amysiv@student.42.fr>                +#+                      #
+#                                                    +#+                       #
+#    Created: 2025/01/06 09:23:22 by mstencel      #+#    #+#                  #
+#    Updated: 2025/01/17 11:03:26 by mstencel      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC_FILES = src/errors.c \
 			src/parsing/parse_texture.c \
 			src/parsing/parse_texture2.c \
 			src/parsing/splitbywhite.c \
+			src/render/mini_map.c \
 			src/render/mlx_init.c
 
 OBJ_DIR = obj
