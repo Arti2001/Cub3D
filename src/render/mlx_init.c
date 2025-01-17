@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 10:21:53 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/01/16 14:07:05 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/16 14:09:17 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ mlx_texture_t	*put_png(t_root *data)
 		error_bye_data(data, "Failure of put_png()\n");
 	}
 	return (png);
-	
 }
 
 void	cub_init(t_root *data)
