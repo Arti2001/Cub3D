@@ -1,5 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
+<<<<<<< HEAD
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -7,6 +8,15 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
 /*   Updated: 2025/01/17 13:51:52 by amysiv           ###   ########.fr       */
+=======
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/18 11:58:39 by mstencel      ########   odam.nl         */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,44 +59,45 @@
 # define ERR_PLAYER_MISSING "Missing player's starting position!\n"
 # define ERR_OPEN_MAP "Provide an enclosed map!\n"
 
-# define H 900//screen height
-# define W 900//sree n width
+# define H 1280//screen height
+# define W 2048//sreen width
 # define TH 64 //tile height
 # define TW 64 //tile width
-# define MMH 200//screen height
-# define MMW 200//sree n width
 # define MMTH 15 //tile height
 # define MMTW 15 //tile width
 # define ANG 60 //player's angle
-# define PH TH/2 //player's height
 # define NAME "cub3D"
+# define PLAYER 0
+# define WALL 1
+# define FLOOR 2
+# define RAY 3
+# define SPACE 4
+# define X 0
+# define Y 1
 
 typedef struct s_img
 {
-	mlx_image_t	*img_ptr;
-	
+	mlx_image_t			*img_ptr;
 }	t_img;
 
 typedef struct s_cubmlx
 {
-	mlx_t	*win;
-	t_img	img;
-	t_img	mini_map;
-	
+	mlx_t				*win;
+	t_img				img;
 }	t_cubmlx;
 
 typedef struct s_ceiling
 {
-	int	r;
-	int	g;
-	int	b;
+	int					r;
+	int					g;
+	int					b;
 }	t_ceiling;
 
 typedef struct s_floor
 {
-	int	r;
-	int	g;
-	int	b;
+	int					r;
+	int					g;
+	int					b;
 }	t_floor;
 
 typedef struct s_maplist
@@ -94,41 +105,51 @@ typedef struct s_maplist
 	char				*line;
 	struct s_maplist	*next;
 	int					height;
+	int					line_len;
 }	t_maplist;
 
 typedef struct s_player
 {
-	double		x_pos;
-	double		y_pos;
-	char		pos;
+	int					x_pos;
+	int					y_pos;
+	char				pos;
 }	t_player;
 
 typedef struct s_map
 {
-	char		*no_path;
-	char		*so_path;
-	char		*we_path;
-	char		*ea_path;
-	char		**map;
-	int			height;
-	t_floor		*floor;
-	t_ceiling	*ceiling;
+	char				*no_path;
+	char				*so_path;
+	char				*we_path;
+	char				*ea_path;
+	char				**map;
+	int					height;
+	int					lenght;
+	t_floor				*floor;
+	t_ceiling			*ceiling;
 }	t_map;
 
 typedef struct s_root
 {
-	t_map		*map;
-	t_maplist	*map_list;
-	t_maplist	*map_search;
-	t_player	*p;
-	t_cubmlx	cub_mlx;
-	
+	t_map				*map;
+	t_maplist			*map_list;
+	t_maplist			*map_search;
+	t_player			*p;
+	t_cubmlx			cub_mlx;
 }	t_root;
 
 //initialisations
 void		init_root(t_root *data);
-void	cub_init(t_root *data);
 
+//freeing
+void		free_data(t_root *data);
+
+// errors
+void		error_p(char *str);
+void		err_fd_data_bye(t_root *data, int fd, int flag);
+void		error_bye_data(t_root *data, char *str);
+void		free_data_arr(t_root *data, char *str, char **arr);
+
+						/**********		PARSING		**********/
 //map parsing
 void		read_taxmap(char *file, t_root *data);
 void		fill_map(t_root *data);
@@ -141,24 +162,30 @@ char		is_white_space_nline(char c);
 char		**splitbywhite(char const *s, char c);
 t_maplist	*add_node(char *line, t_root *data);
 void		del_list(t_maplist *map);
-// errors
-void		error_p(char *str);
-void		err_fd_data_bye(t_root *data, int fd, int flag);
-void		error_bye_data(t_root *data, char *str);
-void		free_data_arr(t_root *data, char *str, char **arr);
-//freeing
-void		free_data(t_root *data);
+
 //texture
-void		floor_rgb(char* str, t_root *data);
-void		ceiling_rgb(char* str, t_root *data);
+void		floor_rgb(char *str, t_root *data);
+void		ceiling_rgb(char *str, t_root *data);
 bool		is_cf_full(t_ceiling *ceiling, t_floor *floor);
 void		if_valid_add(t_root *data);
-void		floor_rgb(char* str, t_root *data);
-void		ceiling_rgb(char* str, t_root *data);
+void		floor_rgb(char *str, t_root *data);
+void		ceiling_rgb(char *str, t_root *data);
 int			are_digits(char *str);
 int			first_digit(char *str);
 bool		is_full(t_map *map);
 bool		comma_checker(char *str);
+
+						/**********		RENDERING		**********/
+void		run_mlx(t_root *data);
+
+//drawing utils
+uint32_t	ft_my_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
+
+//hooks
+void		key_hooks(mlx_key_data_t keydata, void *param);
+
+//mini_map
+void		add_mini_map(t_root *data);
 
 //to delete
 void		print_map(t_map *map);

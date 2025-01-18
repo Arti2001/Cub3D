@@ -6,7 +6,7 @@
 #    By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 09:23:22 by mstencel          #+#    #+#              #
-#    Updated: 2025/01/17 13:24:16 by amysiv           ###   ########.fr        #
+#    Updated: 2025/01/18 12:46:22 by amysiv           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,11 @@ SRC_FILES = src/errors.c \
 			src/parsing/parse_texture.c \
 			src/parsing/parse_texture2.c \
 			src/parsing/splitbywhite.c \
-			src/render/mlx_init.c \
-			src/render/color.c
+			src/render/key_hooks.c \
+			src/render/key_hooks_utils.c \
+			src/render/mini_map.c \
+			src/render/mini_map_utils.c \
+			src/render/mlx_init.c
 
 OBJ_DIR = obj
 

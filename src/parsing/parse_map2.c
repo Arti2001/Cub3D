@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/08 11:03:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/16 12:01:55 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/17 10:46:17 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,15 @@ static void	get_line(t_root *data, t_maplist *current, int y, int len)
 	{
 		data->map->map[y] = malloc(sizeof(char) * len);
 		ft_strlcpy(data->map->map[y], current->line, len);
+		if (data->map->lenght < len - 1)
+			data->map->lenght = len - 1;
 	}
 	else
+	{
 		data->map->map[y] = ft_strdup(current->line);
+		if (data->map->lenght < len)
+			data->map->lenght = len;
+	}
 	if (!data->map->map[y])
 		error_bye_data(data, ERR_MALLOC_MAP_LINE);
 }
@@ -81,7 +87,7 @@ void	fill_map(t_root *data)
 {
 	int			y;
 	int			size;
-	int			len;
+	// int			len;
 	t_maplist	*current;
 
 	y = 0;
@@ -94,10 +100,10 @@ void	fill_map(t_root *data)
 		error_bye_data(data, ERR_MAP_MALLOC);
 	while (current && (current->height <= data->map->height))
 	{
-		len = ft_strlen(current->line);
-		if (len > 300)
+		current->line_len = ft_strlen(current->line);
+		if (current->line_len > 300)
 			error_bye_data(data, ERR_TOO_LONG_LINE);
-		get_line(data, current, y, len);
+		get_line(data, current, y, current->line_len);
 		y++;
 		current = current->next;
 	}

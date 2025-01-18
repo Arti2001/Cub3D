@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 12:07:53 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/16 11:41:55 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 12:07:53 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/18 10:43:50 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,9 @@ int	main(int argc, char **argv)
 	}
 	name_check(argv[1]);
 	init_root(&data);
-	printf("file: %s\n", argv[1]);
 	file_parse(&data, argv[1]);
-	print_map(data.map);
-	cub_init(&data);
+	// print_map(data.map);
+	run_mlx(&data);
 	free_data(&data);
 	return (0);
 }
