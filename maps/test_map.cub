@@ -1,6 +1,6 @@
 
                          
-NO			         ./path_to_the_north_texture
+NO			         src/render/textures/blackhole.png
 
 				
 F 244       ,    55   ,   100
@@ -12,7 +12,7 @@ F 244       ,    55   ,   100
 
 			
 			
-SO ./path_to_the_south_texture
+SO ./src/render/textures/round.png
 
 
 
@@ -22,14 +22,14 @@ SO ./path_to_the_south_texture
 
 
 
-                                                                 EA ./path_to_the_east_texture
+                                                                 EA src/render/textures/round2.png
 
 
 C 2,                    30,0
 
 
 
-WE ./path_to_the_west_texture
+WE src/render/textures/stars.png
 
 
 

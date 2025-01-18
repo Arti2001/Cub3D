@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/16 11:30:14 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/17 13:51:52 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,5 +162,8 @@ bool		comma_checker(char *str);
 
 //to delete
 void		print_map(t_map *map);
+
+//color
+uint32_t	extract_rgb(mlx_texture_t *texture, int x, int y);
 
 #endif
