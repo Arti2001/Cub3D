@@ -6,26 +6,16 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 10:21:53 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/01/17 15:01:25 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/18 09:55:03 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  "../../include/cub3d.h"
-
-// mlx_texture_t	*put_png(t_root *data)
-// {
-// 	mlx_texture_t	*png;
-
-// 	png = mlx_load_png("src/render/blackhole.png");
-// 	if (!png)
-// 	{
-// 		error_bye_data(data, "Failure of put_png()\n");
-// 	}
-// 	return (png);
-// }
+#include "../../include/cub3d.h"
 
 void	cub_init(t_root *data)
 {
+	mlx_image_t	*map;
+
 	data->cub_mlx.win = mlx_init(W, H, NAME, true);
 	if (data->cub_mlx.win == NULL)
 	{
@@ -33,17 +23,19 @@ void	cub_init(t_root *data)
 		error_bye_data(data, "Failure of mlx_init()\n");
 	}
 	data->cub_mlx.img.img_ptr = mlx_new_image(data->cub_mlx.win, W, H);
-	if (!data->cub_mlx.img.img_ptr)
+	map = data->cub_mlx.img.img_ptr;
+	if (!map)
 	{
 		mlx_terminate(data->cub_mlx.win);
 		error_bye_data(data, "Failure of mlx_new_image() for mini_map\n");
 	}
-	get_mini_map(data);
+	add_mini_map(data);
+	if (mlx_image_to_window(data->cub_mlx.win, map, 0, 0) < 0)
+	{
+		mlx_terminate(data->cub_mlx.win);
+		error_bye_data(data, "Failure of mlx_image_to_window()\n");
+	}
 	mlx_loop(data->cub_mlx.win);
 	mlx_delete_image(data->cub_mlx.win, data->cub_mlx.img.img_ptr);
 	mlx_terminate(data->cub_mlx.win);
-}	
-
-
-
-
+}

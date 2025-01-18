@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/17 14:48:38 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/18 09:28:03 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,22 @@
 # define ERR_PLAYER_MISSING "Missing player's starting position!\n"
 # define ERR_OPEN_MAP "Provide an enclosed map!\n"
 
-# define H 600//screen height
-# define W 600//sreen width
+# define H 1280//screen height
+# define W 2048//sreen width
 # define TH 64 //tile height
 # define TW 64 //tile width
-# define MMTH 10 //tile height
-# define MMTW 10 //tile width
+# define MMTH 15 //tile height
+# define MMTW 15 //tile width
 # define ANG 60 //player's angle
 # define PH TH/2 //player's height
 # define NAME "cub3D"
+# define PLAYER 0
+# define WALL 1
+# define FLOOR 2
+# define RAY 3
+# define SPACE 4
+# define X 0
+# define Y 1
 
 typedef struct s_img
 {
@@ -97,8 +104,8 @@ typedef struct s_maplist
 
 typedef struct s_player
 {
-	double		x_pos;
-	double		y_pos;
+	int		x_pos;
+	int		y_pos;
 	char		pos;
 }	t_player;
 
@@ -127,7 +134,7 @@ typedef struct s_root
 
 //initialisations
 void		init_root(t_root *data);
-void	cub_init(t_root *data);
+void		cub_init(t_root *data);
 
 //map parsing
 void		read_taxmap(char *file, t_root *data);
@@ -161,7 +168,9 @@ bool		is_full(t_map *map);
 bool		comma_checker(char *str);
 
 //rendering
-void		get_mini_map(t_root *data);
+// void		get_mini_map(t_root *data);
+void		add_mini_map(t_root *data);
+uint32_t 	ft_my_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 
 //to delete
 void		print_map(t_map *map);
