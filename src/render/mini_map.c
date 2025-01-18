@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 14:07:46 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/18 09:56:00 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/18 12:41:56 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,11 @@ static void	draw_map1(t_root *data, int img[2], int j, int flag)
 	i = 0;
 	while (i < MMTW)
 	{
+		// if (flag == WALL)
+		// {
 		if (j == 0 || i == 0)
 			mlx_put_pixel(data->cub_mlx.img.img_ptr, img[X], img[Y], 255);
+		// }
 		else
 			draw_map2(data, img, flag);
 		img[X]++;

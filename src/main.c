@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:07:53 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/17 11:13:15 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/18 10:43:50 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 	init_root(&data);
 	file_parse(&data, argv[1]);
 	// print_map(data.map);
-	cub_init(&data);
+	run_mlx(&data);
 	free_data(&data);
 	return (0);
 }
