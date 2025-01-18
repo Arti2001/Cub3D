@@ -1,22 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-<<<<<<< HEAD
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/17 13:51:52 by amysiv           ###   ########.fr       */
-=======
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/18 11:58:39 by mstencel      ########   odam.nl         */
->>>>>>> main
+/*   Updated: 2025/01/18 18:07:11 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +53,8 @@
 # define W 2048//sreen width
 # define TH 64 //tile height
 # define TW 64 //tile width
-# define MMTH 15 //tile height
-# define MMTW 15 //tile width
+# define MMTH 50 //tile height
+# define MMTW 50 //tile width
 # define ANG 60 //player's angle
 # define NAME "cub3D"
 # define PLAYER 0
@@ -110,8 +100,8 @@ typedef struct s_maplist
 
 typedef struct s_player
 {
-	int					x_pos;
-	int					y_pos;
+	float				x_pos;
+	float				y_pos;
 	char				pos;
 }	t_player;
 

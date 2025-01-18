@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:21:53 by amysiv            #+#    #+#             */
-/*   Updated: 2025/01/18 12:45:57 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/18 18:35:17 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ static void	cub_init(t_root *data)
 		error_bye_data(data, "Failure of mlx_new_image() for mini_map\n");
 	}
 	
-	add_mini_map(data);
 	map = data->cub_mlx.img.img_ptr;
 	if (mlx_image_to_window(data->cub_mlx.win, map, 0, 0) < 0)
 	{
 		mlx_terminate(data->cub_mlx.win);
 		error_bye_data(data, "Failure of mlx_image_to_window()\n");
 	}
+	add_mini_map(data);
 }
 
 void	run_mlx(t_root *data)

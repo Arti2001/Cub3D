@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mini_map.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/16 14:07:46 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/18 12:41:56 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mini_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/16 14:07:46 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/18 18:43:14 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ static void	draw_map2(t_root *data, int img[2], int flag)
 	//place
 /// @param j current height in the tile in the minimap
 /// @param flag SPACE, FLOOR, WALL, RAY, PLAYER, for the colour
+
+
 static void	draw_map1(t_root *data, int img[2], int j, int flag)
 {
 	int			i;
@@ -72,7 +74,7 @@ static void	draw_map1(t_root *data, int img[2], int j, int flag)
 		// if (flag == WALL)
 		// {
 		if (j == 0 || i == 0)
-			mlx_put_pixel(data->cub_mlx.img.img_ptr, img[X], img[Y], 255);
+			mlx_put_pixel(data->cub_mlx.img.img_ptr, img[X], img[Y], 0);
 		// }
 		else
 			draw_map2(data, img, flag);
@@ -96,8 +98,10 @@ static void	draw_map(t_root *data, int y, int img[2], int j)
 	img[X] = W - data->map->lenght * MMTW;
 	while (data->map->map[y][x] && x < data->map->lenght)
 	{
-		if (y == data->p->y_pos && x == data->p->x_pos)
+		if (y == (int)(data->p->y_pos) && x == (int)(data->p->x_pos))
+		{
 			draw_map1(data, img, j, PLAYER);
+		}
 		else if (data->map->map[y][x] == '1')
 			draw_map1(data, img, j, WALL);
 		else if (data->map->map[y][x] == '0')
@@ -119,20 +123,21 @@ static void	draw_map(t_root *data, int y, int img[2], int j)
 void	add_mini_map(t_root *data)
 {
 	int	y;
-	int	img[2];
+	int	mm_cordinate[2];
 	int	j;
 
-	img[X] = W - data->map->lenght * MMTW;
-	img[Y] = H - data->map->height * MMTH;
+	
+	mm_cordinate[X] = W - data->map->lenght * MMTW;
+	mm_cordinate[Y] = H - data->map->height * MMTH;
 	y = 0;
 	while (y < data->map->height)
 	{
 		j = 0;
 		while (j < MMTH)
 		{
-			draw_map(data, y, img, j);
+			draw_map(data, y, mm_cordinate, j);
 			j++;
-			img[Y]++;
+			mm_cordinate[Y]++;
 		}
 		y++;
 	}
