@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/18 18:07:11 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/19 18:06:31 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define MMTH 50 //tile height
 # define MMTW 50 //tile width
 # define ANG 60 //player's angle
+# define MMPP 10
 # define NAME "cub3D"
 # define PLAYER 0
 # define WALL 1
@@ -100,9 +101,9 @@ typedef struct s_maplist
 
 typedef struct s_player
 {
-	float				x_pos;
-	float				y_pos;
-	char				pos;
+	float			x_pos;
+	float			y_pos;
+	char			pos;
 }	t_player;
 
 typedef struct s_map
