@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:07:46 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/19 18:49:53 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/20 08:33:40 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	draw_map2(t_root *data, int img[2], int flag)
 /// @param flag SPACE, FLOOR, WALL, RAY, PLAYER, for the colour
 
 
-static void	draw_map1(t_root *data, int mm_cord[2], int flag)
+static void	draw_map1(t_root *data, int mm_coord[2], int flag)
 {
 	int			i;
 
@@ -72,8 +72,8 @@ static void	draw_map1(t_root *data, int mm_cord[2], int flag)
 	while (i < MMTW)
 	{
 
-		draw_map2(data, mm_cord, flag);
-		mm_cord[X]++;
+		draw_map2(data, mm_coord, flag);
+		mm_coord[X]++;
 		i++;
 	}
 }
@@ -95,8 +95,8 @@ void draw_player(t_root *data)
 	mini_y = H - data->map->height * MMTH;
 
 	// Calculate player's position relative to the minimap
-	start_x = (int)(mini_x + (data->p->x_pos * MMTW) - MMPP / 2);
-	start_y = (int)(mini_y + (data->p->y_pos * MMTH) - MMPP / 2);
+	start_x = (int)(mini_x + (data->p->x_pos * MMTW) - MMPP * 0.8);
+	start_y = (int)(mini_y + (data->p->y_pos * MMTH) - MMPP * 0.8);
 
 	// Draw the player square
 	while(height < MMPP)
@@ -117,30 +117,26 @@ void draw_player(t_root *data)
 /// @param img coordinates inside image needed to draw the pixel in the correct
 	//place
 /// @param j current height in the tile in the minimap
-static void	draw_map(t_root *data, int y, int	mm_cord[2])
+static void	draw_map(t_root *data, int y, int	mm_coord[2])
 {
 	int	x;
 
 	x = 0;
-	mm_cord[X] = W - data->map->lenght * MMTW;
-	while (data->map->map[y][x] && x < data->map->lenght)
+	mm_coord[X] = W - data->map->lenght * MMTW;
+	while (data->map->map[y][x])
 	{
-		//if (y == (int)(data->p->y_pos) && x == (int)(data->p->x_pos))
-		//{
-		//	draw_map1(data, mm_cord, PLAYER);
-	draw_player(data);
-		//}
+		draw_player(data);
 		if (data->map->map[y][x] == '1')
-			draw_map1(data, mm_cord, WALL);
+			draw_map1(data, mm_coord, WALL);
 		else if (data->map->map[y][x] == '0')
-			draw_map1(data, mm_cord, FLOOR);
+			draw_map1(data, mm_coord, FLOOR);
 		else if (data->map->map[y][x] == ' ')
-			draw_map1(data, mm_cord, SPACE);
+			draw_map1(data, mm_coord, SPACE);
 		x++;
 	}
 	while (x < data->map->lenght)
 	{
-		draw_rest(data, mm_cord);
+		draw_rest(data, mm_coord);
 		x++;
 	}
 }
@@ -151,21 +147,20 @@ static void	draw_map(t_root *data, int y, int	mm_cord[2])
 void	add_mini_map(t_root *data)
 {
 	int	y;
-	int	mm_cordinate[2];
-	int	j;
+	int	mm_coord[2];
+	int	tile_y;
 
-	
-	//mm_cordinate[X] = W - data->map->lenght * MMTW;
-	mm_cordinate[Y] = H - data->map->height * MMTH;
+	//[X] = W - data->map->lenght * MMTW;
+	mm_coord[Y] = H - data->map->height * MMTH;
 	y = 0;
 	while (y < data->map->height)
 	{
-		j = 0;
-		while (j < MMTH)
+		tile_y = 0;
+		while (tile_y < MMTH)
 		{
-			draw_map(data, y, mm_cordinate);
-			j++;
-			mm_cordinate[Y]++;
+			draw_map(data, y, mm_coord);
+			mm_coord[Y]++;
+			tile_y++;
 		}
 		y++;
 	}
