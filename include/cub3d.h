@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/20 08:41:11 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/20 12:07:45 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,11 @@
 # define ERR_PLAYER_MISSING "Missing player's starting position!\n"
 # define ERR_OPEN_MAP "Provide an enclosed map!\n"
 
-# define H 1280//screen height
-# define W 2048//sreen width
 # define TH 64 //tile height
 # define TW 64 //tile width
-# define MMTH 50 //tile height
-# define MMTW 50 //tile width
-# define MMTH 50 //tile height
-# define MMTW 50 //tile width
+# define MMTH 25 //tile height
+# define MMTW 25 //tile width
 # define ANG 60 //player's angle
-# define MMPP 10
 # define MMPP 10
 # define NAME "cub3D"
 # define PLAYER 0
@@ -68,6 +63,7 @@
 # define SPACE 4
 # define X 0
 # define Y 1
+# define HITBOX 0.2
 
 typedef struct s_img
 {
@@ -77,6 +73,8 @@ typedef struct s_img
 typedef struct s_cubmlx
 {
 	mlx_t				*win;
+	int					win_h;
+	int					win_w;
 	t_img				img;
 }	t_cubmlx;
 
@@ -104,9 +102,6 @@ typedef struct s_maplist
 
 typedef struct s_player
 {
-	float			x_pos;
-	float			y_pos;
-	char			pos;
 	float			x_pos;
 	float			y_pos;
 	char			pos;
@@ -174,6 +169,8 @@ bool		comma_checker(char *str);
 
 						/**********		RENDERING		**********/
 void		run_mlx(t_root *data);
+
+void		ft_resize(int32_t width, int32_t height, void *param);
 
 //drawing utils
 uint32_t	ft_my_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);

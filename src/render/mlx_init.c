@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mlx_init.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 10:21:53 by amysiv            #+#    #+#             */
-/*   Updated: 2025/01/18 18:35:17 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   mlx_init.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/16 10:21:53 by amysiv        #+#    #+#                 */
+/*   Updated: 2025/01/20 12:10:42 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+static void	win_init(t_root *data)
+{
+	data->cub_mlx.win_h = 1280;
+	data->cub_mlx.win_w = 2048;
+}
+
 static void	cub_init(t_root *data)
 {
 	mlx_image_t	*map; //created for norminette reasons (too long line 33)
 
-	data->cub_mlx.win = mlx_init(W, H, NAME, true);
+	win_init(data);
+	data->cub_mlx.win = mlx_init(data->cub_mlx.win_w, data->cub_mlx.win_h, NAME, true);
 	if (data->cub_mlx.win == NULL)
 	{
 		mlx_terminate(data->cub_mlx.win);
 		error_bye_data(data, "Failure of mlx_init()\n");
 	}
-	data->cub_mlx.img.img_ptr = mlx_new_image(data->cub_mlx.win, W, H);
+	data->cub_mlx.img.img_ptr = mlx_new_image(data->cub_mlx.win, data->cub_mlx.win_w, data->cub_mlx.win_h);
 	if (!data->cub_mlx.img.img_ptr)
 	{
 		mlx_terminate(data->cub_mlx.win);
@@ -35,6 +42,7 @@ static void	cub_init(t_root *data)
 		mlx_terminate(data->cub_mlx.win);
 		error_bye_data(data, "Failure of mlx_image_to_window()\n");
 	}
+	mlx_resize_hook(data->cub_mlx.win, ft_resize, data);
 	add_mini_map(data);
 }
 

@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:30:12 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/16 11:53:26 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/20 11:28:59 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	player_found(t_root *data, long y, long x, bool *position)
 {
 	if (*position == false)
 	{
-		data->p->x_pos = x;
-		data->p->y_pos = y;
+		data->p->x_pos = x + 0.5;
+		data->p->y_pos = y + 0.5;
 		*position = true;
 		data->p->pos = data->map->map[y][x];
 		data->map->map[y][x] = '0';
