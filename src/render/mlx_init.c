@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 10:21:53 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/01/20 12:10:42 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/23 13:13:01 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static void	cub_init(t_root *data)
 
 void	run_mlx(t_root *data)
 {
+	printf("here\n");
+	handel_angel(data);
 	cub_init(data);
 	mlx_key_hook(data->cub_mlx.win, &key_hooks, data);
 	mlx_loop(data->cub_mlx.win);

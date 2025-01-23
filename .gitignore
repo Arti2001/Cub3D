@@ -2,5 +2,5 @@
 obj
 cub3D
 *.a
-.vscode/settings.json
+.vscode
 a.out
