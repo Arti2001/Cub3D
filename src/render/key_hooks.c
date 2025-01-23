@@ -6,14 +6,12 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/18 10:38:05 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/23 13:12:54 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/23 13:15:00 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../../include/cub3d.h"
-
-# define HITBOX 0.05
 
 static	int	move_player(t_root *data, double delta_x, double delta_y)
 {
