@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:07:46 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/20 08:33:40 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/23 12:30:58 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,9 @@ static void	draw_map2(t_root *data, int img[2], int flag)
 	map = data->cub_mlx.img.img_ptr;
 	colour[RAY] = ft_my_pixel(255, 211, 0, 198);
 	colour[WALL] = ft_my_pixel(0, 6, 255, 255);
-	colour[PLAYER] = ft_my_pixel(128, 0, 255, 255);
 	colour[FLOOR] = ft_my_pixel(0, 167, 255, 255);
 	colour[SPACE] = ft_my_pixel(0, 0, 0, 255);
-	if (flag == PLAYER)
-		mlx_put_pixel(map, img[X], img[Y], colour[PLAYER]);
-	else if (flag == WALL)
+	if (flag == WALL)
 		mlx_put_pixel(map, img[X], img[Y], colour[WALL]);
 	else if (flag == FLOOR)
 		mlx_put_pixel(map, img[X], img[Y], colour[FLOOR]);
@@ -95,8 +92,8 @@ void draw_player(t_root *data)
 	mini_y = H - data->map->height * MMTH;
 
 	// Calculate player's position relative to the minimap
-	start_x = (int)(mini_x + (data->p->x_pos * MMTW) - MMPP * 0.8);
-	start_y = (int)(mini_y + (data->p->y_pos * MMTH) - MMPP * 0.8);
+	start_x = (int)(mini_x + (data->p->x_pos * MMTW) - MMPP / 2);
+	start_y = (int)(mini_y + (data->p->y_pos * MMTH) - MMPP / 2);
 
 	// Draw the player square
 	while(height < MMPP)

@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/19 18:06:31 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/23 12:30:03 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define MMTH 50 //tile height
 # define MMTW 50 //tile width
 # define ANG 60 //player's angle
+# define RAYS_NUMB 320 //number of rays
 # define MMPP 10
 # define NAME "cub3D"
 # define PLAYER 0
@@ -91,6 +92,16 @@ typedef struct s_floor
 	int					b;
 }	t_floor;
 
+typedef struct s_ray
+{
+	double				angle;
+	double				distance;
+	double				hit_x;
+	double				hit_y;
+	int					hit_vertical;
+}	t_ray;
+
+
 typedef struct s_maplist
 {
 	char				*line;
@@ -101,9 +112,12 @@ typedef struct s_maplist
 
 typedef struct s_player
 {
-	float			x_pos;
-	float			y_pos;
-	char			pos;
+	double			x_pos;
+	double			y_pos;
+	double			most_l;
+	double			most_r;
+	double			abr;
+	double			pos;
 }	t_player;
 
 typedef struct s_map
@@ -125,6 +139,7 @@ typedef struct s_root
 	t_maplist			*map_list;
 	t_maplist			*map_search;
 	t_player			*p;
+	t_ray				*ray;
 	t_cubmlx			cub_mlx;
 }	t_root;
 
@@ -183,5 +198,8 @@ void		print_map(t_map *map);
 
 //color
 uint32_t	extract_rgb(mlx_texture_t *texture, int x, int y);
+
+//math
+void	handel_angel(t_root *data);
 
 #endif

@@ -1,16 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   check_map.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 12:30:12 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/16 11:53:26 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 12:30:12 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/23 12:30:34 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+
+static	int	give_direction(char ch_dir)
+{
+	if(ch_dir == 'N')
+		return (270);
+	if(ch_dir == 'S')
+		return (90);
+	if(ch_dir == 'W')
+		return (180);
+	if(ch_dir == 'E')
+		return (0);
+	return (-1);
+}
 
 bool	valid_char(char c)
 {
@@ -57,10 +71,10 @@ void	player_found(t_root *data, long y, long x, bool *position)
 {
 	if (*position == false)
 	{
-		data->p->x_pos = x;
-		data->p->y_pos = y;
+		data->p->x_pos = x + 0.5;
+		data->p->y_pos = y + 0.5;
 		*position = true;
-		data->p->pos = data->map->map[y][x];
+		data->p->pos = (double)give_direction(data->map->map[y][x]);
 		data->map->map[y][x] = '0';
 	}
 	else

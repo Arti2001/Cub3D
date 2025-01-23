@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:21:28 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/16 11:06:10 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/23 08:35:11 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,14 +118,4 @@ void	if_valid_add(t_root *data)
 		curr = curr->next;
 	}
 	data->map_search = curr;
-	// printf("%s\n",data->map->no_path);
-	// printf("%s\n",data->map->so_path);
-	// printf("%s\n",data->map->ea_path);
-	// printf("%s\n",data->map->we_path);
-	// printf("ceiling value r: %d\n",data->map->ceiling->r);
-	// printf("ceiling value g: %d\n",data->map->ceiling->g);
-	// printf("ceiling value b: %d\n",data->map->ceiling->b);
-	// printf("floor value r: %d\n",data->map->floor->r);
-	// printf("floor value g: %d\n",data->map->floor->g);
-	// printf("floor value b: %d\n",data->map->floor->b);
 }
