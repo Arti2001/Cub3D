@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/20 12:07:45 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/23 07:57:30 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@
 
 # define TH 64 //tile height
 # define TW 64 //tile width
-# define MMTH 25 //tile height
-# define MMTW 25 //tile width
+# define MMTH 35 //tile height
+# define MMTW 35 //tile width
 # define ANG 60 //player's angle
 # define MMPP 10
 # define NAME "cub3D"

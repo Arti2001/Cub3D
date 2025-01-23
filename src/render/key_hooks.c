@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/18 10:38:05 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/20 11:44:42 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/23 07:52:25 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static  int move_player(t_root*data, float delta_x, float delta_y)
     map_y = (int)new_y;
     if((data->map->map[(int) (new_y - HITBOX)][(int)(new_x)] == '0')
     && (data->map->map[(int) (new_y)][(int)(new_x - HITBOX)] == '0')
-    && (data->map->map[(int) (new_y + 0.1)][(int)(new_x)] == '0')
+    && (data->map->map[(int) (new_y + HITBOX)][(int)(new_x)] == '0')
     && (data->map->map[(int) (new_y)][(int)(new_x + HITBOX)] == '0')
     && (data->map->map[(int) (new_y)][(int)(new_x)] == '0'))
     {
