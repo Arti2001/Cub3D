@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/23 13:10:21 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/24 12:29:05 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@
 # define TW 64 //tile width
 # define MMTH 35 //tile height
 # define MMTW 35 //tile width
-# define ANG 60 //player's angle
+# define FOV 60 //field of view
 # define RAYS_NUMB 320 //number of rays
 # define MMPP 10
 # define NAME "cub3D"
@@ -115,6 +115,8 @@ typedef struct s_player
 {
 	double			x_pos;
 	double			y_pos;
+	double			x_offset;
+	double			y_offset;
 	double			most_l;
 	double			most_r;
 	double			abr;
@@ -203,6 +205,8 @@ void		print_map(t_map *map);
 uint32_t	extract_rgb(mlx_texture_t *texture, int x, int y);
 
 //math
-void	handel_angel(t_root *data);
+void		handel_angel(t_root *data);
+double		to_radiance(double angle);
+void		find_offset(t_root *data);
 
 #endif
