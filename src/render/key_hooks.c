@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/18 10:38:05 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/23 14:43:20 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/27 15:03:49 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,6 @@ void	key_hooks(mlx_key_data_t keydata, void *param)
 		turn_right(data);
 	if (mlx_is_key_down(data->cub_mlx.win, MLX_KEY_ESCAPE))
 		mlx_close_window(data->cub_mlx.win);;
+	get_rays(data);
 	add_mini_map(data);
 }

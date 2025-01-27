@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/27 09:34:37 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/27 12:45:35 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/27 15:15:24 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,37 @@ void	add_offset(t_root *data, double current_ray)
 	} 
 }
 
-void	find_wall(t_root *data, double current_ray)
+void	find_wall(t_root *data)
 {
-	//add distance to the player's position
+	double	len_x;
+	double	len_y;
+
+	data->ray->x_ray = data->p->x_pos; //also to use in the map grid
+	data->ray->y_ray = data->p->y_pos;
+	len_x = data->ray->x_offset * data->ray->steps_x;
+	len_y = data->ray->y_offset * data->ray->steps_y;
+	while (1) //add the bool wall?
+	{
+		if (len_x < len_y)
+		{
+			data->ray->distance = len_x;
+			len_x += data->ray->steps_x;
+			data->ray->x_ray += data->ray->dir_x;
+		}
+		else
+		{
+			data->ray->distance = len_x;
+			len_x += data->ray->steps_x;
+			data->ray->x_ray += data->ray->dir_x;
+		}
+		if (data->map->map[data->ray->y_ray][data->ray->x_ray] == '1')
+		{
+			// char *str = ft_itoa(data->ray->y_ray);
+			// printf("str: %s\n", str);
+			// mlx_put_string(data->cub_mlx.win, "Hello", 0, 0);
+			printf("I'm now [%f][%f]", data->p->y_pos, data->p->x_pos);
+			printf("I hit the wall at [%d][%d]\n",data->ray->y_ray, data->ray->x_ray);
+			break ; //bool wall true ?
+		}
+	}
 }

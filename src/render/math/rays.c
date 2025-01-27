@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/23 14:44:43 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/27 12:40:30 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/27 15:11:32 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,20 @@ void	get_rays(t_root *data)
 	double	current_ray;
 
 	i = 1;
-	while (i < RAYS_NUMB)
+	// while (i < RAYS_NUMB)
+	while (i < data->cub_mlx.win_w)
 	{
 		current_ray = data->p->most_l + data->p->abr * i;
+		if (current_ray >= 360)
+			current_ray -= 360;
+		else if (current_ray < 0)
+			current_ray += 360;
+		printf("current_ray: %f\n", current_ray);
 		get_direction(data, current_ray);
 		find_player_grid_distance(data);
 		add_offset(data, current_ray);
 		get_steps_size(data);
-		find_wall(data, current_ray);
+		find_wall(data);
 		// print_ray(data, current_ray);
 		// mlx_put_pixel(data->cub_mlx.img.img_ptr, (uint32_t))
 		i++;
