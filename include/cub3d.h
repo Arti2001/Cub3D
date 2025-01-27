@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/27 09:38:23 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/27 12:38:20 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,10 @@ typedef struct s_ray
 	double				distance; //distance of between the player & wall (total ray length)
 	double				hit_x;
 	double				hit_y;
+	double				x_offset;
+	double				y_offset;
+	double				steps_x; //length of the actual x_step (number of y's in between x1 & x2)
+	double				steps_y; //length of the actual y_step (number of x's in between y1 & y2)
 	int					dir_x; //direction of x (right == +1, left == -1 and 0)
 	int					dir_y; //direction of y (down == +1, up == -1 and 0)
 }	t_ray;
@@ -117,10 +121,8 @@ typedef struct s_player
 {
 	double			x_pos;
 	double			y_pos;
-	double			x_offset;
-	double			y_offset;
-	double			x_dist;
-	double			y_dist;
+	double			x_dist; //distance of original position to the nearest x line
+	double			y_dist; //distance of original position to the nearest y line
 	double			most_l;
 	double			most_r;
 	double			abr;
@@ -213,5 +215,8 @@ void		handel_angel(t_root *data);
 double		to_radiance(double angle);
 void		get_rays(t_root *data);
 void		add_offset(t_root *data, double current_ray);
+
+//TO DELETE
+void	print_ray(t_root *data, double current_ray);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/23 08:08:09 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/01/24 12:16:56 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/27 12:32:09 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	init_angle_data(t_root *data)
 	printf("the right side: %f\n", data->p->most_r);
 	// data->p->abr = to_radiance((float)FOV / (RAYS_NUMB - 1));
 	data->p->abr = (float)FOV / (RAYS_NUMB - 1);
-	printf("and this? %f\n", data->p->most_r);
+	// printf("and this? %f\n", data->p->most_r);
 }
 
 void	handel_angel(t_root *data)
