@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 07:35:14 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/23 12:14:59 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   init.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/13 07:35:14 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/27 08:01:20 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,22 @@ static t_player	*init_player(t_root *data)
 	return (player);
 }
 
+static t_ray	*init_ray(t_root *data)
+{
+	t_ray	*ray;
+
+	ray = malloc(sizeof(t_ray));
+	if (!ray)
+		error_bye_data(data, "malloc failed in init_ray()\n");
+	ft_memset(ray, 0, sizeof(t_ray));
+	return (ray);
+}
+
 void	init_root(t_root *data)
 {
 	ft_memset(data, 0, sizeof(t_root));
 	data->map = init_map(data);
 	data->p = init_player(data);
+	data->ray = init_ray(data);
 	data->map_list = NULL;
 }

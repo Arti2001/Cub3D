@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/24 12:29:05 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/27 09:38:23 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,13 @@ typedef struct s_floor
 
 typedef struct s_ray
 {
-	double				angle;
-	double				distance;
+	double				x_angle; //already in radians for cos()
+	double				y_angle; //already in radians for cos()
+	double				distance; //distance of between the player & wall (total ray length)
 	double				hit_x;
 	double				hit_y;
-	int					hit_vertical;
+	int					dir_x; //direction of x (right == +1, left == -1 and 0)
+	int					dir_y; //direction of y (down == +1, up == -1 and 0)
 }	t_ray;
 
 
@@ -117,6 +119,8 @@ typedef struct s_player
 	double			y_pos;
 	double			x_offset;
 	double			y_offset;
+	double			x_dist;
+	double			y_dist;
 	double			most_l;
 	double			most_r;
 	double			abr;
@@ -207,6 +211,7 @@ uint32_t	extract_rgb(mlx_texture_t *texture, int x, int y);
 //math
 void		handel_angel(t_root *data);
 double		to_radiance(double angle);
-void		find_offset(t_root *data);
+void		get_rays(t_root *data);
+void		add_offset(t_root *data, double current_ray);
 
 #endif

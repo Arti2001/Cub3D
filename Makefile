@@ -6,7 +6,7 @@
 #    By: amysiv <amysiv@student.42.fr>                +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/06 09:23:22 by mstencel      #+#    #+#                  #
-#    Updated: 2025/01/24 12:21:46 by mstencel      ########   odam.nl          #
+#    Updated: 2025/01/27 09:36:18 by mstencel      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC_FILES = src/errors.c \
 			src/render/mini_map_utils.c \
 			src/render/mlx_init.c \
 			src/render/math/angle_calc.c \
+			src/render/math/rays_utils.c \
 			src/render/math/rays.c
 
 OBJ_DIR = obj

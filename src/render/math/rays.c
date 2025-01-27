@@ -6,51 +6,92 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/23 14:44:43 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/24 13:32:04 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/27 09:35:42 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
 
-//calculate the distance of the player to the first full point on the grid
-
-//calculate the distance to the wall - 
-//check each intersection using the angle & trigonometrical functions - angle 
-//should be adjusted to < 90 degrees, depending on where it goes, so e.g. 
-//angle between 270-360 -> angle = 360 - angle or angle = angle - 270; 
-//between 180-270 -> angle = angle - 180 or angle = 270 - angle
-//between 90 - 180 -> angle = angle - 90 or angle = 180 - angle
-//between 0 - 90 -> angle = angle - 90 or angle = 90 - angle
-
-
-void	find_offset(t_root *data)
+static void	find_distance(t_root *data)
 {
-	int	i;
+	if (data->ray->dir_x == 1)
+		data->p->x_dist = (ceil(data->p->x_pos) - data->p->x_pos) * TW;
+	else if (data->ray->dir_x == -1)
+		data->p->x_dist = (data->p->x_pos - floor(data->p->x_pos)) * TW;
+	else
+		data->p->x_dist = 0;
+	if (data->ray->dir_y == 1)
+		data->p->y_dist = (ceil(data->p->y_pos) - data->p->y_pos) * TH;
+	else if (data->ray->dir_y == -1)
+		data->p->y_dist = (data->p->y_pos - floor(data->p->y_pos)) * TH;
+	else
+		data->p->y_dist = 0;
+}
+
+static void	get_round_directions(t_root *data, double current_ray)
+{
+	if (current_ray == 0 || current_ray == 360)
+	{
+		data->ray->dir_x = 1;
+		data->ray->dir_y = 0;
+	}
+	else if (current_ray == 90)
+	{
+		data->ray->dir_x = 0;
+		data->ray->dir_y = 1;
+	}
+	else if (current_ray == 180)
+	{
+		data->ray->dir_x = -1;
+		data->ray->dir_y = 0;
+	}
+	else if (current_ray == 270)
+	{
+		data->ray->dir_x = 0;
+		data->ray->dir_y = -1;
+	}
+}
+
+static void	get_direction(t_root *data, double current_ray)
+{
+	if (current_ray > 0 && current_ray < 90)
+	{
+		data->ray->dir_x = 1;
+		data->ray->dir_y = 1;
+	}
+	else if (current_ray > 90 && current_ray < 180)
+	{
+		data->ray->dir_x = -1;
+		data->ray->dir_y = 1;
+	}
+	else if (current_ray > 180 && current_ray < 270)
+	{
+		data->ray->dir_x = -1;
+		data->ray->dir_y = -1;
+	}
+	else if (current_ray > 270 && current_ray < 360)
+	{
+		data->ray->dir_x = 1;
+		data->ray->dir_y = -1;
+	}
+	else if (current_ray == 0 || current_ray == 90 || current_ray == 180 
+		|| current_ray == 270 || current_ray == 360)
+		get_round_directions(data, current_ray);
+}
+
+void	get_rays(t_root *data)
+{
+	int		i;
+	double	current_ray;
 
 	i = 1;
 	while (i <= RAYS_NUMB)
 	{
-		if (data->p->most_l + data->p->abr * i >= 0 && data->p->most_l + data->p->abr * i <= 90)
-		{
-			data->p->x_offset = ceil(data->p->x_pos) * TW - data->p->x_pos * TW;
-			data->p->y_offset = ceil(data->p->y_pos) * TH - data->p->y_pos * TH;
-		}
-		else if (data->p->most_l + data->p->abr * i >= 90 && data->p->most_l + data->p->abr * i  <= 180)
-		{
-			data->p->x_offset = data->p->x_pos * TH - floor(data->p->x_pos * TW);
-			data->p->y_offset = ceil(data->p->y_pos) * TH - data->p->y_pos * TH;
-		}
-		else if (data->p->most_l + data->p->abr * i >= 180 && data->p->most_l + data->p->abr * i  <= 270)
-		{
-			data->p->x_offset = data->p->x_pos * TH - floor(data->p->x_pos * TW);
-			data->p->y_offset = data->p->y_pos * TH - floor(data->p->y_pos * TH);
-		}
-		else if (data->p->most_l + data->p->abr * i >= 270 && data->p->most_l + data->p->abr * i  <= 360)
-		{
-			data->p->x_offset = ceil(data->p->x_pos) * TH - data->p->x_pos * TW;
-			data->p->y_offset = data->p->y_pos * TH - floor(data->p->y_pos * TH);
-		}
+		current_ray = data->p->most_l + data->p->abr * i;
+		get_direction(data, current_ray);
+		find_distance(data);
+		add_offset(data, current_ray);
 		i++;
 	}
-	printf("y = %f x = %f", data->p->y_pos, data->p->x_pos);
+	
 }
