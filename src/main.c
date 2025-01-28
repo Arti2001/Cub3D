@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:07:53 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/28 07:52:24 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/28 08:51:52 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ static void	file_parse(t_root *data, char *str)
 	if_valid_add(data);
 	fill_map(data);
 	map_check(data);
+}
+
+static void	init_root(t_root *data)
+{
+	ft_memset(data, 0, sizeof(t_root));
+	data->map.floor.r = -1;
+	data->map.floor.g = -1;
+	data->map.floor.b = -1;
+	data->map.ceiling.r = -1;
+	data->map.ceiling.g = -1;
+	data->map.ceiling.b = -1;
+	data->map_list = NULL;
 }
 
 //to delete print_map

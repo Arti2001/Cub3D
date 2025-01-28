@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 10:49:16 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/28 08:47:39 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   free.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/08 10:49:16 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/28 08:52:31 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,4 @@ void	free_data(t_root *data)
 		del_list(data->map_list);
 	if (data->map.map)
 		ft_free_array(data->map.map);
-	//if (data->map.no_path)
-	//	ft_free_string(&data->map.no_path);
-	//if (data->map.so_path)
-	//	ft_free_string(&data->map.so_path);
-	//if (data->map.ea_path)
-	//	ft_free_string(&data->map.ea_path);
-	//if (data->map.we_path)
-	//	ft_free_string(&data->map.ea_path);
 }

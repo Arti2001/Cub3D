@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/18 10:38:05 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/28 08:26:00 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/28 09:35:33 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static	int	move_player(t_root *data, double delta_x, double delta_y)
 	}
 }
 
-
 static void go(t_root *data, int flag)
 {
 	if (flag == 1)
@@ -62,26 +61,6 @@ static void go(t_root *data, int flag)
 		move_player(data, 0.05, 0.0);
 	}
 }
-// static void	go_forward(t_root *data);
-// {
-// 	printf("Going forward\n");
-// 	move_player(data, 0.0, -0.05);
-// }
-// static void go_backward(t_root *data)
-// {
-// 	printf("Going backward\n");
-// 	move_player(data, 0.0, 0.05);
-// }
-// static void go_left(t_root *data)
-// {
-// 	printf("Going left\n");
-// 	move_player(data, -0.05, 0.0);
-// }
-// static void go_right(t_root *data)
-// {
-// 	printf("Going right\n");
-// 	move_player(data, 0.05, 0.0);
-// }
 
 static	void	turn_left(t_root *data)
 {

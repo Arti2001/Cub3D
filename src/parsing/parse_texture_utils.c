@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 10:52:36 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/01/28 08:09:38 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/28 08:51:32 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,4 @@ int	first_digit(char *str)
 		return (0);
 
 	return (1);
-
 }

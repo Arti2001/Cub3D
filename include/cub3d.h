@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/28 08:11:06 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/28 09:18:08 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,8 @@ typedef struct s_map
 	char				**map;
 	int					height;
 	int					lenght;
+	int					mm_start_x;
+	int					mm_start_y;
 	t_floor				floor;
 	t_ceiling			ceiling;
 }	t_map;
@@ -151,9 +153,6 @@ typedef struct s_root
 	t_ray				ray;
 	t_cubmlx			cub_mlx;
 }	t_root;
-
-//initialisations
-void		init_root(t_root *data);
 
 //freeing
 void		free_data(t_root *data);
@@ -198,6 +197,7 @@ void		ft_resize(int32_t width, int32_t height, void *param);
 
 //drawing utils
 uint32_t	ft_my_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
+void		draw_ray(t_root *data);
 
 //hooks
 void		key_hooks(mlx_key_data_t keydata, void *param);
@@ -205,8 +205,6 @@ void		key_hooks(mlx_key_data_t keydata, void *param);
 //mini_map
 void		add_mini_map(t_root *data);
 
-//to delete
-void		print_map(t_map *map);
 
 //color
 uint32_t	extract_rgb(mlx_texture_t *texture, int x, int y);
@@ -219,6 +217,8 @@ void		add_offset(t_root *data, double current_ray);
 void		find_wall(t_root *data);
 
 //TO DELETE
+//to delete
+void		print_map(t_map *map);
 void	print_ray(t_root *data, double current_ray);
 
 #endif

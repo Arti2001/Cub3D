@@ -6,16 +6,19 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 10:21:53 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/01/27 08:24:25 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/28 09:35:53 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+/// @brief sets the window size & the starting point of the mini_map
 static void	win_init(t_root *data)
 {
 	data->cub_mlx.win_h = 1280;
 	data->cub_mlx.win_w = 2048;
+	data->map.mm_start_x = data->cub_mlx.win_w - data->map.lenght * MMTW;
+	data->map.mm_start_y = data->cub_mlx.win_h - data->map.height * MMTH;
 }
 
 static void	cub_init(t_root *data)
@@ -43,14 +46,14 @@ static void	cub_init(t_root *data)
 		error_bye_data(data, "Failure of mlx_image_to_window()\n");
 	}
 	mlx_resize_hook(data->cub_mlx.win, ft_resize, data);
-	add_mini_map(data);
 }
 
 void	run_mlx(t_root *data)
 {
+	cub_init(data);
+	add_mini_map(data);
 	handel_angel(data);
 	get_rays(data);
-	cub_init(data);
 	mlx_key_hook(data->cub_mlx.win, &key_hooks, data);
 	mlx_loop(data->cub_mlx.win);
 	mlx_delete_image(data->cub_mlx.win, data->cub_mlx.img.img_ptr);

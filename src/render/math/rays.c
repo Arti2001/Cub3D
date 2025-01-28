@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/23 14:44:43 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/28 07:49:23 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/28 09:32:59 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,16 +109,16 @@ void	get_rays(t_root *data)
 			current_ray -= 360;
 		else if (current_ray < 0)
 			current_ray += 360;
-		printf("current_ray: %f\n", current_ray);
+		// printf("current_ray: %f\n", current_ray);
 		get_direction(data, current_ray);
 		find_player_grid_distance(data);
 		add_offset(data, current_ray);
 		get_steps_size(data);
 		find_wall(data);
+		draw_ray(data);
 		// print_ray(data, current_ray);
 		i++;
 	}
-	
 }
 
 void	print_ray(t_root *data, double current_ray)
