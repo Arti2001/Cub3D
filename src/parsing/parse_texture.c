@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse_texture.c                                    :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/10 15:21:28 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/28 08:11:43 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse_texture.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/10 15:21:28 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/28 08:46:38 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,13 @@ void	tex_validation(char *line, t_root *data)
 
 	split_line = splitbywhite(line, '\0');
 	if (split_line [0] == NULL)
+	{
+		ft_free_array(split_line);
 		return ;
+	}
 	if (tex_paths_valid(split_line, data))
 	{
+		ft_free_array(split_line);
 		return ;
 	}
 	if (ceiling_floor_valid(split_line, line, data))
