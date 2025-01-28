@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_texture.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 15:21:28 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/23 08:35:11 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_texture.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/10 15:21:28 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/28 08:11:43 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,27 @@ int	tex_paths_valid(char **split, t_root *data)
 {
 	if (ft_strncmp(split[0], "NO", 3) == 0)
 	{
-		if (data->map->no_path)
+		if (data->map.no_path)
 			free_data_arr(data, "NO: Is definied more then one time", split);
-		return (data->map->no_path = split[1], 1);
+		return (data->map.no_path = split[1], 1);
 	}
 	else if (ft_strncmp(split[0], "SO", 3) == 0)
 	{
-		if (data->map->so_path)
+		if (data->map.so_path)
 			free_data_arr(data, "SO: Is definied more then one time", split);
-		return (data->map->so_path = split[1], 1);
+		return (data->map.so_path = split[1], 1);
 	}
 	else if (ft_strncmp(split[0], "WE", 3) == 0)
 	{
-		if (data->map->we_path)
+		if (data->map.we_path)
 			free_data_arr(data, "WE: Is definied more then one time", split);
-		return (data->map->we_path = split[1], 1);
+		return (data->map.we_path = split[1], 1);
 	}
 	else if (ft_strncmp(split[0], "EA", 3) == 0)
 	{
-		if (data->map->ea_path)
+		if (data->map.ea_path)
 			free_data_arr(data, "EA: Is definied more then one time", split);
-		return (data->map->ea_path = split[1], 1);
+		return (data->map.ea_path = split[1], 1);
 	}
 	return (0);
 }
@@ -64,7 +64,7 @@ int	ceiling_floor_valid(char **split_line, char *line, t_root *data)
 	if (ft_strncmp(split_line[0], "C", 2) == 0)
 	{
 		ft_free_array(split_line);
-		if (data->map->ceiling && !is_cf_full(data->map->ceiling, NULL))
+		if (!is_c_full(data->map.ceiling))
 		{
 			ceiling_rgb(line, data);
 			return (1);
@@ -75,7 +75,7 @@ int	ceiling_floor_valid(char **split_line, char *line, t_root *data)
 	else if (ft_strncmp(split_line[0], "F", 2) == 0)
 	{
 		ft_free_array(split_line);
-		if (data->map->floor && !is_cf_full(NULL, data->map->floor))
+		if (!is_f_full(data->map.floor))
 		{
 			floor_rgb(line, data);
 			return (1);

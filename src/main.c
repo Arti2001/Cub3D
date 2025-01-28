@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 12:07:53 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/23 12:15:40 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 12:07:53 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/28 07:52:24 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	name_check(argv[1]);
+	printf("hello:)\n");
 	init_root(&data);
 	file_parse(&data, argv[1]);
 	// print_map(data.map);

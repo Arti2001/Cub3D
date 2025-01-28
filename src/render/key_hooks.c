@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/18 10:38:05 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/27 15:03:49 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/28 08:26:00 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ static	int	move_player(t_root *data, double delta_x, double delta_y)
 	double	new_x;
 	double	new_y;
 
-	new_x = data->p->x_pos + delta_x;
-	new_y = data->p->y_pos + delta_y;
+	new_x = data->p.x_pos + delta_x;
+	new_y = data->p.y_pos + delta_y;
 	
-	if ((data->map->map[(int)(new_y - HITBOX)][(int)(new_x)] == '0')
-	&& (data->map->map[(int)(new_y)][(int)(new_x - HITBOX)] == '0')
-	&& (data->map->map[(int)(new_y + 0.09)][(int)(new_x)] == '0')
-	&& (data->map->map[(int)(new_y)][(int)(new_x + HITBOX)] == '0')
-	&& (data->map->map[(int)(new_y)][(int)(new_x)] == '0'))
+	if ((data->map.map[(int)(new_y - HITBOX)][(int)(new_x)] == '0')
+	&& (data->map.map[(int)(new_y)][(int)(new_x - HITBOX)] == '0')
+	&& (data->map.map[(int)(new_y + 0.09)][(int)(new_x)] == '0')
+	&& (data->map.map[(int)(new_y)][(int)(new_x + HITBOX)] == '0')
+	&& (data->map.map[(int)(new_y)][(int)(new_x)] == '0'))
 	{
-		data->p->x_pos = new_x;
-		data->p->y_pos = new_y;
-		printf("Player moved to: [%f][%f]\n", data->p->y_pos, data->p->x_pos);
+		data->p.x_pos = new_x;
+		data->p.y_pos = new_y;
+		printf("Player moved to: [%f][%f]\n", data->p.y_pos, data->p.x_pos);
 		return (1);
 	}
 	else
@@ -85,24 +85,24 @@ static void go(t_root *data, int flag)
 
 static	void	turn_left(t_root *data)
 {
-	data->p->most_l -= 1.0;
-	data->p->most_r -= 1.0;
-	if (data->p->most_l < 1.0)
-		data->p->most_l = 360.0;
-	if (data->p->most_r < 1.0)
-		data->p->most_r = 360.0;
-	printf("left -> %f <====> right-> %f\n", data->p->most_l, data->p->most_r);
+	data->p.most_l -= 1.0;
+	data->p.most_r -= 1.0;
+	if (data->p.most_l < 1.0)
+		data->p.most_l = 360.0;
+	if (data->p.most_r < 1.0)
+		data->p.most_r = 360.0;
+	printf("left -> %f <====> right-> %f\n", data->p.most_l, data->p.most_r);
 }
 
 static	void	turn_right(t_root *data)
 {
-	data->p->most_r += 1.0;
-	data->p->most_l += 1.0;
-	if (data->p->most_r > 360.0)
-		data->p->most_r = 1.0;
-	if (data->p->most_l > 360.0)
-		data->p->most_l = 1.0;
-	printf("left -> %f <====> right-> %f\n", data->p->most_l, data->p->most_r);
+	data->p.most_r += 1.0;
+	data->p.most_l += 1.0;
+	if (data->p.most_r > 360.0)
+		data->p.most_r = 1.0;
+	if (data->p.most_l > 360.0)
+		data->p.most_l = 1.0;
+	printf("left -> %f <====> right-> %f\n", data->p.most_l, data->p.most_r);
 }
 
 void	key_hooks(mlx_key_data_t keydata, void *param)
@@ -125,6 +125,6 @@ void	key_hooks(mlx_key_data_t keydata, void *param)
 		turn_right(data);
 	if (mlx_is_key_down(data->cub_mlx.win, MLX_KEY_ESCAPE))
 		mlx_close_window(data->cub_mlx.win);;
-	get_rays(data);
 	add_mini_map(data);
+	get_rays(data);
 }

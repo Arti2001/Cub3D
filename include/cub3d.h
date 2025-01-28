@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/27 14:53:07 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/28 08:11:06 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,17 +138,17 @@ typedef struct s_map
 	char				**map;
 	int					height;
 	int					lenght;
-	t_floor				*floor;
-	t_ceiling			*ceiling;
+	t_floor				floor;
+	t_ceiling			ceiling;
 }	t_map;
 
 typedef struct s_root
 {
-	t_map				*map;
+	t_map				map;
 	t_maplist			*map_list;
 	t_maplist			*map_search;
-	t_player			*p;
-	t_ray				*ray;
+	t_player			p;
+	t_ray				ray;
 	t_cubmlx			cub_mlx;
 }	t_root;
 
@@ -181,13 +181,14 @@ void		del_list(t_maplist *map);
 //texture
 void		floor_rgb(char *str, t_root *data);
 void		ceiling_rgb(char *str, t_root *data);
-bool		is_cf_full(t_ceiling *ceiling, t_floor *floor);
+bool		is_c_full(t_ceiling ceiling);
+bool		is_f_full(t_floor floor);
 void		if_valid_add(t_root *data);
 void		floor_rgb(char *str, t_root *data);
 void		ceiling_rgb(char *str, t_root *data);
 int			are_digits(char *str);
 int			first_digit(char *str);
-bool		is_full(t_map *map);
+bool		is_full(t_map map);
 bool		comma_checker(char *str);
 
 						/**********		RENDERING		**********/

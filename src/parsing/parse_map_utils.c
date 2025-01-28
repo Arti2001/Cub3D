@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_map_utils.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 13:23:45 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/16 11:03:02 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_map_utils.c                                  :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/08 13:23:45 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/28 07:56:48 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ t_maplist	*add_node(char *line, t_root *data)
 		error_p(ERR_MALLOC_LINE);
 		return (NULL);
 	}
-	new_node->height = data->map->height + 1;
-	data->map->height = new_node->height;
+	new_node->height = data->map.height + 1;
+	data->map.height = new_node->height;
 	if (new_node->height > 350)
 	{
 		error_p(ERR_TOO_MANY_LINES);

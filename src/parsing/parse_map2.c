@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/08 11:03:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/17 10:46:17 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/28 08:01:42 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,18 @@ static void	get_line(t_root *data, t_maplist *current, int y, int len)
 	}
 	if (current->line[len - 1] == '\n')
 	{
-		data->map->map[y] = malloc(sizeof(char) * len);
-		ft_strlcpy(data->map->map[y], current->line, len);
-		if (data->map->lenght < len - 1)
-			data->map->lenght = len - 1;
+		data->map.map[y] = malloc(sizeof(char) * len);
+		ft_strlcpy(data->map.map[y], current->line, len);
+		if (data->map.lenght < len - 1)
+			data->map.lenght = len - 1;
 	}
 	else
 	{
-		data->map->map[y] = ft_strdup(current->line);
-		if (data->map->lenght < len)
-			data->map->lenght = len;
+		data->map.map[y] = ft_strdup(current->line);
+		if (data->map.lenght < len)
+			data->map.lenght = len;
 	}
-	if (!data->map->map[y])
+	if (!data->map.map[y])
 		error_bye_data(data, ERR_MALLOC_MAP_LINE);
 }
 
@@ -94,11 +94,11 @@ void	fill_map(t_root *data)
 	current = find_map_start(data);
 	if (current == NULL)
 		error_bye_data(data, ERR_NO_MAP);
-	size = data->map->height - current->height + 2;
-	data->map->map = ft_calloc(size, sizeof(char **));
-	if (!data->map->map)
+	size = data->map.height - current->height + 2;
+	data->map.map = ft_calloc(size, sizeof(char **));
+	if (!data->map.map)
 		error_bye_data(data, ERR_MAP_MALLOC);
-	while (current && (current->height <= data->map->height))
+	while (current && (current->height <= data->map.height))
 	{
 		current->line_len = ft_strlen(current->line);
 		if (current->line_len > 300)
@@ -107,6 +107,6 @@ void	fill_map(t_root *data)
 		y++;
 		current = current->next;
 	}
-	data->map->height = y;
-	data->map->map[y] = NULL;
+	data->map.height = y;
+	data->map.map[y] = NULL;
 }

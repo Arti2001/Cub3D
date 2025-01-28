@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_texture_utils.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 10:52:36 by amysiv            #+#    #+#             */
-/*   Updated: 2025/01/16 10:58:02 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_texture_utils.c                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/10 10:52:36 by amysiv        #+#    #+#                 */
+/*   Updated: 2025/01/28 08:09:38 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,35 +21,32 @@ char* skipspace(char* line)
 	return (line);
 }
 
-bool	is_full(t_map *map)
+bool	is_f_full(t_floor floor)
 {
-	if (	is_cf_full(map->ceiling, NULL) &&
-			is_cf_full(NULL, map->floor) &&
-			map->no_path != NULL && map->so_path != NULL &&
-			map->ea_path != NULL && map->we_path != NULL)
+	if (floor.r == -1 && floor.g == -1 && floor.b == -1)
+	{
+		return (false);
+	}
+	return (true);
+}
+
+bool	is_c_full(t_ceiling ceiling)
+{
+	if (ceiling.r == -1 && ceiling.g == -1 && ceiling.b == -1)
+	{
+		return (false);
+	}
+	return (true);
+}
+
+bool	is_full(t_map map)
+{
+	if (	is_c_full(map.ceiling) && is_f_full(map.floor) &&
+			map.no_path != NULL && map.so_path != NULL &&
+			map.ea_path != NULL && map.we_path != NULL)
 			return (true);
 	else
 		return(false);
-}
-
-
-bool	is_cf_full(t_ceiling *ceiling, t_floor *floor)
-{
-	if (ceiling != NULL)
-	{
-		if (ceiling->r == -1 && ceiling->g == -1 && ceiling->b == -1)
-		{
-			return (false);
-		}
-	}
-	if (floor != NULL)
-	{
-		if (floor->r == -1 && floor->g == -1 && floor->b == -1)
-		{
-			return (false);
-		}
-	}
-	return (true);
 }
 
 int	are_digits(char *str)
