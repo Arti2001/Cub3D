@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/28 09:18:08 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/29 19:14:15 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ typedef struct s_ray
 	double				y_offset;
 	double				steps_x; //length of the actual x_step (number of y's in between x1 & x2)
 	double				steps_y; //length of the actual y_step (number of x's in between y1 & y2)
-	int					dir_x; //direction of x (right == +1, left == -1 and 0)
-	int					dir_y; //direction of y (down == +1, up == -1 and 0)
+	double					dir_x; //direction of x (right == +1, left == -1 and 0)
+	double					dir_y; //direction of y (down == +1, up == -1 and 0)
 }	t_ray;
 
 

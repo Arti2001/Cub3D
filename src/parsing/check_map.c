@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   check_map.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 12:30:12 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/28 08:01:21 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 12:30:12 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/29 19:57:13 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	player_found(t_root *data, long y, long x, bool *position)
 {
 	if (*position == false)
 	{
-		data->p.x_pos = x + 0.5;
-		data->p.y_pos = y + 0.5;
+		data->p.x_pos = x;
+		data->p.y_pos = y;
 		*position = true;
 		data->p.pos = (double)give_direction(data->map.map[y][x]);
 		data->map.map[y][x] = '0';

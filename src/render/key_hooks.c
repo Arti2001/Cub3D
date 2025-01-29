@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   key_hooks.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/18 10:38:05 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/28 09:35:33 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   key_hooks.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/18 10:38:05 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/29 19:47:37 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ static void go(t_root *data, int flag)
 
 static	void	turn_left(t_root *data)
 {
-	data->p.most_l -= 1.0;
-	data->p.most_r -= 1.0;
+	data->p.most_l -= 5.0;
+	data->p.most_r -= 5.0;
 	if (data->p.most_l < 1.0)
 		data->p.most_l = 360.0;
 	if (data->p.most_r < 1.0)
@@ -75,8 +75,8 @@ static	void	turn_left(t_root *data)
 
 static	void	turn_right(t_root *data)
 {
-	data->p.most_r += 1.0;
-	data->p.most_l += 1.0;
+	data->p.most_r += 5.0;
+	data->p.most_l += 5.0;
 	if (data->p.most_r > 360.0)
 		data->p.most_r = 1.0;
 	if (data->p.most_l > 360.0)

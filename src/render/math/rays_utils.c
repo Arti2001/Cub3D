@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   rays_utils.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/27 09:34:37 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/28 09:47:27 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   rays_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/27 09:34:37 by mstencel          #+#    #+#             */
+/*   Updated: 2025/01/29 19:46:12 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	draw_ray(t_root *data)
 	
 	ray_x = data->p.x_pos;
 	ray_y = data->p.y_pos;
+	//printf("ray_x: %f\n", data->ray.dir_x);
+	//printf("ray_y: %f\n", ray.dir_y);
 	while (ray_x >= 0 && ray_y >= 0 && ray_x < data->map.lenght && ray_y < data->map.height)
 	{
 		x = (uint32_t)(data->map.mm_start_x + ray_x * MMTW);
@@ -92,11 +94,17 @@ void	find_wall(t_root *data)
 		}
 		else
 		{
-			data->ray.distance = len_x;
-			len_x += data->ray.steps_x;
-			data->ray.x_ray += data->ray.dir_x;
+			data->ray.distance = len_y;
+			len_x += data->ray.steps_y;
+			data->ray.x_ray += data->ray.dir_y;
 		}
-		if (data->map.map[data->ray.y_ray][data->ray.x_ray] == '1')
+		//if (data->ray.x_ray < 0 || data->ray.x_ray >= data->map.height || 
+		//	data->ray.y_ray < 0 || data->ray.y_ray >= data->map.lenght)
+		//	break;
+		printf("ray: %c\n", data->map.map[(int)data->ray.y_ray][(int)data->ray.x_ray]);
+		printf("ray_y: %d\n", data->ray.y_ray);
+		printf("ray_x: %d\n", data->ray.x_ray);
+		if (data->map.map[(int)data->ray.y_ray][(int)data->ray.x_ray] == '1')
 		{
 			// printf("I'm now [%f][%f]", data->p.y_pos, data->p.x_pos);
 			// printf("I hit the wall at [%d][%d]\n",data->ray.y_ray, data->ray.x_ray);
