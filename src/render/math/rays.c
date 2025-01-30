@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:44:43 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/29 19:49:58 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/30 11:15:20 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,10 @@ void	get_rays(t_root *data)
 	// while (i < data->cub_mlx.win_w)
 	{
 		current_ray = data->p.most_l + data->p.abr *i;
-		//if (current_ray >= 360)
-		//	current_ray -= 360;
-		//else if (current_ray < 0)
-		//	current_ray += 360;
+		if (current_ray >= 360)
+			current_ray -= 360;
+		else if (current_ray < 0)
+			current_ray += 360;
 		// printf("current_ray: %f\n", current_ray);
 		get_direction(data, current_ray);
 		find_player_grid_distance(data);

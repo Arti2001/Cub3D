@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/29 19:14:15 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/01/30 11:11:50 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@
 
 # define TH 64 //tile height
 # define TW 64 //tile width
-# define MMTH 35 //tile height
-# define MMTW 35 //tile width
+# define MMTH 15 //tile height
+# define MMTW 15 //tile width
 # define FOV 60 //field of view
 # define RAYS_NUMB 320 //number of rays
-# define MMPP 10
+# define MMPP 5
 # define NAME "cub3D"
 # define PLAYER 0
 # define WALL 1

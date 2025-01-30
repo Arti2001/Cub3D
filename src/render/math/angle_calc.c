@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   angle_calc.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/23 08:08:09 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/01/28 09:30:41 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   angle_calc.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/23 08:08:09 by amysiv            #+#    #+#             */
+/*   Updated: 2025/01/30 10:22:21 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 double	to_radiance(double angle)
 {
-	return (angle * (M_PI / 180.0));
+	return (angle * M_PI / 180.0);
 }
 static void	init_angle_data(t_root *data)
 {
