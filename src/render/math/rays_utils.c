@@ -6,13 +6,11 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/27 09:34:37 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/31 08:18:41 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/31 12:29:01 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
-
-#define MAX_RAY_DISTANCE 50.0
 
 void	draw_ray(t_root *data)
 {
@@ -29,8 +27,8 @@ void	draw_ray(t_root *data)
 		x = (uint32_t)(data->map.mm_start_x + ray_x * MMTW);
 		y = (uint32_t)(data->map.mm_start_y + ray_y * MMTH);
 		mlx_put_pixel(data->cub_mlx.img.img_ptr, x, y, 0xFFFF00FF);
-		ray_x += data->ray.dir_x * 0.01;
-		ray_y += data->ray.dir_y * 0.01;
+		ray_x += data->ray.dir_x * 0.5;
+		ray_y += data->ray.dir_y * 0.5;
 		if (data->map.map[(int)ray_y][(int)ray_x] == '1')
 			break ;
 	}
@@ -88,18 +86,18 @@ static void	go_next(t_root *data, double len_x, double len_y)
 			data->ray.distance = len_x;
 			len_x += data->ray.steps_x;
 			if (data->ray.dir_x > 0)
-				data->ray.x_ray += 1;
+				data->ray.x_ray += data->ray.steps_x; //changed from 1 to the step's len also below and in y
 			else
-				data->ray.x_ray -= 1;
+				data->ray.x_ray -= data->ray.steps_x; //segfault??? cause of this change?
 		}
 		else
 		{
 			data->ray.distance = len_y;
 			len_y += data->ray.steps_y;
 			if (data->ray.dir_y > 0)
-				data->ray.y_ray += 1;
+				data->ray.y_ray += data->ray.steps_y;
 			else
-				data->ray.y_ray -= 1;
+				data->ray.y_ray -= data->ray.steps_y;
 		}
 }
 
