@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 14:07:46 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/30 11:54:20 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/31 08:19:41 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,26 +201,3 @@ void	add_mini_map(t_root *data)
 		y++;
 	}
 }
-
-// void	get_mini_map(t_root *data)
-// {
-// 	int		x;
-// 	int		y;
-// 	long	width;
-// 	long	height;
-
-// 	width = data->map.lenght * MMTW;
-// 	height = data->map.height * MMTH;
-// 	y = H - height;
-// 	while (y < H && y > 0)
-// 	{
-// 		x = W - width;
-// 		while(x < W && x > 0)
-// 		{
-// 			mlx_put_pixel(data->cub_mlx.img.img_ptr, x, y, 255);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// 	add_mini_map(data);
-// }

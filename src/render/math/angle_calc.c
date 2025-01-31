@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/23 08:08:09 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/01/30 09:55:18 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/31 08:18:21 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 double	to_radiance(double angle)
 {
-	return (angle * (M_PI / 180.0));
+	return (angle * M_PI / 180.0);
 }
 static void	init_angle_data(t_root *data)
 {

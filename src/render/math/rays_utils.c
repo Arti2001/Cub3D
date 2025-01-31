@@ -6,11 +6,13 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/27 09:34:37 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/30 10:09:51 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/31 08:18:41 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
+
+#define MAX_RAY_DISTANCE 50.0
 
 void	draw_ray(t_root *data)
 {
@@ -21,13 +23,14 @@ void	draw_ray(t_root *data)
 	
 	ray_x = data->p.x_pos;
 	ray_y = data->p.y_pos;
-	while (ray_x >= 0 && ray_y >= 0 && ray_x < data->map.lenght && ray_y < data->map.height)
+
+	while (ray_x >= 0 && ray_y >= 0 && ray_x < data->map.lenght  && ray_y < data->map.height)
 	{
 		x = (uint32_t)(data->map.mm_start_x + ray_x * MMTW);
 		y = (uint32_t)(data->map.mm_start_y + ray_y * MMTH);
 		mlx_put_pixel(data->cub_mlx.img.img_ptr, x, y, 0xFFFF00FF);
-		ray_x += data->ray.dir_x * 0.5;
-		ray_y += data->ray.dir_y * 0.5;
+		ray_x += data->ray.dir_x * 0.01;
+		ray_y += data->ray.dir_y * 0.01;
 		if (data->map.map[(int)ray_y][(int)ray_x] == '1')
 			break ;
 	}
@@ -119,3 +122,4 @@ void	find_wall(t_root *data)
 			break ;
 	}
 }
+

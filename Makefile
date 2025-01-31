@@ -6,7 +6,7 @@
 #    By: amysiv <amysiv@student.42.fr>                +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/06 09:23:22 by mstencel      #+#    #+#                  #
-#    Updated: 2025/01/30 11:17:22 by mstencel      ########   odam.nl          #
+#    Updated: 2025/01/31 08:20:00 by mstencel      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ MLX42_PATH = include/mlx42
 MLX42 = $(MLX42_PATH)/build/libmlx42.a
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -g -Ofast
 MLX42FLAGS = -Iinclude -ldl -lglfw -pthread -lm
 
 RM = rm -rf
