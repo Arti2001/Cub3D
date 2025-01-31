@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_texture2.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 10:49:30 by amysiv            #+#    #+#             */
-/*   Updated: 2025/01/28 08:36:10 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_texture2.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/10 10:49:30 by amysiv        #+#    #+#                 */
+/*   Updated: 2025/01/30 07:46:58 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,14 @@ void	floor_rgb(char *str, t_root *data)
 		free_data_arr(data, ERR_OUT_OF_RANGE_F, f_arg);
 	}
 	ft_free_array(f_arg);
+}
+
+bool	is_full(t_map map)
+{
+	if (	is_c_full(map.ceiling) && is_f_full(map.floor) &&
+			map.no_path != NULL && map.so_path != NULL &&
+			map.ea_path != NULL && map.we_path != NULL)
+			return (true);
+	else
+		return(false);
 }

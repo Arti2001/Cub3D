@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 14:07:46 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/28 09:35:27 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/01/30 11:54:20 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,8 @@ void draw_player(t_root *data)
 
 	height = 0;
 	width = 0;
-	
-	// Calculate player's position relative to the minimap
 	start_x = (int)(data->map.mm_start_x + (data->p.x_pos * MMTW) - MMPP / 2);
 	start_y = (int)(data->map.mm_start_y + (data->p.y_pos * MMTH) - MMPP / 2);
-
-	// printf("mini_x = %d\tx_pos = %d\tstart_x = %d\n", mini_x, (int)data->p.x_pos * MMTW, start_x);
-	// printf("mini_y = %d\ty_pos = %d\tstart_y = %d\n", mini_y, (int)data->p.y_pos * MMTH, start_y);
 	// Draw the player square
 	while(height < MMPP)
 	{

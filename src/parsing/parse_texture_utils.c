@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_texture_utils.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 10:52:36 by amysiv            #+#    #+#             */
-/*   Updated: 2025/01/28 16:08:35 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_texture_utils.c                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/10 10:52:36 by amysiv        #+#    #+#                 */
+/*   Updated: 2025/01/30 07:46:53 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,6 @@ bool	is_c_full(t_ceiling ceiling)
 		return (false);
 	}
 	return (true);
-}
-
-bool	is_full(t_map map)
-{
-	if (	is_c_full(map.ceiling) && is_f_full(map.floor) &&
-			map.no_path != NULL && map.so_path != NULL &&
-			map.ea_path != NULL && map.we_path != NULL)
-			return (true);
-	else
-		return(false);
 }
 
 int	are_digits(char *str)

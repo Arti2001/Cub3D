@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/29 19:14:15 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/30 11:22:09 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@
 # define X 0
 # define Y 1
 # define HITBOX 0.2
+# define EPSILON 1e-6
 
 typedef struct s_img
 {
@@ -98,14 +99,14 @@ typedef struct s_ray
 	double				x_angle; //already in radians for cos()
 	double				y_angle; //already in radians for cos()
 	double				distance; //distance of between the player & wall (total ray length)
-	int					x_ray;
-	int					y_ray;
+	int					x_ray; //player's position on the grid
+	int					y_ray; //player's position on the grid
 	double				x_offset;
 	double				y_offset;
 	double				steps_x; //length of the actual x_step (number of y's in between x1 & x2)
 	double				steps_y; //length of the actual y_step (number of x's in between y1 & y2)
-	double					dir_x; //direction of x (right == +1, left == -1 and 0)
-	double					dir_y; //direction of y (down == +1, up == -1 and 0)
+	double				dir_x; //direction of x (right == +1, left == -1 and 0)
+	double				dir_y; //direction of y (down == +1, up == -1 and 0)
 }	t_ray;
 
 
@@ -194,6 +195,8 @@ bool		comma_checker(char *str);
 void		run_mlx(t_root *data);
 
 void		ft_resize(int32_t width, int32_t height, void *param);
+
+void		draw_wall(t_root *data, int i);
 
 //drawing utils
 uint32_t	ft_my_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);

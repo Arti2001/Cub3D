@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_map2.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 11:03:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/28 16:04:05 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_map2.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/08 11:03:03 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/01/30 07:43:05 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,10 @@ void	fill_map(t_root *data)
 {
 	int			y;
 	int			size;
-	// int			len;
 	t_maplist	*current;
 
 	y = 0;
 	current = find_map_start(data);
-	printf("data %p\n", data->map_search);
 	if (current == NULL)
 	{
 		error_bye_data(data, ERR_NO_MAP);
