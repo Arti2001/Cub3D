@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/23 14:44:43 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/31 08:19:30 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/03 08:27:56 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	get_rays(t_root *data)
 	double	current_ray;
 
 	i = 1;
-	while (i < RAYS_NUMB)
-	// while (i < data->cub_mlx.win_w)
+	// while (i < RAYS_NUMB)
+	while (i < data->cub_mlx.win_w)
 	{
 		current_ray = data->p.most_l + data->p.abr *i;
 		if (current_ray >= 360)
@@ -64,7 +64,7 @@ void	get_rays(t_root *data)
 		get_steps_size(data);
 		find_wall(data);
 		draw_ray(data);
-		draw_wall(data, i);
+		draw_game(data, i);
 		// print_ray(data, current_ray);
 		i++;
 	}

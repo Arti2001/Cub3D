@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 10:21:53 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/01/31 08:19:50 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/03 08:23:26 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ static void	cub_init(t_root *data)
 void	run_mlx(t_root *data)
 {
 	cub_init(data);
-	add_mini_map(data);
 	handel_angel(data);
 	get_rays(data);
+	add_mini_map(data);
 	mlx_key_hook(data->cub_mlx.win, &key_hooks, data);
 	mlx_loop(data->cub_mlx.win);
 	mlx_delete_image(data->cub_mlx.win, data->cub_mlx.img.img_ptr);

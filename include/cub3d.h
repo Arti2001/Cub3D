@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/31 08:21:09 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/03 08:27:34 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ void		run_mlx(t_root *data);
 
 void		ft_resize(int32_t width, int32_t height, void *param);
 
-void		draw_wall(t_root *data, int i);
+void		draw_game(t_root *data, int i);
 
 //drawing utils
 uint32_t	ft_my_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);

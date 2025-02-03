@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   key_hooks.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/18 10:38:05 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/30 13:29:37 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   key_hooks.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/18 10:38:05 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/02/03 08:24:09 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static void turn_left(t_root *data)
 	data->ray.dir_x = cos(to_radiance(data->p.pos));
 	data->ray.dir_y = sin(to_radiance(data->p.pos));
 	handel_angel(data);
-	
 	}
 
 static void turn_right(t_root *data)
@@ -99,6 +98,6 @@ void	key_hooks(mlx_key_data_t keydata, void *param)
 		turn_left(data);
 	if (mlx_is_key_down(data->cub_mlx.win, MLX_KEY_RIGHT))
 		turn_right(data);
-	add_mini_map(data);
 	get_rays(data);
+	add_mini_map(data);
 }

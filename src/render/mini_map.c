@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 14:07:46 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/31 08:19:41 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/03 08:17:33 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	draw_map2(t_root *data, int img[2], int flag)
 	mlx_image_t	*map;
 
 	map = data->cub_mlx.img.img_ptr;
-	colour[RAY] = ft_my_pixel(255, 211, 0, 198);
+	// colour[RAY] = ft_my_pixel(255, 211, 0, 198);
 	colour[WALL] = ft_my_pixel(0, 6, 255, 255);
 	colour[FLOOR] = ft_my_pixel(0, 167, 255, 255);
 	colour[SPACE] = ft_my_pixel(0, 0, 0, 255);
