@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/18 10:38:05 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/03 08:24:09 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/03 10:03:21 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static	int	move_player(t_root *data, double delta_x, double delta_y)
 	{
 		data->p.x_pos = new_x;
 		data->p.y_pos = new_y;
-		printf("Player moved to: [%f][%f]\n", data->p.y_pos, data->p.x_pos);
+		// printf("Player moved to: [%f][%f]\n", data->p.y_pos, data->p.x_pos);
 		return (1);
 	}
 	else
@@ -47,7 +47,7 @@ static void turn_left(t_root *data)
 	data->ray.dir_x = cos(to_radiance(data->p.pos));
 	data->ray.dir_y = sin(to_radiance(data->p.pos));
 	handel_angel(data);
-	}
+}
 
 static void turn_right(t_root *data)
 {
@@ -58,7 +58,7 @@ static void turn_right(t_root *data)
 	data->ray.dir_x = cos(to_radiance(data->p.pos));
 	data->ray.dir_y = sin(to_radiance(data->p.pos));
 	handel_angel(data);
-	printf("Turned Right -> New angle: %f, dir_x: %f, dir_y: %f\n", data->p.pos, data->ray.dir_x, data->ray.dir_y);
+	// printf("Turned Right -> New angle: %f, dir_x: %f, dir_y: %f\n", data->p.pos, data->ray.dir_x, data->ray.dir_y);
 }
 
 static void go(t_root *data, int flag)
@@ -98,6 +98,6 @@ void	key_hooks(mlx_key_data_t keydata, void *param)
 		turn_left(data);
 	if (mlx_is_key_down(data->cub_mlx.win, MLX_KEY_RIGHT))
 		turn_right(data);
-	get_rays(data);
 	add_mini_map(data);
+	get_rays(data);
 }

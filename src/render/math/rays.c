@@ -3,78 +3,165 @@
 /*                                                        ::::::::            */
 /*   rays.c                                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/01/23 14:44:43 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/03 08:27:56 by mstencel      ########   odam.nl         */
+/*   Created: 2025/02/03 12:24:23 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/02/03 14:50:40 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
-/// @brief sets the size of the x & y steps
-/// @param data 
-/// @param current_ray 
-static void	get_steps_size(t_root *data)
+
+static void	get_wall(t_root *data, int *ray_x, int *ray_y, int step_x, int step_y)
 {
-	if (fabs(data->ray.dir_x) < EPSILON)
-		data->ray.dir_x = EPSILON;
-	if (fabs(data->ray.dir_y) < EPSILON)
-		data->ray.dir_y = EPSILON;
-	data->ray.steps_x = fabs(1 / data->ray.dir_x);
-	data->ray.steps_y = fabs(1 / data->ray.dir_y);
+	while (1)
+	{
+		if (data->ray.x_offset < data->ray.y_offset)
+		{
+			data->ray.x_offset += data->ray.steps_x;
+			*ray_x += step_x;
+			data->ray.flag = X;
+		}
+		else
+		{
+			data->ray.y_offset += data->ray.steps_y;
+			*ray_y += step_y;
+			data->ray.flag = Y;
+		}
+		if (data->ray.x_ray < 0 || data->ray.x_ray >= data->map.height || 
+			data->ray.y_ray < 0 || data->ray.y_ray >= data->map.lenght)
+			break;
+		if (data->map.map[(int)data->ray.y_ray][(int)data->ray.x_ray] == '1')
+			break ;
+	}
 }
 
-static void find_player_grid_distance(t_root *data)
+static void	get_offset(t_root *data, int *ray_x, int *ray_y)
 {
-	if (data->ray.dir_x > 0)
-		data->p.x_dist = (ceil(data->p.x_pos) - data->p.x_pos);
+	int	step_x; //either +1 or -1
+	int	step_y; //either +1 or -1
+	if (data->ray.dir_x < 0)
+	{
+		step_x = -1;
+		data->ray.x_offset = (data->p.x_pos - *ray_x) * data->ray.steps_x;
+	}
 	else
-		data->p.x_dist = (data->p.x_pos - floor(data->p.x_pos));
-
-	if (data->ray.dir_y > 0)
-		data->p.y_dist = (ceil(data->p.y_pos) - data->p.y_pos);
+	{
+		step_x = 1;
+		data->ray.x_offset = (*ray_x + 1.0 - data->p.x_pos) * data->ray.steps_x;
+	}
+	if (data->ray.dir_y < 0)
+	{
+		step_y = -1;
+		data->ray.y_offset = (data->p.y_pos - *ray_y) * data->ray.steps_y;
+	}
 	else
-		data->p.y_dist = (data->p.y_pos - floor(data->p.y_pos));
+	{
+		step_y = 1;
+		data->ray.y_offset = (*ray_y + 1.0 - data->p.y_pos) * data->ray.steps_y;
+	}
+	get_wall(data, ray_x, ray_y, step_x, step_y);
 }
 
-static void	get_direction(t_root *data, double current_ray)
+static void	get_step_size(t_root *data)
 {
-	data->ray.dir_x = cos(to_radiance(current_ray));  // X direction
-	data->ray.dir_y = sin(to_radiance(current_ray));  // Y direction
+	if (data->ray.dir_x == 0)
+		data->ray.steps_x = EPSILON;
+	else
+		data->ray.steps_x = fabs(1 / data->ray.dir_x);
+	if (data->ray.dir_y == 0)
+		data->ray.steps_y = EPSILON;
+	else
+		data->ray.steps_y = fabs(1 / data->ray.dir_y);
+}
+
+static void	get_direction(t_root *data, int dir_x, int dir_y, int plane_x, int plane_y)
+{	
+	data->ray.dir_x = dir_x + plane_x * data->ray.camera_x;
+	data->ray.dir_y = dir_y + plane_y * data->ray.camera_x;
+}
+
+static void	get_distance(t_root *data)
+{
+	if (data->ray.flag == X)
+		data->ray.distance = data->ray.x_offset - data->ray.steps_x;
+	else
+	data->ray.distance = data->ray.y_offset - data->ray.steps_y;
+}
+
+void	draw_ceiling(t_root *data, int i, int j)
+{
+	uint32_t	ceiling;
+
+	ceiling = ft_my_pixel(150, 150, 72, 255);
+	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ceiling);
+}
+
+void	draw_floor(t_root *data, int i, int j)
+{
+	uint32_t	floor;
+
+	floor = ft_my_pixel(255, 211, 0, 255);
+	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, floor);
+}
+
+void	draw_wall(t_root *data, int i, int j)
+{
+	uint32_t	floor;
+
+	floor = ft_my_pixel(12, 164, 97, 255);
+	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, floor);
+}
+
+static void	draw_walls(t_root *data, int i)
+{
+	int	wall_height;
+	int	wall_start;
+	int	wall_end;
+	int	j;
+
+	wall_height = (int)(data->cub_mlx.win_h / data->ray.distance);
+	wall_start = - wall_height / 2 + data->cub_mlx.win_h / 2;
+	if (wall_start < 0)
+		wall_start = 0;
+	wall_end = wall_height / 2 + data->cub_mlx.win_h / 2;
+	if (wall_end >= data->cub_mlx.win_h)
+		wall_end = data->cub_mlx.win_h - 1;
+	j = 0;
+	while (j < data->cub_mlx.win_h)
+	{
+		if (j < data->cub_mlx.win_h / 2 && ((i < data->map.mm_start_x && j < data->map.mm_start_y) || ((i > data->map.mm_start_x && j < data->map.mm_start_y) || (j > data->map.mm_start_y && i < data->map.mm_start_x))))	
+			draw_ceiling(data, i, j);
+		if (j > wall_start && j < wall_end && ((i < data->map.mm_start_x && j < data->map.mm_start_y) || ((i > data->map.mm_start_x && j < data->map.mm_start_y) || (j > data->map.mm_start_y && i < data->map.mm_start_x))))
+			draw_wall(data, i, j);
+		if (j > data->cub_mlx.win_h / 2 && ((i < data->map.mm_start_x && j < data->map.mm_start_y) || ((i > data->map.mm_start_x && j < data->map.mm_start_y) || (j > data->map.mm_start_y && i < data->map.mm_start_x))))
+			draw_floor(data, i ,j);
+		j++;
+	}
 }
 
 void	get_rays(t_root *data)
 {
 	int		i;
-	double	current_ray;
+	int		in_dir_x = -1; //initial direction vector
+	int		in_dir_y = 0; //initial direction vector
+	double	plane_x = 0;
+	double	plane_y = 0.66;
+	int	ray_x; //starting position of ray_x (player's x position)
+	int	ray_y; //starting position of ray_y (player's y position)
 
-	i = 1;
-	// while (i < RAYS_NUMB)
+	i = 0;
 	while (i < data->cub_mlx.win_w)
 	{
-		current_ray = data->p.most_l + data->p.abr *i;
-		if (current_ray >= 360)
-			current_ray -= 360;
-		else if (current_ray < 0)
-			current_ray += 360;
-		// printf("current_ray: %f\n", current_ray);
-		get_direction(data, current_ray);
-		find_player_grid_distance(data);
-		add_offset(data, current_ray);
-		get_steps_size(data);
-		find_wall(data);
+		ray_x = (int)data->p.x_pos;
+		ray_y = (int)data->p.y_pos;
+		data->ray.camera_x = 2 * i / data->cub_mlx.win_w - 1;
+		get_direction(data, in_dir_x, in_dir_y, plane_x, plane_y);
+		get_step_size(data);
+		get_offset(data, &ray_x, &ray_y);
+		get_distance(data);
+		draw_walls(data, i);
 		draw_ray(data);
-		draw_game(data, i);
-		// print_ray(data, current_ray);
 		i++;
 	}
-}
-
-void	print_ray(t_root *data, double current_ray)
-{
-	printf("ray: %f\t", current_ray);
-	printf("x_dir: %f\t", data->ray.dir_x);
-	printf("x_offset: %f & y_offset: %f\t", data->ray.x_offset, data->ray.y_offset);
-	printf("distance: %f\t", data->ray.distance);
-	printf("x_step: %f & y_step: %f\n", data->ray.steps_x, data->ray.steps_y);
 }

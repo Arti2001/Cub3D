@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/03 08:27:34 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/03 12:37:15 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ typedef struct s_ray
 	double				steps_y; //length of the actual y_step (number of x's in between y1 & y2)
 	double				dir_x; //direction of x (right == +1, left == -1 and 0)
 	double				dir_y; //direction of y (down == +1, up == -1 and 0)
+	int					flag; //to show if the step is taken in x or in y direction
+	double				camera_x; // x-coordinate along the camera line
 }	t_ray;
 
 

@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 10:21:53 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/02/03 08:23:26 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/03 11:45:48 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	cub_init(t_root *data)
 	mlx_image_t	*map; //created for norminette reasons (too long line 33)
 
 	win_init(data);
-	data->cub_mlx.win = mlx_init(data->cub_mlx.win_w, data->cub_mlx.win_h, NAME, true);
+	data->cub_mlx.win = mlx_init(data->cub_mlx.win_w, data->cub_mlx.win_h, NAME, false);
 	if (data->cub_mlx.win == NULL)
 	{
 		mlx_terminate(data->cub_mlx.win);
@@ -45,15 +45,15 @@ static void	cub_init(t_root *data)
 		mlx_terminate(data->cub_mlx.win);
 		error_bye_data(data, "Failure of mlx_image_to_window()\n");
 	}
-	mlx_resize_hook(data->cub_mlx.win, ft_resize, data);
+	// mlx_resize_hook(data->cub_mlx.win, ft_resize, data);
 }
 
 void	run_mlx(t_root *data)
 {
 	cub_init(data);
+	add_mini_map(data);
 	handel_angel(data);
 	get_rays(data);
-	add_mini_map(data);
 	mlx_key_hook(data->cub_mlx.win, &key_hooks, data);
 	mlx_loop(data->cub_mlx.win);
 	mlx_delete_image(data->cub_mlx.win, data->cub_mlx.img.img_ptr);
