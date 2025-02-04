@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/04 09:26:02 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/04 10:44:45 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ void		fill_map(t_root *data);
 
 // map checks
 void		map_check(t_root *data);
+void		player_found(t_root *data, long y, long x, bool *position);
 
 //parse utils
 char		is_white_space_nline(char c);
@@ -218,6 +219,7 @@ void		draw_game(void *param);
 //drawing utils
 uint32_t	ft_my_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 void		draw_ray(t_root *data);
+void		draw_player(t_root *data);
 
 //hooks
 void		key_hooks( void *param);
@@ -230,15 +232,13 @@ void		add_mini_map(t_root *data);
 uint32_t	extract_rgb(mlx_texture_t *texture, int x, int y);
 
 //math
-void		handel_angel(t_root *data);
-double		to_radiance(double angle);
+// void		handel_angel(t_root *data);
+// double		to_radiance(double angle);
 void		get_rays(t_root *data, int i);
-void		add_offset(t_root *data, double current_ray);
-void		find_wall(t_root *data);
 
 //TO DELETE
 //to delete
 void		print_map(t_map *map);
-void	print_ray(t_root *data, double current_ray);
+void		print_ray(t_root *data, double current_ray);
 
 #endif

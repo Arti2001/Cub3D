@@ -6,12 +6,11 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/23 08:08:09 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/02/04 09:26:13 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/04 10:46:27 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
-
 
 // double	to_radiance(double angle)
 // {

@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 14:07:46 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/04 09:45:14 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/04 10:45:00 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static void	draw_map2(t_root *data, int img[2], int flag)
 	mlx_image_t	*map;
 
 	map = data->cub_mlx.img.img_ptr;
-	// colour[RAY] = ft_my_pixel(255, 211, 0, 198);
 	colour[WALL] = ft_my_pixel(0, 6, 255, 255);
 	colour[FLOOR] = ft_my_pixel(0, 167, 255, 255);
 	colour[SPACE] = ft_my_pixel(0, 0, 0, 255);
@@ -67,35 +66,12 @@ static void	draw_map1(t_root *data, int mm_coord[2], int flag, int tile_y)
 	while (i < MMTW)
 	{
 		if (tile_y == 0 || i == 0)
-			mlx_put_pixel(data->cub_mlx.img.img_ptr,mm_coord[X], mm_coord[Y], 255);
+			mlx_put_pixel(data->cub_mlx.img.img_ptr, mm_coord[X], \
+				mm_coord[Y], 255);
 		else
 			draw_map2(data, mm_coord, flag);
 		mm_coord[X]++;
 		i++;
-	}
-}
-
-void draw_player(t_root *data)
-{
-	int width;
-	int height;
-	int start_x;
-	int start_y;
-
-	height = 0;
-	width = 0;
-	start_x = (int)(data->map.mm_start_x + (data->p.x_pos * MMTW) - MMPP / 2);
-	start_y = (int)(data->map.mm_start_y + (data->p.y_pos * MMTH) - MMPP / 2);
-	// Draw the player square
-	while(height < MMPP)
-	{
-		width = 0;
-		while(width < MMPP)
-		{
-				mlx_put_pixel(data->cub_mlx.img.img_ptr, start_x + width, start_y + height, 0xFF0000FF);
-				width++;
-		}
-		height++;
 	}
 }
 
@@ -106,7 +82,7 @@ void draw_player(t_root *data)
 /// @param img coordinates inside image needed to draw the pixel in the correct
 	//place
 /// @param j current height in the tile in the minimap
-static void	draw_map(t_root *data, int y, int	mm_coord[2], int tile_y)
+static void	draw_map(t_root *data, int y, int mm_coord[2], int tile_y)
 {
 	int	x;
 

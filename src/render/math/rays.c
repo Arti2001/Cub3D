@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/03 12:24:23 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/04 09:45:53 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/04 10:47:10 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static void	get_wall(t_root *data, int step_x, int step_y)
 			data->ray.y_map += step_y;
 			data->ray.flag = Y; //it found y line (NORHT/SOUTH)
 		}
-		if (data->ray.x_map < 0 || data->ray.x_map >= data->map.height || 
-			data->ray.y_map < 0 || data->ray.y_map >= data->map.lenght)
-			break; //it's outside of the map values
+		if (data->ray.x_map < 0 || data->ray.x_map >= data->map.height
+			|| data->ray.y_map < 0 || data->ray.y_map >= data->map.lenght)
+			break ; //it's outside of the map values
 		if (data->map.map[(int)data->ray.y_map][(int)data->ray.x_map] == '1')
 			break ; //found the wall
 	}

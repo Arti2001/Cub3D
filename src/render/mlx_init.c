@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 10:21:53 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/02/04 09:41:39 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/04 10:46:14 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,29 @@ static void	win_init(t_root *data)
 
 static void	cub_init(t_root *data)
 {
-	mlx_image_t	*map; //created for norminette reasons (too long line 33)
+	mlx_image_t	*map;
 
 	win_init(data);
-	data->cub_mlx.win = mlx_init(data->cub_mlx.win_w, data->cub_mlx.win_h, NAME, false);
+	data->cub_mlx.win = mlx_init(data->cub_mlx.win_w, data->cub_mlx.win_h, \
+		NAME, false);
 	if (data->cub_mlx.win == NULL)
 	{
 		mlx_terminate(data->cub_mlx.win);
 		error_bye_data(data, "Failure of mlx_init()\n");
 	}
-	data->cub_mlx.img.img_ptr = mlx_new_image(data->cub_mlx.win, data->cub_mlx.win_w, data->cub_mlx.win_h);
+	data->cub_mlx.img.img_ptr = mlx_new_image(data->cub_mlx.win, \
+		data->cub_mlx.win_w, data->cub_mlx.win_h);
 	if (!data->cub_mlx.img.img_ptr)
 	{
 		mlx_terminate(data->cub_mlx.win);
 		error_bye_data(data, "Failure of mlx_new_image() for mini_map\n");
 	}
-	
 	map = data->cub_mlx.img.img_ptr;
 	if (mlx_image_to_window(data->cub_mlx.win, map, 0, 0) < 0)
 	{
 		mlx_terminate(data->cub_mlx.win);
 		error_bye_data(data, "Failure of mlx_image_to_window()\n");
 	}
-	// mlx_resize_hook(data->cub_mlx.win, ft_resize, data);
 }
 
 void	run_mlx(t_root *data)
