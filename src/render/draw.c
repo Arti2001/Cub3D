@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 10:14:41 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/04 10:38:29 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/04 15:35:26 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	draw_walls(t_root *data, int i, uint32_t ceiling, uint32_t floor)
 	t_wall		wall;
 	int			j;
 
+	// data->ray.distance *= cos(data->ray.camera_x);
 	wall.height = (int)(data->cub_mlx.win_h / data->ray.distance);
 	wall.start = (int)((data->cub_mlx.win_h - wall.height) / 2);
 	wall.end = (int)(wall.height + data->cub_mlx.win_h) / 2;
@@ -41,10 +42,12 @@ static void	draw_walls(t_root *data, int i, uint32_t ceiling, uint32_t floor)
 	while (j < data->cub_mlx.win_h)
 	{
 		if (j < wall.start && mm_check(data, i, j) == true)
+		// if (j < data->cub_mlx.win_h / 2 && mm_check(data, i, j) == true)
 			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ceiling);
 		if (j >= wall.start && j <= wall.end && mm_check(data, i, j) == true)
 			draw_wall(data, i, j);
 		if (j > wall.end && mm_check(data, i, j) == true)
+		// if (j > data->cub_mlx.win_h / 2 && mm_check(data, i, j) == true)
 			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, floor);
 		j++;
 	}
@@ -71,6 +74,6 @@ void	draw_game(void *param)
 		draw_walls(data, i, ceiling, floor);
 		i++;
 	}
-	draw_ray(data);
 	add_mini_map(data);
+	// draw_ray(data);
 }

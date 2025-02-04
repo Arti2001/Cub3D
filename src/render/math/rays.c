@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/03 12:24:23 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/04 10:47:10 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/04 15:35:59 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,5 @@ void	get_rays(t_root *data, int i)
 	get_step_size(data);
 	get_offset(data);
 	get_distance(data);
+	printf("distance = %f\n", data->ray.distance);
 }
