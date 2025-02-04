@@ -6,29 +6,27 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/18 10:38:05 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/03 10:03:21 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/04 09:29:45 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static	int	move_player(t_root *data, double delta_x, double delta_y)
+static int	move_player_sides(t_root *data, double move_step)
 {
 	double	new_x;
 	double	new_y;
 
-	new_x = data->p.x_pos + delta_x;
-	new_y = data->p.y_pos + delta_y;
-	
+	new_x = data->p.x_pos + data->p.plane_x * move_step;
+	new_y = data->p.y_pos + data->p.plane_y * move_step;
 	if ((data->map.map[(int)(new_y - HITBOX)][(int)(new_x)] == '0')
 	&& (data->map.map[(int)(new_y)][(int)(new_x - HITBOX)] == '0')
-	&& (data->map.map[(int)(new_y + 0.09)][(int)(new_x)] == '0')
+	&& (data->map.map[(int)(new_y + HITBOX)][(int)(new_x)] == '0')
 	&& (data->map.map[(int)(new_y)][(int)(new_x + HITBOX)] == '0')
 	&& (data->map.map[(int)(new_y)][(int)(new_x)] == '0'))
 	{
 		data->p.x_pos = new_x;
 		data->p.y_pos = new_y;
-		// printf("Player moved to: [%f][%f]\n", data->p.y_pos, data->p.x_pos);
 		return (1);
 	}
 	else
@@ -38,66 +36,77 @@ static	int	move_player(t_root *data, double delta_x, double delta_y)
 	}
 }
 
-static void turn_left(t_root *data)
+static	int	move_player(t_root *data, double move_step)
 {
-	data->p.pos -= 1.0;
-	if (data->p.pos < 0)
-		data->p.pos += 360;
+	double	new_x;
+	double	new_y;
 
-	data->ray.dir_x = cos(to_radiance(data->p.pos));
-	data->ray.dir_y = sin(to_radiance(data->p.pos));
-	handel_angel(data);
+	new_x = data->p.x_pos + data->p.x_dir * move_step;
+	new_y = data->p.y_pos + data->p.y_dir * move_step;
+	if ((data->map.map[(int)(new_y - HITBOX)][(int)(new_x)] == '0')
+	&& (data->map.map[(int)(new_y)][(int)(new_x - HITBOX)] == '0')
+	&& (data->map.map[(int)(new_y + HITBOX)][(int)(new_x)] == '0')
+	&& (data->map.map[(int)(new_y)][(int)(new_x + HITBOX)] == '0')
+	&& (data->map.map[(int)(new_y)][(int)(new_x)] == '0'))
+	{
+		data->p.x_pos = new_x;
+		data->p.y_pos = new_y;
+		return (1);
+	}
+	else
+	{
+		printf("Hit the wall\n");
+		return 0;
+	}
 }
 
-static void turn_right(t_root *data)
+static void turn_player(t_root *data, double move_step)
 {
-	data->p.pos += 1.0;
-	if (data->p.pos >= 360)
-		data->p.pos -= 360;
-
-	data->ray.dir_x = cos(to_radiance(data->p.pos));
-	data->ray.dir_y = sin(to_radiance(data->p.pos));
-	handel_angel(data);
-	// printf("Turned Right -> New angle: %f, dir_x: %f, dir_y: %f\n", data->p.pos, data->ray.dir_x, data->ray.dir_y);
+	double	new_plane_x;
+	double	new_x_direction;
+	
+	new_plane_x = data->p.plane_x * cos(move_step) - data->p.plane_y * sin(move_step);
+	data->p.plane_y = data->p.plane_x * sin(move_step) + data->p.plane_y * cos(move_step);
+	new_x_direction = data->p.x_dir * cos(move_step) - data->p.y_dir * sin(move_step);
+	data->p.y_dir = data->p.x_dir * sin(move_step) + data->p.y_dir * cos(move_step);
+	data->p.plane_x = new_plane_x;
+	data->p.x_dir = new_x_direction;
 }
 
 static void go(t_root *data, int flag)
 {
 	double move_step = 0.05;
 
-	double move_x = cos(to_radiance(data->p.pos)) * move_step;
-	double move_y = sin(to_radiance(data->p.pos)) * move_step;
-
-	if (flag == 1) // Forward
-		move_player(data, move_x, move_y);
-	else if (flag == 2) // Backward
-		move_player(data, -move_x, -move_y);
-	else if (flag == 3) // Left (Strafe)
-		move_player(data, move_y, -move_x);
-	else if (flag == 4) // Right (Strafe)
-		move_player(data, -move_y, move_x);
+	if (flag == FORWARD) // Forward
+		move_player(data, move_step);
+	else if (flag == BACKWARD) // Backward
+		move_player(data, -move_step);
+	else if (flag == LEFT_MOVE) // Right (Strafe)
+		move_player_sides(data, -move_step);
+	else if (flag == RIGHT_MOVE) // Left (Strafe)
+		move_player_sides(data, move_step);
+	else if (flag == TURN_RIGHT) //turns rightt
+		turn_player(data, -move_step);
+	else if (flag == TURN_LEFT) //turns left
+		turn_player(data, move_step);
 }
-void	key_hooks(mlx_key_data_t keydata, void *param)
+void	key_hooks( void *param)
 {
 	t_root	*data;
-	
-	(void)keydata;
-	data = param;
 
+	data = param;
 	if (mlx_is_key_down(data->cub_mlx.win, MLX_KEY_W))
-		go(data, 1);
+		go(data, FORWARD);
 	if (mlx_is_key_down(data->cub_mlx.win, MLX_KEY_S))
-		go(data, 2);
-	if (mlx_is_key_down(data->cub_mlx.win, MLX_KEY_A))
-		go(data, 3);
+		go(data, BACKWARD);
 	if (mlx_is_key_down(data->cub_mlx.win, MLX_KEY_D))
-		go(data, 4);
+		go(data, RIGHT_MOVE);
+	if (mlx_is_key_down(data->cub_mlx.win, MLX_KEY_A))
+		go(data, LEFT_MOVE);
+	if (mlx_is_key_down(data->cub_mlx.win, MLX_KEY_LEFT))
+		go(data, TURN_RIGHT);
+	if (mlx_is_key_down(data->cub_mlx.win, MLX_KEY_RIGHT))
+		go(data, TURN_LEFT);
 	if (mlx_is_key_down(data->cub_mlx.win, MLX_KEY_ESCAPE))
 		mlx_close_window(data->cub_mlx.win);
-	if (mlx_is_key_down(data->cub_mlx.win, MLX_KEY_LEFT))
-		turn_left(data);
-	if (mlx_is_key_down(data->cub_mlx.win, MLX_KEY_RIGHT))
-		turn_right(data);
-	add_mini_map(data);
-	get_rays(data);
 }

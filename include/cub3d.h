@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/03 12:37:15 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/04 09:26:02 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,17 @@
 # define X 0
 # define Y 1
 # define HITBOX 0.2
-# define EPSILON 1e-6
+# define EPSILON 1e30
+
+typedef enum	e_moves
+{
+	FORWARD = 1,
+	BACKWARD = 2,
+	RIGHT_MOVE = 3,
+	LEFT_MOVE = 4,
+	TURN_RIGHT = 5,
+	TURN_LEFT = 6,
+}	t_moves;
 
 typedef struct s_img
 {
@@ -94,23 +104,27 @@ typedef struct s_floor
 	int					b;
 }	t_floor;
 
-typedef struct s_ray
+typedef struct s_wall
 {
-	double				x_angle; //already in radians for cos()
-	double				y_angle; //already in radians for cos()
+	int		height;
+	int		start;
+	int		end;
+}	t_wall;
+
+typedef struct s_ray //data for the raycasting
+{
+	double				camera_x; // x-coordinate along the camera line
 	double				distance; //distance of between the player & wall (total ray length)
-	int					x_ray; //player's position on the grid
-	int					y_ray; //player's position on the grid
-	double				x_offset;
-	double				y_offset;
+	double				dir_x; //x direction of the ray
+	double				dir_y; //y direction of the ray
+	int					x_map; //player's position on the grid
+	int					y_map; //player's position on the grid
+	double				x_offset; //distance between the actual position of the player and nearest x
+	double				y_offset; //distance between the actual position of the player and nearest y
 	double				steps_x; //length of the actual x_step (number of y's in between x1 & x2)
 	double				steps_y; //length of the actual y_step (number of x's in between y1 & y2)
-	double				dir_x; //direction of x (right == +1, left == -1 and 0)
-	double				dir_y; //direction of y (down == +1, up == -1 and 0)
 	int					flag; //to show if the step is taken in x or in y direction
-	double				camera_x; // x-coordinate along the camera line
 }	t_ray;
-
 
 typedef struct s_maplist
 {
@@ -122,14 +136,13 @@ typedef struct s_maplist
 
 typedef struct s_player
 {
+	// double			pos;
 	double			x_pos;
 	double			y_pos;
-	double			x_dist; //distance of original position to the nearest x line
-	double			y_dist; //distance of original position to the nearest y line
-	double			most_l;
-	double			most_r;
-	double			abr;
-	double			pos;
+	double			plane_x;
+	double			plane_y;
+	double			x_dir;
+	double			y_dir;
 }	t_player;
 
 typedef struct s_map
@@ -155,6 +168,7 @@ typedef struct s_root
 	t_player			p;
 	t_ray				ray;
 	t_cubmlx			cub_mlx;
+	t_wall				wall;
 }	t_root;
 
 //freeing
@@ -198,14 +212,15 @@ void		run_mlx(t_root *data);
 
 void		ft_resize(int32_t width, int32_t height, void *param);
 
-void		draw_game(t_root *data, int i);
+// void		draw_game(t_root *data, int i);
+void		draw_game(void *param);
 
 //drawing utils
 uint32_t	ft_my_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 void		draw_ray(t_root *data);
 
 //hooks
-void		key_hooks(mlx_key_data_t keydata, void *param);
+void		key_hooks( void *param);
 
 //mini_map
 void		add_mini_map(t_root *data);
@@ -217,7 +232,7 @@ uint32_t	extract_rgb(mlx_texture_t *texture, int x, int y);
 //math
 void		handel_angel(t_root *data);
 double		to_radiance(double angle);
-void		get_rays(t_root *data);
+void		get_rays(t_root *data, int i);
 void		add_offset(t_root *data, double current_ray);
 void		find_wall(t_root *data);
 

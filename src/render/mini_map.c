@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 14:07:46 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/03 08:17:33 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/04 09:45:14 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ static void	draw_map2(t_root *data, int img[2], int flag)
 	//place
 /// @param j current height in the tile in the minimap
 /// @param flag SPACE, FLOOR, WALL, RAY, PLAYER, for the colour
-
-
 static void	draw_map1(t_root *data, int mm_coord[2], int flag, int tile_y)
 {
 	int		i;
@@ -94,58 +92,12 @@ void draw_player(t_root *data)
 		width = 0;
 		while(width < MMPP)
 		{
-				mlx_put_pixel(data->cub_mlx.img.img_ptr, start_x + width, start_y + height, 0xFF0000FF); // Blue color
+				mlx_put_pixel(data->cub_mlx.img.img_ptr, start_x + width, start_y + height, 0xFF0000FF);
 				width++;
 		}
 		height++;
 	}
 }
-
-// //trying out the circle
-// void draw_player(t_root *data)
-// {
-// 	int width; // x
-// 	int height; // y
-// 	int mini_x;
-// 	int mini_y;
-// 	int centre_player_x;
-// 	int centre_player_y;
-// 	int	radius;
-// 	int	pixel_x;
-// 	int	pixel_y;
-// 	int	map_x;
-// 	int	map_y;
-	
-// 	// Calculate the starting point for the minimap (top-left corner)
-// 	mini_x = data->cub_mlx.win_w - data->map.lenght * MMTW;
-// 	mini_y = data->cub_mlx.win_h - data->map.height * MMTH;
-
-// 	// Calculate player's position relative to the minimap
-// 	centre_player_x = (int)(mini_x + (data->p.x_pos * MMTW));
-// 	centre_player_y = (int)(mini_y + (data->p.y_pos * MMTH));
-
-// 	radius = MMPP / 2; // == 5
-// 	height = -radius;  // -5 -> 5
-// 	while(height <= radius)
-// 	{
-// 		width = -radius;
-// 		while(width <= radius)
-// 		{
-// 			pixel_x = centre_player_x + width; //start of the x player
-// 			pixel_y = centre_player_y + height; //start of the y player
-// 			if (width * width + height * height <= radius * radius) //as long as it is withing the circle
-// 			{
-// 				map_x = (pixel_x - mini_x) / MMTW; //x on the real map
-// 				map_y = (pixel_y - mini_y) / MMTH; // y on the real map
-// 				//TODO needs to be changed to make sure it doesn't go over the corners
-// 				if (map_x >= 0 && map_y >= 0 && map_x < data->map.lenght && map_y < data->map.height && data->map.map[map_y][map_x] != '1')
-// 					mlx_put_pixel(data->cub_mlx.img.img_ptr, pixel_x, pixel_y, 0xFF0000FF);
-// 			}
-// 			width++;
-// 		}
-// 		height++;
-// 	}
-// }
 
 /// @brief checks that the width of the minimap is correct, goes to another
 	//function checking whats on the map (1 0 N S W E ' ')

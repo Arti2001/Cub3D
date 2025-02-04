@@ -1,29 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 12:30:12 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/29 20:05:37 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   check_map.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 12:30:12 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/02/04 08:05:44 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+static void	direction_2(t_root *data)
+{
+	data->p.plane_x = 0;
+	data->p.plane_y = 0.66;
+	data->p.x_dir = 1;
+	data->p.y_dir = 0;
+}
 
-static	int	give_direction(char ch_dir)
+static void	give_direction(t_root *data, char ch_dir)
 {
 	if(ch_dir == 'N')
-		return (270);
-	if(ch_dir == 'S')
-		return (90);
-	if(ch_dir == 'W')
-		return (180);
-	if(ch_dir == 'E')
-		return (0);
-	return (-1);
+	{
+		data->p.plane_x = 0.66;
+		data->p.plane_y = 0;
+		data->p.x_dir = 0;
+		data->p.y_dir = -1;
+	}
+	else if(ch_dir == 'S')
+	{
+		data->p.plane_x = -0.66;
+		data->p.plane_y = 0;
+		data->p.x_dir = 0;
+		data->p.y_dir = 1;
+	}
+	else if(ch_dir == 'W')
+	{
+		data->p.plane_x = 0;
+		data->p.plane_y = -0.66;
+		data->p.x_dir = -1;
+		data->p.y_dir = 0;
+	}
+	else if(ch_dir == 'E')
+		direction_2(data);
 }
 
 bool	valid_char(char c)
@@ -74,7 +95,7 @@ void	player_found(t_root *data, long y, long x, bool *position)
 		data->p.x_pos = x + 0.5;
 		data->p.y_pos = y + 0.5;
 		*position = true;
-		data->p.pos = (double)give_direction(data->map.map[y][x]);
+		give_direction(data, data->map.map[y][x]);
 		data->map.map[y][x] = '0';
 	}
 	else
