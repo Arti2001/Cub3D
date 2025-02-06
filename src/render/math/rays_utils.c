@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/27 09:34:37 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/04 15:19:50 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/06 07:35:42 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ void	draw_ray(t_root *data)
 		x = (uint32_t)(data->map.mm_start_x + ray_x * MMTW);
 		y = (uint32_t)(data->map.mm_start_y + ray_y * MMTH);
 		mlx_put_pixel(data->cub_mlx.img.img_ptr, x, y, 255);
-		ray_x += data->ray.dir_x * 0.1;
-		ray_y += data->ray.dir_y * 0.1;
+		ray_x += data->p.x_dir * 0.1;
+		ray_y += data->p.y_dir * 0.1;
 		if (data->map.map[(int)ray_y][(int)ray_x] == '1')
 			break ;
 	}
 }
-

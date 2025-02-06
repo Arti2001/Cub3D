@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/03 12:24:23 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/04 15:35:59 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/06 07:34:33 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,11 @@ void	get_rays(t_root *data, int i)
 {
 	data->ray.x_map = (int)data->p.x_pos;
 	data->ray.y_map = (int)data->p.y_pos;
-	data->ray.camera_x = 2 * i / data->cub_mlx.win_w - 1;
+	data->ray.camera_x = 2 * i / (double)data->cub_mlx.win_w - 1;
 	//getting the directions of the ray
 	data->ray.dir_x = data->p.x_dir + data->p.plane_x * data->ray.camera_x;
 	data->ray.dir_y = data->p.y_dir + data->p.plane_y * data->ray.camera_x;
 	get_step_size(data);
 	get_offset(data);
 	get_distance(data);
-	printf("distance = %f\n", data->ray.distance);
 }
