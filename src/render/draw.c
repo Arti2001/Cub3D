@@ -6,11 +6,26 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 10:14:41 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/06 08:56:13 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/06 09:00:39 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+
+void	load_textures(t_root *data)
+{
+	
+	data->textures[0] = mlx_load_png(data->map.no_path);
+	data->textures[1] = mlx_load_png(data->map.so_path);
+	data->textures[2] = mlx_load_png(data->map.ea_path);
+	data->textures[3] = mlx_load_png(data->map.we_path);
+	if (!data->textures[0] || \
+		!data->textures[1] || \
+		!data->textures[2] || \
+		!data->textures[3])
+	error_bye_data(data, ERR_NO_PATH_FOUND);
+}
 
 static void	draw_wall(t_root *data, t_wall wall)
 {
@@ -30,8 +45,8 @@ static void	draw_wall(t_root *data, t_wall wall)
 		else
 			side = SOUTH;
 	}
-	wall.tex_x = (int)(wall.hit_point * (double)data->texture[side]->width);
-	wall.step = 1.0 * data->texture[side]->height / wall.height;
+	wall.tex_x = (int)(wall.hit_point * (double)data->textures[side]->width);
+	wall.step = 1.0 * data->textures[side]->height / wall.height;
 	wall.tex_pos = (wall.start - data->cub_mlx.win_h / 2 + wall.height / 2) * wall.step;
 	
 	// uint32_t	wall;
@@ -39,6 +54,26 @@ static void	draw_wall(t_root *data, t_wall wall)
 	// wall = ft_my_pixel(12, 164, 97, 255);
 	// mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, wall);
 }
+
+void	load_textures(t_root *data)
+{
+	data->textures[0] = mlx_load_png(data->map.no_path);
+	data->textures[1] = mlx_load_png(data->map.so_path);
+	data->textures[2] = mlx_load_png(data->map.ea_path);
+	data->textures[3] = mlx_load_png(data->map.we_path);
+	if (!data->textures[0] || \
+		!data->textures[1] || \
+		!data->textures[2] || \
+		!data->textures[3])
+	error_bye_data(data, ERR_NO_PATH_FOUND);
+}
+
+// void	draw_wall(t_root *data, int i, int j)
+// {
+// 	extract_rgb(data->textures[0], 0, 0);
+	
+// 	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, extract_rgb(data->textures[0], 0, 0));
+// }
 
 static bool	mm_check(t_root *data, int i, int j)
 {
