@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 10:14:41 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/06 11:12:27 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/06 14:10:06 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void	get_side(t_root *data, t_wall *wall)
 	if (data->ray.flag == 'X')
 	{
 		if (data->ray.dir_x < 0)
-			wall->side = EAST;
-		else
 			wall->side = WEST;
+		else
+			wall->side = EAST;
 		wall->hit_point = data->p.y_pos + (data->ray.distance * data->ray.dir_y);
 	}
 	else
@@ -45,12 +45,13 @@ static void	wall_info(t_root *data, t_wall *wall)
 		wall->end = data->cub_mlx.win_h - 1;
 	wall->map_tile = data->map.map[data->ray.x_map][data->ray.y_map] - 1;
 	wall->tex_width = data->textures[wall->side]->width;
-	wall->tex_x = (int)(wall->hit_point * (double)data->textures[wall->side]->width);
+	wall->tex_height = data->textures[wall->side]->height;
+	wall->tex_x = (int)(wall->hit_point * (double)wall->tex_width);
 	if ((wall->side == EAST || wall->side == WEST) && data->ray.dir_x > 0)
 		wall->tex_x = wall->tex_width - wall->tex_x - 1;
 	if ((wall->side == NORTH || wall->side == SOUTH) && data->ray.dir_y < 0)
 		wall->tex_x = wall->tex_width - wall->tex_x - 1;
-	wall->step = 1.0 * data->textures[wall->side]->height / wall->height;
+	wall->step = 1.0 * wall->tex_height / wall->height;
 	wall->tex_pos = (wall->start - data->cub_mlx.win_h / 2 + wall->height / 2) * wall->step;
 }
 
@@ -62,8 +63,8 @@ void	draw_wall(t_root *data, int i, int j, t_wall *wall)
 
 	texture = data->textures[wall->side];
 	wall->tex_y = (int)wall->tex_pos;
-	if (wall->tex_y >= (int)data->textures[wall->side]->height)
-		wall->tex_y = data->textures[wall->side]->height - 1;
+	if (wall->tex_y >= (int)wall->tex_height)
+		wall->tex_y = wall->tex_height - 1;
 	wall->tex_pos += wall->step;
 	
 	pix = (wall->tex_x + wall->tex_y * wall->tex_width) * 4;
@@ -95,9 +96,10 @@ static void	draw_screen(t_root *data, int i, uint32_t ceil, uint32_t fl)
 	{
 		if (j < wall.start && mm_check(data, i, j) == true)
 			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ceil);
-		if (j >= wall.start && j <= wall.end && mm_check(data, i, j) == true)
-			draw_wall(data, i, j, &wall);
-		if (j > wall.end && mm_check(data, i, j) == true)
+		else if (j >= wall.start && j <= wall.end && mm_check(data, i, j) == true)
+			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(56, 74, 0, 255));
+			// draw_wall(data, i, j, &wall);
+		else if (j > wall.end && mm_check(data, i, j) == true)
 			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, fl);
 		j++;
 	}

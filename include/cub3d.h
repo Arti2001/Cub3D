@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/06 10:12:41 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/06 13:41:51 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,8 @@ typedef struct s_wall
 	int			map_tile; //the current tile on the map
 	int			tex_x; //x coordinate on the texture
 	int			tex_y; //calculated with wall.step
-	int			tex_width;
+	int			tex_width; //width of the texture (from the file)
+	int			tex_height; //height of the texture (from the file)
 	int			tex_start; //tex starting position in integer
 	double		hit_point; //exact hit point for either y for EW wall or x for NS wall
 	double		step; //the amount to increase the texture coordinate per pixel
