@@ -6,13 +6,17 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:14:41 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/06 08:55:16 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/02/06 09:59:02 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
 
+uint32_t	get_rgb(int r, int g, int b, int a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
+}
 void	load_textures(t_root *data)
 {
 	
@@ -29,9 +33,9 @@ void	load_textures(t_root *data)
 
 void	draw_wall(t_root *data, int i, int j)
 {
-	extract_rgb(data->textures[0], 0, 0);
+	//extract_rgb(data->textures[0], 0, 0);
 	
-	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, extract_rgb(data->textures[0], 0, 0));
+	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, get_rgb(50, 14, 43, 255));
 }
 
 static bool	mm_check(t_root *data, int i, int j)

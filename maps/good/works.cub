@@ -1,13 +1,14 @@
-   WE                            textures/wolfenstein/grey_stone.xpm
-NO      textures/wolfenstein/purple_stone.xpm
+
+   WE                            src/render/textures/round2.png
+NO      src/render/textures/blackhole.png
 
 
 
-SO textures/wolfenstein/red_brick.xpm
+SO src/render/textures/round.png
 
 F      17,    38,     64
 
-EA textures/wolfenstein/wood.xpm
+EA src/render/textures/stars.png
 
 
 

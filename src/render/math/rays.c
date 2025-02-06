@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   rays.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/02/03 12:24:23 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/06 07:34:33 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   rays.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/03 12:24:23 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/06 09:46:19 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ static void	get_wall(t_root *data, int step_x, int step_y)
 			|| data->ray.y_map < 0 || data->ray.y_map >= data->map.lenght)
 			break ; //it's outside of the map values
 		if (data->map.map[(int)data->ray.y_map][(int)data->ray.x_map] == '1')
+		{
 			break ; //found the wall
+		}
 	}
 }
 
@@ -91,6 +93,9 @@ void	get_rays(t_root *data, int i)
 	//getting the directions of the ray
 	data->ray.dir_x = data->p.x_dir + data->p.plane_x * data->ray.camera_x;
 	data->ray.dir_y = data->p.y_dir + data->p.plane_y * data->ray.camera_x;
+	printf("Ray start: (%f, %f) Grid: (%d, %d)\n", 
+       data->p.x_pos, data->p.y_pos, 
+       data->ray.x_map, data->ray.y_map);
 	get_step_size(data);
 	get_offset(data);
 	get_distance(data);

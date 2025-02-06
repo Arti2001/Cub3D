@@ -1,7 +1,7 @@
-NO textures/matrix.xpm
-SO textures/matrix.xpm
-WE textures/matrix.xpm
-EA textures/matrix.xpm
+NO src/render/textures/blackhole.png
+SO src/render/textures/round.png
+WE src/render/textures/round2.png
+EA src/render/textures/stars.png
 
 F 0,0,0
 C 0,0,0

@@ -6,7 +6,7 @@
 
 
 
-NO textures/test/north.xpm
+NO src/render/textures/blackhole.png
 
 
 
@@ -15,9 +15,9 @@ NO textures/test/north.xpm
 
 
 
-SO textures/test/south.xpm
-                        WE textures/test/west.xpm
-        EA textures/test/east.xpm            
+SO src/render/textures/round.png
+                        WE src/render/textures/round2.png
+        EA src/render/textures/stars.png            
 
         F 20,           20,             20
 C 200,          200,200
