@@ -1,7 +1,7 @@
-NO textures/simonkraft/wet_sponge.xpm
-SO textures/simonkraft/wet_sponge.xpm
-WE textures/simonkraft/wet_sponge.xpm
-EA textures/simonkraft/wet_sponge.xpm
+NO src/render/textures/blackhole.png
+SO src/render/textures/round.png
+WE src/render/textures/round2.png
+EA src/render/textures/stars.png
 
 F 164,169,20
 C 153,204,255

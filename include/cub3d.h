@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/04 10:44:45 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/06 08:43:04 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_wall
 	int		height;
 	int		start;
 	int		end;
+	
 }	t_wall;
 
 typedef struct s_ray //data for the raycasting
@@ -168,7 +169,9 @@ typedef struct s_root
 	t_player			p;
 	t_ray				ray;
 	t_cubmlx			cub_mlx;
-	t_wall				wall;
+	mlx_texture_t		*textures[4];
+
+	
 }	t_root;
 
 //freeing
@@ -196,17 +199,18 @@ t_maplist	*add_node(char *line, t_root *data);
 void		del_list(t_maplist *map);
 
 //texture
-void		floor_rgb(char *str, t_root *data);
-void		ceiling_rgb(char *str, t_root *data);
-bool		is_c_full(t_ceiling ceiling);
-bool		is_f_full(t_floor floor);
-void		if_valid_add(t_root *data);
-void		floor_rgb(char *str, t_root *data);
-void		ceiling_rgb(char *str, t_root *data);
-int			are_digits(char *str);
-int			first_digit(char *str);
-bool		is_full(t_map map);
-bool		comma_checker(char *str);
+void			floor_rgb(char *str, t_root *data);
+void			ceiling_rgb(char *str, t_root *data);
+bool			is_c_full(t_ceiling ceiling);
+bool			is_f_full(t_floor floor);
+void			if_valid_add(t_root *data);
+void			floor_rgb(char *str, t_root *data);
+void			ceiling_rgb(char *str, t_root *data);
+int				are_digits(char *str);
+int				first_digit(char *str);
+bool			is_full(t_map map);
+bool			comma_checker(char *str);
+void			load_textures(t_root *data);
 
 						/**********		RENDERING		**********/
 void		run_mlx(t_root *data);

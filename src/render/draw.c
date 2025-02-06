@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   draw.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/30 10:14:41 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/06 07:34:21 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/30 10:14:41 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/06 08:55:16 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+
+void	load_textures(t_root *data)
+{
+	
+	data->textures[0] = mlx_load_png(data->map.no_path);
+	data->textures[1] = mlx_load_png(data->map.so_path);
+	data->textures[2] = mlx_load_png(data->map.ea_path);
+	data->textures[3] = mlx_load_png(data->map.we_path);
+	if (!data->textures[0] || \
+		!data->textures[1] || \
+		!data->textures[2] || \
+		!data->textures[3])
+	error_bye_data(data, ERR_NO_PATH_FOUND);
+}
+
 void	draw_wall(t_root *data, int i, int j)
 {
-	uint32_t	wall;
-
-	wall = ft_my_pixel(12, 164, 97, 255);
-	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, wall);
+	extract_rgb(data->textures[0], 0, 0);
+	
+	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, extract_rgb(data->textures[0], 0, 0));
 }
 
 static bool	mm_check(t_root *data, int i, int j)

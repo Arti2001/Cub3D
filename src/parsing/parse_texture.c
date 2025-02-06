@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:21:28 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/28 08:46:38 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/02/06 08:52:46 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,25 @@ int	tex_paths_valid(char **split, t_root *data)
 	{
 		if (data->map.no_path)
 			free_data_arr(data, "NO: Is definied more then one time", split);
-		return (data->map.no_path = split[1], 1);
+		return (data->map.no_path = ft_strdup(split[1]), 1);
 	}
 	else if (ft_strncmp(split[0], "SO", 3) == 0)
 	{
 		if (data->map.so_path)
 			free_data_arr(data, "SO: Is definied more then one time", split);
-		return (data->map.so_path = split[1], 1);
+		return (data->map.so_path = ft_strdup(split[1]), 1);
 	}
 	else if (ft_strncmp(split[0], "WE", 3) == 0)
 	{
 		if (data->map.we_path)
 			free_data_arr(data, "WE: Is definied more then one time", split);
-		return (data->map.we_path = split[1], 1);
+		return (data->map.we_path = ft_strdup(split[1]), 1);
 	}
 	else if (ft_strncmp(split[0], "EA", 3) == 0)
 	{
 		if (data->map.ea_path)
 			free_data_arr(data, "EA: Is definied more then one time", split);
-		return (data->map.ea_path = split[1], 1);
+		return (data->map.ea_path = ft_strdup(split[1]), 1);
 	}
 	return (0);
 }

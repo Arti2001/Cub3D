@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx_init.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/16 10:21:53 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/02/04 10:46:14 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx_init.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/16 10:21:53 by amysiv            #+#    #+#             */
+/*   Updated: 2025/02/06 08:48:38 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void	cub_init(t_root *data)
 void	run_mlx(t_root *data)
 {
 	cub_init(data);
+	load_textures(data);
 	mlx_loop_hook(data->cub_mlx.win, &key_hooks, data);
 	mlx_loop_hook(data->cub_mlx.win, &draw_game, data);
 	mlx_loop(data->cub_mlx.win);
