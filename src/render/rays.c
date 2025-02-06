@@ -6,11 +6,11 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:24:23 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/06 09:46:19 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/02/06 14:08:14 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 static void	get_wall(t_root *data, int step_x, int step_y)
 {
@@ -77,6 +77,7 @@ static void	get_step_size(t_root *data)
 		data->ray.steps_y = fabs(1 / data->ray.dir_y);
 }
 
+//it will always be a perpendicular distance, so no fish eye effect
 static void	get_distance(t_root *data)
 {
 	if (data->ray.flag == X)

@@ -1,16 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   rays_utils.c                                       :+:    :+:            */
+/*   draw_utils.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/27 09:34:37 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/06 07:35:42 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/06 09:05:00 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/cub3d.h"
+#include "../../include/cub3d.h"
+
+void	load_textures(t_root *data)
+{
+	data->textures[0] = mlx_load_png(data->map.no_path);
+	data->textures[1] = mlx_load_png(data->map.so_path);
+	data->textures[2] = mlx_load_png(data->map.ea_path);
+	data->textures[3] = mlx_load_png(data->map.we_path);
+	if (!data->textures[0] || \
+		!data->textures[1] || \
+		!data->textures[2] || \
+		!data->textures[3])
+	error_bye_data(data, ERR_NO_PATH_FOUND);
+}
 
 void	draw_ray(t_root *data)
 {
@@ -21,7 +34,6 @@ void	draw_ray(t_root *data)
 	
 	ray_x = data->p.x_pos;
 	ray_y = data->p.y_pos;
-	// printf("ray_x = %f\tray_y = %f\n", ray_x, ray_y);
 	while (ray_x >= 0 && ray_y >= 0 && ray_x < data->map.lenght  && ray_y < data->map.height)
 	{
 		x = (uint32_t)(data->map.mm_start_x + ray_x * MMTW);

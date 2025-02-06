@@ -1,16 +1,16 @@
    WE                            src/render/textures/round2.png 
-NO      src/render/textures/blackhole.png
+NO      src/render/textures/stars.png
 
 
 
 SO src/render/textures/round.png
 
-F   69, 222, 199
+F   0, 0, 0
 
 EA src/render/textures/stars.png
 
 
-C 235, 198, 52
+C 0, 0, 0
 
 111111111111111111111111
 100000000000000000000001

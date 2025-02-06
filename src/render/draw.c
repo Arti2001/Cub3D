@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:14:41 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/06 09:59:02 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/02/06 14:09:38 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	draw_wall(t_root *data, int i, int j)
 {
 	//extract_rgb(data->textures[0], 0, 0);
 	
-	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, get_rgb(50, 14, 43, 255));
+	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, get_rgb(50, 14, 0, 255));
 }
 
 static bool	mm_check(t_root *data, int i, int j)
