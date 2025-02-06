@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/03 12:24:23 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/06 07:34:33 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/06 08:03:41 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static void	get_step_size(t_root *data)
 		data->ray.steps_y = fabs(1 / data->ray.dir_y);
 }
 
+//it will always be a perpendicular distance, so no fish eye effect
 static void	get_distance(t_root *data)
 {
 	if (data->ray.flag == X)

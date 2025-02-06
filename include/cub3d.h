@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/04 10:44:45 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/06 08:43:47 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,14 @@ typedef enum	e_moves
 	TURN_LEFT = 6,
 }	t_moves;
 
+typedef enum	e_sides
+{
+	NORTH = 0,
+	SOUTH = 1,
+	EAST = 2,
+	WEST = 3,
+}	t_sides;
+
 typedef struct s_img
 {
 	mlx_image_t			*img_ptr;
@@ -106,9 +114,15 @@ typedef struct s_floor
 
 typedef struct s_wall
 {
-	int		height;
-	int		start;
-	int		end;
+	int			height;
+	int			start;
+	int			end;
+	int			map_tile; //the current tile on the map
+	int			tex_x; //x coordinate on the texture
+	double		hit_point; //exact hit point for either y for EW wall or x for NS wall
+	double		step; //the amount to increase the texture coordinate per pixel
+	double		tex_pos; //the texture's starting position
+	uint32_t	*buffer; //is it needed?
 }	t_wall;
 
 typedef struct s_ray //data for the raycasting
@@ -136,7 +150,6 @@ typedef struct s_maplist
 
 typedef struct s_player
 {
-	// double			pos;
 	double			x_pos;
 	double			y_pos;
 	double			plane_x;
@@ -168,7 +181,7 @@ typedef struct s_root
 	t_player			p;
 	t_ray				ray;
 	t_cubmlx			cub_mlx;
-	t_wall				wall;
+	mlx_texture_t		*texture[4];
 }	t_root;
 
 //freeing
@@ -210,35 +223,19 @@ bool		comma_checker(char *str);
 
 						/**********		RENDERING		**********/
 void		run_mlx(t_root *data);
-
-void		ft_resize(int32_t width, int32_t height, void *param);
-
-// void		draw_game(t_root *data, int i);
 void		draw_game(void *param);
-
-//drawing utils
-uint32_t	ft_my_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
-void		draw_ray(t_root *data);
-void		draw_player(t_root *data);
-
-//hooks
 void		key_hooks( void *param);
-
-//mini_map
 void		add_mini_map(t_root *data);
 
-
-//color
+//drawing
+void		draw_player(t_root *data);
+void		draw_ray(t_root *data);
+uint32_t	ft_my_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 uint32_t	extract_rgb(mlx_texture_t *texture, int x, int y);
 
 //math
-// void		handel_angel(t_root *data);
-// double		to_radiance(double angle);
 void		get_rays(t_root *data, int i);
 
-//TO DELETE
-//to delete
-void		print_map(t_map *map);
-void		print_ray(t_root *data, double current_ray);
+//textures-walls
 
 #endif
