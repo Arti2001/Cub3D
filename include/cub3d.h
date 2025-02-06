@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/06 09:00:00 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/06 10:12:41 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,12 @@ typedef struct s_wall
 	int			height;
 	int			start;
 	int			end;
+	int			side;
 	int			map_tile; //the current tile on the map
 	int			tex_x; //x coordinate on the texture
+	int			tex_y; //calculated with wall.step
+	int			tex_width;
+	int			tex_start; //tex starting position in integer
 	double		hit_point; //exact hit point for either y for EW wall or x for NS wall
 	double		step; //the amount to increase the texture coordinate per pixel
 	double		tex_pos; //the texture's starting position
@@ -182,8 +186,6 @@ typedef struct s_root
 	t_ray				ray;
 	t_cubmlx			cub_mlx;
 	mlx_texture_t		*textures[4];
-
-	
 }	t_root;
 
 //freeing
@@ -211,18 +213,18 @@ t_maplist	*add_node(char *line, t_root *data);
 void		del_list(t_maplist *map);
 
 //texture
-void			floor_rgb(char *str, t_root *data);
-void			ceiling_rgb(char *str, t_root *data);
-bool			is_c_full(t_ceiling ceiling);
-bool			is_f_full(t_floor floor);
-void			if_valid_add(t_root *data);
-void			floor_rgb(char *str, t_root *data);
-void			ceiling_rgb(char *str, t_root *data);
-int				are_digits(char *str);
-int				first_digit(char *str);
-bool			is_full(t_map map);
-bool			comma_checker(char *str);
-void			load_textures(t_root *data);
+void		floor_rgb(char *str, t_root *data);
+void		ceiling_rgb(char *str, t_root *data);
+bool		is_c_full(t_ceiling ceiling);
+bool		is_f_full(t_floor floor);
+void		if_valid_add(t_root *data);
+void		floor_rgb(char *str, t_root *data);
+void		ceiling_rgb(char *str, t_root *data);
+int			are_digits(char *str);
+int			first_digit(char *str);
+bool		is_full(t_map map);
+bool		comma_checker(char *str);
+void		load_textures(t_root *data);
 
 						/**********		RENDERING		**********/
 void		run_mlx(t_root *data);

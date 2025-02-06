@@ -6,11 +6,11 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/03 12:24:23 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/06 08:03:41 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/06 09:02:34 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 static void	get_wall(t_root *data, int step_x, int step_y)
 {

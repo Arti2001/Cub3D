@@ -6,74 +6,73 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 10:14:41 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/06 09:00:39 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/06 11:12:27 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-
-void	load_textures(t_root *data)
+static void	get_side(t_root *data, t_wall *wall)
 {
-	
-	data->textures[0] = mlx_load_png(data->map.no_path);
-	data->textures[1] = mlx_load_png(data->map.so_path);
-	data->textures[2] = mlx_load_png(data->map.ea_path);
-	data->textures[3] = mlx_load_png(data->map.we_path);
-	if (!data->textures[0] || \
-		!data->textures[1] || \
-		!data->textures[2] || \
-		!data->textures[3])
-	error_bye_data(data, ERR_NO_PATH_FOUND);
-}
-
-static void	draw_wall(t_root *data, t_wall wall)
-{
-	int	side;
-	
 	if (data->ray.flag == 'X')
 	{
 		if (data->ray.dir_x < 0)
-			side = EAST;
+			wall->side = EAST;
 		else
-			side = WEST;
+			wall->side = WEST;
+		wall->hit_point = data->p.y_pos + (data->ray.distance * data->ray.dir_y);
 	}
 	else
 	{
 		if (data->ray.dir_y < 0)
-			side = NORTH;
+			wall->side = NORTH;
 		else
-			side = SOUTH;
+			wall->side = SOUTH;
+		wall->hit_point = data->p.x_pos + data->ray.distance * data->ray.dir_x;
 	}
-	wall.tex_x = (int)(wall.hit_point * (double)data->textures[side]->width);
-	wall.step = 1.0 * data->textures[side]->height / wall.height;
-	wall.tex_pos = (wall.start - data->cub_mlx.win_h / 2 + wall.height / 2) * wall.step;
-	
-	// uint32_t	wall;
-
-	// wall = ft_my_pixel(12, 164, 97, 255);
-	// mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, wall);
+	wall->hit_point -= floor(wall->hit_point);
 }
 
-void	load_textures(t_root *data)
+static void	wall_info(t_root *data, t_wall *wall)
 {
-	data->textures[0] = mlx_load_png(data->map.no_path);
-	data->textures[1] = mlx_load_png(data->map.so_path);
-	data->textures[2] = mlx_load_png(data->map.ea_path);
-	data->textures[3] = mlx_load_png(data->map.we_path);
-	if (!data->textures[0] || \
-		!data->textures[1] || \
-		!data->textures[2] || \
-		!data->textures[3])
-	error_bye_data(data, ERR_NO_PATH_FOUND);
+	get_side(data, wall);
+	wall->height = (int)(data->cub_mlx.win_h / data->ray.distance);
+	wall->start = (int)((data->cub_mlx.win_h - wall->height) / 2);
+	if (wall->start < 0)
+		wall->start = 0;
+	wall->end = (int)(wall->height + data->cub_mlx.win_h) / 2;
+	if (wall->end > data->cub_mlx.win_h)
+		wall->end = data->cub_mlx.win_h - 1;
+	wall->map_tile = data->map.map[data->ray.x_map][data->ray.y_map] - 1;
+	wall->tex_width = data->textures[wall->side]->width;
+	wall->tex_x = (int)(wall->hit_point * (double)data->textures[wall->side]->width);
+	if ((wall->side == EAST || wall->side == WEST) && data->ray.dir_x > 0)
+		wall->tex_x = wall->tex_width - wall->tex_x - 1;
+	if ((wall->side == NORTH || wall->side == SOUTH) && data->ray.dir_y < 0)
+		wall->tex_x = wall->tex_width - wall->tex_x - 1;
+	wall->step = 1.0 * data->textures[wall->side]->height / wall->height;
+	wall->tex_pos = (wall->start - data->cub_mlx.win_h / 2 + wall->height / 2) * wall->step;
 }
 
-// void	draw_wall(t_root *data, int i, int j)
-// {
-// 	extract_rgb(data->textures[0], 0, 0);
+void	draw_wall(t_root *data, int i, int j, t_wall *wall)
+{
+	mlx_texture_t	*texture;
+	int	pix;
+	int	rgba[4];
+
+	texture = data->textures[wall->side];
+	wall->tex_y = (int)wall->tex_pos;
+	if (wall->tex_y >= (int)data->textures[wall->side]->height)
+		wall->tex_y = data->textures[wall->side]->height - 1;
+	wall->tex_pos += wall->step;
 	
-// 	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, extract_rgb(data->textures[0], 0, 0));
-// }
+	pix = (wall->tex_x + wall->tex_y * wall->tex_width) * 4;
+	rgba[0] = texture->pixels[pix];
+	rgba[1] = texture->pixels[pix + 1];
+	rgba[2] = texture->pixels[pix + 2];
+	rgba[3] = texture->pixels[pix + 3];
+	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(rgba[0], rgba[1], rgba[2], rgba[3]));
+}
 
 static bool	mm_check(t_root *data, int i, int j)
 {
@@ -89,23 +88,15 @@ static void	draw_screen(t_root *data, int i, uint32_t ceil, uint32_t fl)
 	t_wall		wall;
 	int			j;
 
-	wall.height = (int)(data->cub_mlx.win_h / data->ray.distance);
-	wall.start = (int)((data->cub_mlx.win_h - wall.height) / 2);
-	wall.end = (int)(wall.height + data->cub_mlx.win_h) / 2;
-	wall.map_tile = data->map.map[data->ray.x_map][data->ray.y_map] - 1;
-	if (data->ray.flag == X) //for EW
-		wall.hit_point = data->p.y_pos + data->ray.distance * data->ray.dir_y;
-	else //for NS
-		wall.hit_point = data->p.x_pos + data->ray.distance * data->ray.dir_x;
-	wall.hit_point -= floor(wall.hit_point);
 	j = 0;
-	draw_wall(data, wall);
+	ft_bzero(&wall, sizeof(t_wall));
+	wall_info(data, &wall);
 	while (j < data->cub_mlx.win_h)
 	{
 		if (j < wall.start && mm_check(data, i, j) == true)
 			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ceil);
 		if (j >= wall.start && j <= wall.end && mm_check(data, i, j) == true)
-			//resize the texture;
+			draw_wall(data, i, j, &wall);
 		if (j > wall.end && mm_check(data, i, j) == true)
 			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, fl);
 		j++;
