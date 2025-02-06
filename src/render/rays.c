@@ -6,7 +6,7 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/02/03 12:24:23 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/06 15:33:07 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/06 15:39:25 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	get_wall(t_root *data, int step_x, int step_y)
 {
 	while (1)
 	{
-		if (data->ray.x_offset <= data->ray.y_offset)
+		if (data->ray.x_offset < data->ray.y_offset)
 		{
 			data->ray.x_offset += data->ray.steps_x;
 			data->ray.x_map += step_x;
@@ -34,14 +34,17 @@ static void	get_wall(t_root *data, int step_x, int step_y)
 			else
 				data->ray.side = SOUTH;
 		}
-		if (data->ray.x_map < 0 || data->ray.x_map >= data->map.height
-			|| data->ray.y_map < 0 || data->ray.y_map >= data->map.lenght)
+		if ((data->ray.x_map < 0 && data->ray.x_map >= data->map.height)
+			|| (data->ray.y_map < 0 && data->ray.y_map >= data->map.lenght))
 		{
-			printf("I hit the wall on the %d %d\n", data->ray.y_map, data->ray.x_map);
+			printf("I'm outside %d %d\n", data->ray.y_map, data->ray.x_map);
 			break ; //it's outside of the map values or found the wall
 		}
 		if (data->map.map[data->ray.y_map][data->ray.x_map] == '1')
+		{
+			printf("I hit the wall on the %d %d\n", data->ray.y_map, data->ray.x_map);
 			break;
+		}
 	}
 }
 
