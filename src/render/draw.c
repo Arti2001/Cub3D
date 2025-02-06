@@ -6,36 +6,21 @@
 /*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 10:14:41 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/06 14:10:06 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/06 15:00:16 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static void	get_side(t_root *data, t_wall *wall)
-{
-	if (data->ray.flag == 'X')
-	{
-		if (data->ray.dir_x < 0)
-			wall->side = WEST;
-		else
-			wall->side = EAST;
-		wall->hit_point = data->p.y_pos + (data->ray.distance * data->ray.dir_y);
-	}
-	else
-	{
-		if (data->ray.dir_y < 0)
-			wall->side = NORTH;
-		else
-			wall->side = SOUTH;
-		wall->hit_point = data->p.x_pos + data->ray.distance * data->ray.dir_x;
-	}
-	wall->hit_point -= floor(wall->hit_point);
-}
-
 static void	wall_info(t_root *data, t_wall *wall)
 {
-	get_side(data, wall);
+	if (data->ray.side == EAST || data->ray.side == WEST)
+		wall->hit_point = data->p.y_pos + (data->ray.distance * data->ray.dir_y);
+	else
+		wall->hit_point = data->p.x_pos + data->ray.distance * data->ray.dir_x;
+	wall->hit_point -= floor(wall->hit_point);
+
+	
 	wall->height = (int)(data->cub_mlx.win_h / data->ray.distance);
 	wall->start = (int)((data->cub_mlx.win_h - wall->height) / 2);
 	if (wall->start < 0)
@@ -97,7 +82,16 @@ static void	draw_screen(t_root *data, int i, uint32_t ceil, uint32_t fl)
 		if (j < wall.start && mm_check(data, i, j) == true)
 			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ceil);
 		else if (j >= wall.start && j <= wall.end && mm_check(data, i, j) == true)
-			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(56, 74, 0, 255));
+		{
+			if (data->ray.side == EAST)
+				mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(56, 74, 0, 255));
+			else if (data->ray.side == WEST)
+				mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(125, 12, 0, 255));
+			else if (data->ray.side == NORTH)
+				mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(0, 0, 0, 255));
+			else if (data->ray.side == SOUTH)
+				mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(255, 255, 255, 255));
+		}
 			// draw_wall(data, i, j, &wall);
 		else if (j > wall.end && mm_check(data, i, j) == true)
 			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, fl);

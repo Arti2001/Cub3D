@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/06 13:41:51 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/06 14:49:30 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ typedef struct s_ray //data for the raycasting
 	double				steps_x; //length of the actual x_step (number of y's in between x1 & x2)
 	double				steps_y; //length of the actual y_step (number of x's in between y1 & y2)
 	int					flag; //to show if the step is taken in x or in y direction
+	int					side; //NORTH SOUTH EAST WEST
 }	t_ray;
 
 typedef struct s_maplist
