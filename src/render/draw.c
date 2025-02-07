@@ -6,36 +6,55 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:14:41 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/06 14:09:38 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/02/07 08:32:41 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-
-uint32_t	get_rgb(int r, int g, int b, int a)
+static void	wall_info(t_root *data, t_wall *wall)
 {
-	return (r << 24 | g << 16 | b << 8 | a);
+	if (data->ray.side == EAST || data->ray.side == WEST)
+		wall->hit_point = data->p.y_pos + (data->ray.distance * data->ray.dir_y);
+	else
+		wall->hit_point = data->p.x_pos + data->ray.distance * data->ray.dir_x;
+	wall->hit_point -= floor(wall->hit_point);
+	wall->height = (int)(data->cub_mlx.win_h / data->ray.distance);
+	wall->start = (int)((data->cub_mlx.win_h - wall->height) / 2);
+	if (wall->start < 0)
+		wall->start = 0;
+	wall->end = (int)(wall->height + data->cub_mlx.win_h) / 2;
+	if (wall->end > data->cub_mlx.win_h)
+		wall->end = data->cub_mlx.win_h - 1;
+	wall->tex_width = data->textures[data->ray.side]->width;
+	wall->tex_height = data->textures[data->ray.side]->height;
+	wall->tex_x = (int)(wall->hit_point * (double)wall->tex_width);
+	if ((data->ray.side == EAST || data->ray.side == WEST) && data->ray.dir_x > 0)
+		wall->tex_x = wall->tex_width - wall->tex_x - 1;
+	if ((data->ray.side == NORTH || data->ray.side == SOUTH) && data->ray.dir_y < 0)
+		wall->tex_x = wall->tex_width - wall->tex_x - 1;
+	wall->step = 1.0 * wall->tex_height / wall->height;
+	wall->tex_pos = (wall->start - data->cub_mlx.win_h / 2 + wall->height / 2) * wall->step;
 }
-void	load_textures(t_root *data)
-{
-	
-	data->textures[0] = mlx_load_png(data->map.no_path);
-	data->textures[1] = mlx_load_png(data->map.so_path);
-	data->textures[2] = mlx_load_png(data->map.ea_path);
-	data->textures[3] = mlx_load_png(data->map.we_path);
-	if (!data->textures[0] || \
-		!data->textures[1] || \
-		!data->textures[2] || \
-		!data->textures[3])
-	error_bye_data(data, ERR_NO_PATH_FOUND);
-}
 
-void	draw_wall(t_root *data, int i, int j)
+void	draw_wall(t_root *data, int i, int j, t_wall *wall)
 {
-	//extract_rgb(data->textures[0], 0, 0);
+	mlx_texture_t	*texture;
+	int	pix;
+	int	rgba[4];
+
+	texture = data->textures[data->ray.side];
+	wall->tex_y = (int)wall->tex_pos;
+	if (wall->tex_y >= (int)wall->tex_height)
+		wall->tex_y = wall->tex_height - 1;
+	wall->tex_pos += wall->step;
 	
-	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, get_rgb(50, 14, 0, 255));
+	pix = (wall->tex_x + wall->tex_y * wall->tex_width) * 4;
+	rgba[0] = texture->pixels[pix];
+	rgba[1] = texture->pixels[pix + 1];
+	rgba[2] = texture->pixels[pix + 2];
+	rgba[3] = texture->pixels[pix + 3];
+	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(rgba[0], rgba[1], rgba[2], rgba[3]));
 }
 
 static bool	mm_check(t_root *data, int i, int j)
@@ -47,23 +66,32 @@ static bool	mm_check(t_root *data, int i, int j)
 	return (false);
 }
 
-static void	draw_walls(t_root *data, int i, uint32_t ceiling, uint32_t floor)
+static void	draw_screen(t_root *data, int i, uint32_t ceil, uint32_t fl)
 {
 	t_wall		wall;
 	int			j;
 
-	wall.height = (int)(data->cub_mlx.win_h / data->ray.distance);
-	wall.start = (int)((data->cub_mlx.win_h - wall.height) / 2);
-	wall.end = (int)(wall.height + data->cub_mlx.win_h) / 2;
 	j = 0;
+	ft_bzero(&wall, sizeof(t_wall));
+	wall_info(data, &wall);
 	while (j < data->cub_mlx.win_h)
 	{
 		if (j < wall.start && mm_check(data, i, j) == true)
-			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ceiling);
-		if (j >= wall.start && j <= wall.end && mm_check(data, i, j) == true)
-			draw_wall(data, i, j);
-		if (j > wall.end && mm_check(data, i, j) == true)
-			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, floor);
+			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ceil);
+		else if (j >= wall.start && j <= wall.end && mm_check(data, i, j) == true)
+		{
+			draw_wall(data, i, j, &wall);
+			//if (data->ray.side == EAST)
+			//	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(255, 0, 0, 255));
+			//else if (data->ray.side == WEST)
+			//	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(255, 0, 0, 255));
+			//else if (data->ray.side == NORTH)
+			//	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(255, 0, 0, 255));
+			//else if (data->ray.side == SOUTH)
+			//	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(255, 255, 255, 255));
+		}
+		else if (j > wall.end && mm_check(data, i, j) == true)
+			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, fl);
 		j++;
 	}
 }
@@ -74,19 +102,19 @@ void	draw_game(void *param)
 {
 	t_root		*data;
 	int			i;
-	uint32_t	ceiling;
-	uint32_t	floor;
+	uint32_t	ceil;
+	uint32_t	fl;
 
 	data = param;
 	i = 0;
-	ceiling = ft_my_pixel(data->map.ceiling.r, data->map.ceiling.g, \
+	ceil = ft_my_pixel(data->map.ceiling.r, data->map.ceiling.g, \
 		data->map.ceiling.b, 255);
-	floor = ft_my_pixel(data->map.floor.r, data->map.floor.g, \
+	fl = ft_my_pixel(data->map.floor.r, data->map.floor.g, \
 		data->map.floor.b, 255);
 	while (i < data->cub_mlx.win_w)
 	{
 		get_rays(data, i);
-		draw_walls(data, i, ceiling, floor);
+		draw_screen(data, i, ceil, fl);
 		i++;
 	}
 	add_mini_map(data);

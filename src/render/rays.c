@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:24:23 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/06 14:08:14 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/02/07 08:51:37 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,37 @@ static void	get_wall(t_root *data, int step_x, int step_y)
 		{
 			data->ray.x_offset += data->ray.steps_x;
 			data->ray.x_map += step_x;
-			data->ray.flag = X; //it found x line (EAST/WEST)
+			if (data->ray.dir_x < 0)
+				data->ray.side = WEST;
+			else
+				data->ray.side = EAST;
 		}
 		else
 		{
 			data->ray.y_offset += data->ray.steps_y;
 			data->ray.y_map += step_y;
-			data->ray.flag = Y; //it found y line (NORHT/SOUTH)
+			if (data->ray.dir_y < 0)
+				data->ray.side = NORTH;
+			else
+				data->ray.side = SOUTH;
 		}
-		if (data->ray.x_map < 0 || data->ray.x_map >= data->map.height
-			|| data->ray.y_map < 0 || data->ray.y_map >= data->map.lenght)
-			break ; //it's outside of the map values
-		if (data->map.map[(int)data->ray.y_map][(int)data->ray.x_map] == '1')
+		//if ((data->ray.x_map < 0 && data->ray.x_map >= data->map.height)
+		//	|| (data->ray.y_map < 0 && data->ray.y_map >= data->map.lenght))
+		//{
+		//	printf("I'm outside %d %d\n", data->ray.y_map, data->ray.x_map);
+		//	break ; //it's outside of the map values or found the wall
+		//}
+		if (data->ray.x_map < 0 || data->ray.x_map >= data->map.lenght ||
+			data->ray.y_map < 0 || data->ray.y_map >= data->map.height)
 		{
-			break ; //found the wall
+			printf("I'm outside %d %d\n", data->ray.y_map, data->ray.x_map);
+			break;
+		}
+		if (data->map.map[data->ray.y_map][data->ray.x_map] == '1')
+		{
+
+			printf("I hit the wall on the %d %d\n", data->ray.y_map, data->ray.x_map);
+			break;
 		}
 	}
 }
@@ -80,7 +97,7 @@ static void	get_step_size(t_root *data)
 //it will always be a perpendicular distance, so no fish eye effect
 static void	get_distance(t_root *data)
 {
-	if (data->ray.flag == X)
+	if (data->ray.side == EAST || data->ray.side == WEST)
 		data->ray.distance = data->ray.x_offset - data->ray.steps_x;
 	else
 		data->ray.distance = data->ray.y_offset - data->ray.steps_y;
