@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/10 11:51:42 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/10 13:49:54 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@
 
 # define TH 64 //tile height
 # define TW 64 //tile width
-# define MMTH 20 //tile height
-# define MMTW 20 //tile width
+# define MMTH 50 //tile height
+# define MMTW 50 //tile width
 # define FOV 60 //field of view
 # define RAYS_NUMB 320 //number of rays
 # define MMPP 5
