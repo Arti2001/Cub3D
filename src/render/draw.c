@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 10:14:41 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/10 10:36:56 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   draw.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/30 10:14:41 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/02/10 14:05:32 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	wall_info(t_root *data, t_wall *wall)
 void	draw_wall(t_root *data, int i, int j, t_wall *wall)
 {
 	mlx_texture_t	*texture;
-	int	pix;
+	uint32_t	pix;
 	int	rgba[4];
 
 	texture = data->textures[data->ray.side];
@@ -48,7 +48,6 @@ void	draw_wall(t_root *data, int i, int j, t_wall *wall)
 	if (wall->tex_y >= (int)wall->tex_height)
 		wall->tex_y = wall->tex_height - 1;
 	wall->tex_pos += wall->step;
-	
 	pix = (wall->tex_x + wall->tex_y * wall->tex_width) * 4;
 	rgba[0] = texture->pixels[pix];
 	rgba[1] = texture->pixels[pix + 1];
