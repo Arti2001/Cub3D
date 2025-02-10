@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mini_map.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 14:07:46 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/10 11:03:21 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   mini_map.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/16 14:07:46 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/02/10 12:50:02 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@
 /// @param data needed for map img pointer
 /// @param img coordinates inside image needed to draw the pixel in the correct
 	//place 
-static void	draw_rest(t_root *data, int img[2])
-{
-	int	i;
+// static void	draw_rest(t_root *data, int x, int y)
+// {
+// 	int	i;
 
-	i = 0;
-	while (i < MMTW && img[X] < MM_DIMENTION)
-	{
-		mlx_put_pixel(data->cub_mlx.img_map.img_ptr, img[X], img[Y], 255);
-		img[X]++;
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < MMTW && img[X] < MM_DIMENTION)
+// 	{
+// 		mlx_put_pixel(data->cub_mlx.img_map.img_ptr, x, y, 255);
+// 		img[X]++;
+// 		i++;
+// 	}
+// }
 
 /// @brief puts the adequate pixels (depending on the flag) in the image
 /// @param data needed for map img pointer
@@ -44,12 +44,15 @@ static void	draw_map2(t_root *data, int img[2], int flag)
 	colour[WALL] = ft_my_pixel(0, 6, 255, 255);
 	colour[FLOOR] = ft_my_pixel(0, 167, 255, 255);
 	colour[SPACE] = ft_my_pixel(0, 0, 0, 255);
-	if (flag == WALL)
-		mlx_put_pixel(map, img[X], img[Y], colour[WALL]);
-	else if (flag == FLOOR)
-		mlx_put_pixel(map, img[X], img[Y], colour[FLOOR]);
-	else
-		mlx_put_pixel(map, img[X], img[Y], colour[SPACE]);
+	if (img[X] >= 0 && img[X] < MM_DIMENTION && img[Y] >= 0 && img[Y] < MM_DIMENTION)
+	{
+		if (flag == WALL)
+			mlx_put_pixel(map, img[X], img[Y], colour[WALL]);
+		else if (flag == FLOOR)
+			mlx_put_pixel(map, img[X], img[Y], colour[FLOOR]);
+		else
+			mlx_put_pixel(map, img[X], img[Y], colour[SPACE]);
+	}
 }
 
 /// @brief will draw only the black (space or the tiles' outlines)
@@ -58,18 +61,14 @@ static void	draw_map2(t_root *data, int img[2], int flag)
 	//place
 /// @param j current height in the tile in the minimap
 /// @param flag SPACE, FLOOR, WALL, RAY, PLAYER, for the colour
-static void	draw_map1(t_root *data, int mm_coord[2], int flag, int tile_y)
+static void	draw_map1(t_root *data, double mm_coord[2], int flag)
 {
 	int		i;
 
 	i = 0;
 	while (i < MMTW && mm_coord[X] < MM_DIMENTION)
 	{
-		if (tile_y == 0 || i == 0)
-			mlx_put_pixel(data->cub_mlx.img_map.img_ptr, mm_coord[X], \
-				mm_coord[Y], 255);
-		else
-			draw_map2(data, mm_coord, flag);
+		draw_map2(data, mm_coord, flag);
 		mm_coord[X]++;
 		i++;
 	}
@@ -82,99 +81,53 @@ static void	draw_map1(t_root *data, int mm_coord[2], int flag, int tile_y)
 /// @param img coordinates inside image needed to draw the pixel in the correct
 	//place
 /// @param j current height in the tile in the minimap
-//static void	draw_map(t_root *data, int y, int mm_coord[2], int tile_y)
-//{
-//	int	x;
+// static void	draw_map(t_root *data, int y, int mm_coord[2], double mm_start[2])
+// {
+// 	int	x;
 
-//	x = 0;
-//	mm_coord[X] = 0;
-//	while (data->map.map[y][x] && mm_coord[X] < MM_DIMENTION)
-//	{
-//		draw_player(data);
-//		if (data->map.map[y][x] == '1')
-//			draw_map1(data, mm_coord, WALL, tile_y);
-//		else if (data->map.map[y][x] == '0')
-//			draw_map1(data, mm_coord, FLOOR, tile_y);
-//		else if (data->map.map[y][x] == ' ')
-//			draw_map1(data, mm_coord, SPACE, tile_y);
-//		x++;
-//	}
-//	while (x < data->map.lenght && mm_coord[X] < MM_DIMENTION)
-//	{
-//		draw_rest(data, mm_coord);
-//		x++;
-//	}
-//}
+// 	x = 0;
+// 	while (x < MM_DIMENTION)
+// 	{
+// 		draw_rest(data, mm_coord);
+// 		x++;
+// 	}
+// }
 
 /// @brief based on the size of minimap tiles, it checks that mini map is
 	// drawn withing the correct height of the map (taking into account the
 	// size of mini map tiles)
-//void	add_mini_map(t_root *data)
-//{
-//	int	y;
-//	int	mm_coord[2];
-//	int	tile_y;
-
-//	mm_coord[Y] = data->p.y_pos * MMTH - MMPP / 2;
-//	y = 0;
-//	while (y < data->map.height && mm_coord[Y] < MM_DIMENTION)
-//	{
-//		tile_y = 0;
-//		while (tile_y < MMTH && mm_coord[Y] < MM_DIMENTION)
-//		{
-//			draw_map(data, y, mm_coord, tile_y);
-//			mm_coord[Y]++;
-//			tile_y++;
-//		}
-//		y++;
-//	}
-//	draw_ray(data);
-//}
-
-void add_mini_map(t_root *data)
+void	add_mini_map(t_root *data)
 {
-	int y, x;
-	int mm_coord[2];  // Minimap pixel coordinates
-	int tile_y;
+	int	y;
+	int	x;
+	double	mm_coord[2];
+	double	mm_start[2];
 
-	// Calculate the top-left corner of the minimap
-	int start_y = (int)data->p.y_pos - (MM_DIMENTION / MMTH) / 2;
-	int start_x = (int)data->p.x_pos - (MM_DIMENTION / MMTW) / 2;
-
-	mm_coord[Y] = 0;
-	y = start_y;
-
-	while (y < data->map.height && mm_coord[Y] < MM_DIMENTION)
+	mm_start[X] = data->p.x_pos - (MM_DIMENTION / MMTH / 2.0);
+	mm_start[Y] = data->p.y_pos - (MM_DIMENTION / MMTH / 2.0);
+	y = 0;
+	while (y < MM_DIMENTION)
 	{
-		tile_y = 0;
-		while (tile_y < MMTH && mm_coord[Y] < MM_DIMENTION)
+		x = 0;
+		while (x < MM_DIMENTION)
 		{
-			mm_coord[X] = 0;
-			x = start_x;
-
-			while (x < data->map.lenght && mm_coord[X] < MM_DIMENTION)
+			mm_coord[X] = mm_start[X] + (float)x / MMTH;
+			mm_coord[Y] = mm_start[Y] + (float)y / MMTH;
+			if (mm_coord[X] >= 0 && mm_coord[X] < data->map.lenght && mm_coord[Y] >= 0 && mm_coord[Y] < data->map.height)
 			{
-				if (x >= 0 && y >= 0 && x < data->map.lenght && y < data->map.height)
-				{
-					if (data->map.map[y][x] == '1')
-						draw_map1(data, mm_coord, WALL, tile_y);
-					else if (data->map.map[y][x] == '0')
-						draw_map1(data, mm_coord, FLOOR, tile_y);
-					else if (data->map.map[y][x] == ' ')
-						draw_map1(data, mm_coord, SPACE, tile_y);
-				}
-				else
-					draw_rest(data, mm_coord); // Draw black if out of bounds
-
-				mm_coord[X]++;
-				x++;
+				if (data->map.map[y][x] == '1')
+					draw_map1(data, mm_coord, WALL);
+				else if (data->map.map[y][x] == '0')
+					draw_map1(data, mm_coord, FLOOR);
+				else if (data->map.map[y][x] == ' ')
+					draw_map1(data, mm_coord, SPACE);
 			}
-			mm_coord[Y]++;
-			tile_y++;
+			else
+				mlx_put_pixel(data->cub_mlx.img_map.img_ptr, x, y, 0x0);
+			x++;
 		}
 		y++;
 	}
-
-	draw_player(data);  // Player is always centered
+	draw_player(data);
 	draw_ray(data);
 }

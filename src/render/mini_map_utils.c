@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mini_map_utils.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/18 09:22:55 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/10 11:09:28 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   mini_map_utils.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/18 09:22:55 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/02/10 11:33:48 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	draw_player(t_root *data)
 
 	height = 0;
 	width = 0;
-	//start_x = (int)(data->map.mm_start_x + (data->p.x_pos * MMTW) - MMPP / 2);
-	//start_y = (int)(data->map.mm_start_y + (data->p.y_pos * MMTH) - MMPP / 2);
 	start_x = (int)MM_DIMENTION / 2 - MMPP / 2 ;
 	start_y = (int)MM_DIMENTION / 2 - MMPP / 2;
 	while (height < MMPP)

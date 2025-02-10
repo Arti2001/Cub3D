@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rays.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/03 12:24:23 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/07 08:51:37 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   rays.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/02/03 12:24:23 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/02/10 11:32:24 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,11 @@ static void	get_wall(t_root *data, int step_x, int step_y)
 			else
 				data->ray.side = SOUTH;
 		}
-		//if ((data->ray.x_map < 0 && data->ray.x_map >= data->map.height)
-		//	|| (data->ray.y_map < 0 && data->ray.y_map >= data->map.lenght))
-		//{
-		//	printf("I'm outside %d %d\n", data->ray.y_map, data->ray.x_map);
-		//	break ; //it's outside of the map values or found the wall
-		//}
 		if (data->ray.x_map < 0 || data->ray.x_map >= data->map.lenght ||
 			data->ray.y_map < 0 || data->ray.y_map >= data->map.height)
-		{
-			printf("I'm outside %d %d\n", data->ray.y_map, data->ray.x_map);
 			break;
-		}
 		if (data->map.map[data->ray.y_map][data->ray.x_map] == '1')
-		{
-
-			printf("I hit the wall on the %d %d\n", data->ray.y_map, data->ray.x_map);
 			break;
-		}
 	}
 }
 
@@ -111,9 +98,6 @@ void	get_rays(t_root *data, int i)
 	//getting the directions of the ray
 	data->ray.dir_x = data->p.x_dir + data->p.plane_x * data->ray.camera_x;
 	data->ray.dir_y = data->p.y_dir + data->p.plane_y * data->ray.camera_x;
-	printf("Ray start: (%f, %f) Grid: (%d, %d)\n", 
-       data->p.x_pos, data->p.y_pos, 
-       data->ray.x_map, data->ray.y_map);
 	get_step_size(data);
 	get_offset(data);
 	get_distance(data);

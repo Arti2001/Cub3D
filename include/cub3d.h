@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/10 10:44:39 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/02/10 11:51:42 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@
 # define Y 1
 # define HITBOX 0.2
 # define EPSILON 1e30
-# define MM_DIMENTION 350
+# define MM_DIMENTION 360
 
 typedef enum	e_moves
 {
