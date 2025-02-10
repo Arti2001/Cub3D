@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:21:53 by amysiv            #+#    #+#             */
-/*   Updated: 2025/02/06 08:48:38 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/02/10 10:42:54 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,6 @@ static void	win_init(t_root *data)
 {
 	data->cub_mlx.win_h = 1280;
 	data->cub_mlx.win_w = 2048;
-	data->map.mm_start_x = data->cub_mlx.win_w - data->map.lenght * MMTW;
-	data->map.mm_start_y = data->cub_mlx.win_h - data->map.height * MMTH;
-}
-
-static void	cub_init(t_root *data)
-{
-	mlx_image_t	*map;
-
-	win_init(data);
 	data->cub_mlx.win = mlx_init(data->cub_mlx.win_w, data->cub_mlx.win_h, \
 		NAME, false);
 	if (data->cub_mlx.win == NULL)
@@ -33,6 +24,15 @@ static void	cub_init(t_root *data)
 		mlx_terminate(data->cub_mlx.win);
 		error_bye_data(data, "Failure of mlx_init()\n");
 	}
+}
+static void img_init(t_root *data)
+{ 
+	//int	mm_img_height;
+	//int	mm_img_width;
+
+	//mm_img_height = data->cub_mlx.win_h - data->map.height * MMTH;
+	//mm_img_width = data->cub_mlx.win_w - data->map.lenght * MMTW;
+	
 	data->cub_mlx.img.img_ptr = mlx_new_image(data->cub_mlx.win, \
 		data->cub_mlx.win_w, data->cub_mlx.win_h);
 	if (!data->cub_mlx.img.img_ptr)
@@ -40,8 +40,29 @@ static void	cub_init(t_root *data)
 		mlx_terminate(data->cub_mlx.win);
 		error_bye_data(data, "Failure of mlx_new_image() for mini_map\n");
 	}
-	map = data->cub_mlx.img.img_ptr;
-	if (mlx_image_to_window(data->cub_mlx.win, map, 0, 0) < 0)
+	
+	data->cub_mlx.img_map.img_ptr = mlx_new_image(data->cub_mlx.win, \
+		MM_DIMENTION, MM_DIMENTION);
+	if (!data->cub_mlx.img_map.img_ptr)
+	{
+		mlx_terminate(data->cub_mlx.win);
+		error_bye_data(data, "Failure of mlx_new_image() for mini_map\n");
+	}
+}
+static void	cub_init(t_root *data)
+{
+	
+	win_init(data);
+	img_init(data);
+	
+	mlx_image_to_window(data->cub_mlx.win, data->cub_mlx.img.img_ptr, 0, 0);
+	if (data->cub_mlx.img.img_ptr == NULL)
+	{
+		mlx_terminate(data->cub_mlx.win);
+		error_bye_data(data, "Failure of mlx_image_to_window()\n");
+	}
+	mlx_image_to_window(data->cub_mlx.win, data->cub_mlx.img_map.img_ptr, 0, 0);
+	if (data->cub_mlx.img_map.img_ptr == NULL)
 	{
 		mlx_terminate(data->cub_mlx.win);
 		error_bye_data(data, "Failure of mlx_image_to_window()\n");

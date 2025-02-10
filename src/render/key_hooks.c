@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   key_hooks.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/18 10:38:05 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/04 10:41:02 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   key_hooks.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/18 10:38:05 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/10 10:38:00 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	go(t_root *data, int flag)
 {
 	double	move_step;
 
-	move_step = 0.05;
+	move_step = 0.1;
 	if (flag == FORWARD)
 		move_player(data, move_step);
 	else if (flag == BACKWARD)

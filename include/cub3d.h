@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/06 14:49:30 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/10 10:44:39 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@
 
 # define TH 64 //tile height
 # define TW 64 //tile width
-# define MMTH 15 //tile height
-# define MMTW 15 //tile width
+# define MMTH 20 //tile height
+# define MMTW 20 //tile width
 # define FOV 60 //field of view
 # define RAYS_NUMB 320 //number of rays
 # define MMPP 5
@@ -66,6 +66,7 @@
 # define Y 1
 # define HITBOX 0.2
 # define EPSILON 1e30
+# define MM_DIMENTION 350
 
 typedef enum	e_moves
 {
@@ -96,6 +97,7 @@ typedef struct s_cubmlx
 	int					win_h;
 	int					win_w;
 	t_img				img;
+	t_img				img_map;
 }	t_cubmlx;
 
 typedef struct s_ceiling
@@ -177,7 +179,9 @@ typedef struct s_map
 	int					mm_start_y;
 	t_floor				floor;
 	t_ceiling			ceiling;
+	int					MMP;
 }	t_map;
+
 
 typedef struct s_root
 {

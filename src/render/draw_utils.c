@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 09:34:37 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/07 09:17:05 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/02/10 10:32:53 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ void	draw_ray(t_root *data)
 	double		ray_y;
 	uint32_t	x;
 	uint32_t	y;
+
 	
 	ray_x = data->p.x_pos;
 	ray_y = data->p.y_pos;
+
 	while (ray_x >= 0 && ray_y >= 0 && ray_x < data->map.lenght  && ray_y < data->map.height)
 	{
 		x = (uint32_t)(data->map.mm_start_x + ray_x * MMTW);
@@ -41,20 +43,20 @@ void	draw_ray(t_root *data)
 		mlx_put_pixel(data->cub_mlx.img.img_ptr, x, y, 255);
 		ray_x += data->p.x_dir * 0.1;
 		ray_y += data->p.y_dir * 0.1;
-	if (data->map.map[(int)ray_y][(int)ray_x] == '1')
-	{
-		break;
-	}
-
-		if (ray_x >= 1 && ray_y >= 1 && ray_x < data->map.lenght - 1 && ray_y < data->map.height - 1)
+		if (data->map.map[(int)ray_y][(int)ray_x] == '1')
 		{
-			if ((data->map.map[(int)ray_y - 1][(int)ray_x] == '1' && data->map.map[(int)ray_y][(int)ray_x - 1] == '1') ||
-				(data->map.map[(int)ray_y - 1][(int)ray_x] == '1' && data->map.map[(int)ray_y][(int)ray_x + 1] == '1') ||
-				(data->map.map[(int)ray_y + 1][(int)ray_x] == '1' && data->map.map[(int)ray_y][(int)ray_x - 1] == '1') ||
-				(data->map.map[(int)ray_y + 1][(int)ray_x] == '1' && data->map.map[(int)ray_y][(int)ray_x + 1] == '1'))
-			{
-				break;
-			}
+			break;
 		}
+		//else if (ray_x >= 1 && ray_y >= 1 && ray_x < data->map.lenght - 1 && ray_y < data->map.height - 1)
+		//{
+		//	if ((data->map.map[(int)ray_y - 1][(int)ray_x] == '1' && data->map.map[(int)ray_y][(int)ray_x - 1] == '1') ||
+		//		(data->map.map[(int)ray_y - 1][(int)ray_x] == '1' && data->map.map[(int)ray_y][(int)ray_x + 1] == '1') ||
+		//		(data->map.map[(int)ray_y + 1][(int)ray_x] == '1' && data->map.map[(int)ray_y][(int)ray_x - 1] == '1') ||
+		//		(data->map.map[(int)ray_y + 1][(int)ray_x] == '1' && data->map.map[(int)ray_y][(int)ray_x + 1] == '1'))
+		//	{
+		//		break;
+		//	}
+		//}
+
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:14:41 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/07 08:32:41 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/02/10 10:36:56 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ void	draw_wall(t_root *data, int i, int j, t_wall *wall)
 	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(rgba[0], rgba[1], rgba[2], rgba[3]));
 }
 
-static bool	mm_check(t_root *data, int i, int j)
-{
-	if ((i <= data->map.mm_start_x && j <= data->map.mm_start_y) \
-		|| ((i > data->map.mm_start_x && j < data->map.mm_start_y) \
-		|| (j > data->map.mm_start_y && i < data->map.mm_start_x)))
-		return (true);
-	return (false);
-}
+//static bool	mm_check(t_root *data, int i, int j)
+//{
+//	if ((i <= data->map.mm_start_x && j <= data->map.mm_start_y) \
+//		|| ((i > data->map.mm_start_x && j < data->map.mm_start_y) \
+//		|| (j > data->map.mm_start_y && i < data->map.mm_start_x)))
+//		return (true);
+//	return (false);
+//}
 
 static void	draw_screen(t_root *data, int i, uint32_t ceil, uint32_t fl)
 {
@@ -76,9 +76,11 @@ static void	draw_screen(t_root *data, int i, uint32_t ceil, uint32_t fl)
 	wall_info(data, &wall);
 	while (j < data->cub_mlx.win_h)
 	{
-		if (j < wall.start && mm_check(data, i, j) == true)
+		//if (j < wall.start && mm_check(data, i, j) == true)
+		if (j < wall.start)
 			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ceil);
-		else if (j >= wall.start && j <= wall.end && mm_check(data, i, j) == true)
+		//else if (j >= wall.start && j <= wall.end && mm_check(data, i, j) == true)
+		else if (j >= wall.start && j <= wall.end)
 		{
 			draw_wall(data, i, j, &wall);
 			//if (data->ray.side == EAST)
@@ -90,7 +92,8 @@ static void	draw_screen(t_root *data, int i, uint32_t ceil, uint32_t fl)
 			//else if (data->ray.side == SOUTH)
 			//	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(255, 255, 255, 255));
 		}
-		else if (j > wall.end && mm_check(data, i, j) == true)
+		//else if (j > wall.end && mm_check(data, i, j) == true)
+		else if (j > wall.end)
 			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, fl);
 		j++;
 	}
