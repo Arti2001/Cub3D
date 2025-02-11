@@ -1,66 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   get_player.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: mstencel <mstencel@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/02/04 10:21:15 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 09:56:17 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   get_player.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/04 10:21:15 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/11 15:59:17 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-// static void	direction_2(t_root *data)
-// {
-// 	data->p.plane_x = 0;
-// 	data->p.plane_y = 0.66;
-// 	data->p.x_dir = 1;
-// 	data->p.y_dir = 0;
-// }
-
-// was in two functions (norm), now with this trick is only 1
+static void	init_directions(double dir[4][4])
+{
+	dir[0][0] = 0.66;
+	dir[0][1] = 0;
+	dir[0][2] = 0;
+	dir[0][3] = -1;
+	dir[1][0] = -0.66;
+	dir[1][1] = 0;
+	dir[1][2] = 0;
+	dir[1][3] = 1;
+	dir[2][0] = 0;
+	dir[2][1] = -0.66;
+	dir[2][2] = -1;
+	dir[2][3] = 0;
+	dir[3][0] = 0;
+	dir[3][1] = 0.66;
+	dir[3][2] = 1;
+	dir[3][3] = 0;
+}
 
 static void	give_direction(t_root *data, char ch_dir)
 {
-	// TODO
-	const double dir[4][4] = {{0.66, 0, 0, -1}, {-0.66, 0, 0, 1},\
-		{0, -0.66, -1, 0}, {0, 0.66, 1, 0}};
-	const char dirs[4] = "NSWE";
-	int i = 0;
+	char		dirs[4];
+	double		dir[4][4];
+	int			i;
+
+	init_directions(dir);
+	dirs[0] = 'N';
+	dirs[1] = 'S';
+	dirs[2] = 'W';
+	dirs[3] = 'E';
+	i = 0;
 	while (i < 4 && dirs[i] != ch_dir)
 		i++;
 	data->p.plane_x = dir[i][0];
 	data->p.plane_y = dir[i][1];
 	data->p.x_dir = dir[i][2];
 	data->p.y_dir = dir[i][3];
-		
-	
-
-	// if (ch_dir == 'N')
-	// {
-	// 	data->p.plane_x = 0.66;
-	// 	data->p.plane_y = 0;
-	// 	data->p.x_dir = 0;
-	// 	data->p.y_dir = -1;
-	// }
-	// else if (ch_dir == 'S')
-	// {
-	// 	data->p.plane_x = -0.66;
-	// 	data->p.plane_y = 0;
-	// 	data->p.x_dir = 0;
-	// 	data->p.y_dir = 1;
-	// }
-	// else if (ch_dir == 'W')
-	// {
-	// 	data->p.plane_x = 0;
-	// 	data->p.plane_y = -0.66;
-	// 	data->p.x_dir = -1;
-	// 	data->p.y_dir = 0;
-	// }
-	// else if (ch_dir == 'E')
-	// 	direction_2(data);
 }
 
 void	player_found(t_root *data, long y, long x, bool *position)

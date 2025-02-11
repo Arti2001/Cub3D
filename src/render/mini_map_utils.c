@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mini_map_utils.c                                   :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/18 09:22:55 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 09:57:52 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mini_map_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/18 09:22:55 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/11 18:02:55 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static void	draw_player_direction(t_root *data)
 	{
 		start_x += data->p.x_dir * 0.3;
 		start_y += data->p.y_dir * 0.3;
-		mlx_put_pixel(data->cub_mlx.img_map.img_ptr, (int)start_x, (int)start_y, 0xFF0000FF);
+		mlx_put_pixel(data->cub_mlx.img_map.img_ptr, \
+		(int)start_x, (int)start_y, 0xFF0000FF);
 		i++;
 	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 08:23:16 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/11 17:55:17 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@
 
 # define TH 64 //tile height
 # define TW 64 //tile width
-# define MMTH 15 //tile height
-# define MMTW 15 //tile width
+# define MMTH 30 //tile height
+# define MMTW 30 //tile width
 # define FOV 60 //field of view
 # define RAYS_NUMB 320 //number of rays
-# define MMPP 5
+# define MMPP 10
 # define NAME "cub3D"
 # define PLAYER 0
 # define WALL 1
@@ -64,7 +64,7 @@
 # define SPACE 4
 # define X 0
 # define Y 1
-# define HITBOX 0.2
+# define HB 0.2
 # define EPSILON 1e30
 # define MM_DIMENTION 360
 
@@ -197,6 +197,7 @@ typedef struct s_root
 //freeing
 void		free_data(t_root *data);
 void		free_mlx(t_root *data);
+char		*new_mem(char *str, t_root *data);
 
 // errors
 void		error_p(char *str);
