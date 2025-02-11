@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:30:08 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/28 07:57:22 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/11 09:24:58 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	read_taxmap(char *file, t_root *data)
 	if (file_content == NULL)
 		err_fd_data_bye(data, fd, 1);
 	data->map_list = add_node(file_content, data);
+	if (data->map_list == NULL)
+		err_fd_data_bye(data, fd, 1);
 	ft_free_string(&file_content);
 	current = data->map_list;
 	while (1)

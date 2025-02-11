@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 14:07:46 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/10 14:39:37 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/11 09:45:49 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,5 @@ void	add_mini_map(t_root *data)
 	}
 
 	draw_player(data);
-	// draw_ray(data);
 }
 

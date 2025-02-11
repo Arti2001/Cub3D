@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 10:52:36 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/01/30 07:46:53 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/11 09:39:41 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,11 @@ int	first_digit(char *str)
 	int	i;
 
 	i = 0;
-
-	while(str[i] == ' ' || str[i] == '\t')
+	while(str[i] && (str[i] == ' ' || str[i] == '\t'))
 	{
 		i++;
 	}
 	if(ft_isdigit(str[i]))
 		return (0);
-
 	return (1);
 }

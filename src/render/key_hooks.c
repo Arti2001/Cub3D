@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/18 10:38:05 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 08:24:12 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/11 09:59:26 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	go(t_root *data, int flag)
 {
 	double	move_step;
 
-	move_step = 0.1;
+	move_step = 0.05;
 	if (flag == FORWARD)
 		move_player(data, move_step);
 	else if (flag == BACKWARD)

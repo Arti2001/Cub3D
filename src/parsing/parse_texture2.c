@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 10:49:30 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/02/04 10:20:24 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/11 09:40:58 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ceiling_rgb(char *str, t_root *data)
 {
 	char	**c_arg;
 
-	c_arg = splitbywhite(str, ',');
+	c_arg = splitbywhite(str, ','); // TODO check malloc fail segfaults!
 	if (c_arg == NULL)
 		return ;
 	if (!c_arg[1] || !c_arg[2] || !c_arg[3])
@@ -43,7 +43,7 @@ void	floor_rgb(char *str, t_root *data)
 {
 	char	**f_arg;
 
-	f_arg = splitbywhite(str, ',');
+	f_arg = splitbywhite(str, ','); // TODO check malloc fail segfaults!
 	if (f_arg == NULL)
 		return ;
 	if (!f_arg[1] || !f_arg[2] || !f_arg[3])

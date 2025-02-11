@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 10:21:53 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/02/11 08:22:52 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/11 09:16:54 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	cub_init(t_root *data)
 {
 	win_init(data);
 	img_init(data);
-	
+
 	mlx_image_to_window(data->cub_mlx.win, data->cub_mlx.img.img_ptr, 0, 0);
 	if (data->cub_mlx.img.img_ptr == NULL)
 		error_bye_mlx_data(data, "Failure of mlx_image_to_window()\n");
@@ -63,5 +63,4 @@ void	run_mlx(t_root *data)
 	mlx_loop_hook(data->cub_mlx.win, &key_hooks, data);
 	mlx_loop_hook(data->cub_mlx.win, &draw_game, data);
 	mlx_loop(data->cub_mlx.win);
-	free_mlx(data);
 }

@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/08 11:03:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/01/30 07:43:05 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/11 09:27:18 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ static void	get_line(t_root *data, t_maplist *current, int y, int len)
 	if (current->line[len - 1] == '\n')
 	{
 		data->map.map[y] = malloc(sizeof(char) * len);
+		if (!data->map.map[y])
+			error_bye_data(data, ERR_MALLOC_MAP_LINE);
 		ft_strlcpy(data->map.map[y], current->line, len);
 		if (data->map.lenght < len - 1)
 			data->map.lenght = len - 1;
@@ -92,9 +94,7 @@ void	fill_map(t_root *data)
 	y = 0;
 	current = find_map_start(data);
 	if (current == NULL)
-	{
 		error_bye_data(data, ERR_NO_MAP);
-	}
 	size = data->map.height - current->height + 2;
 	data->map.map = ft_calloc(size, sizeof(char **));
 	if (!data->map.map)

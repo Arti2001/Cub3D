@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_texture.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 15:21:28 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/06 08:52:46 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_texture.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/10 15:21:28 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/02/11 09:53:03 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	tex_paths_valid(char **split, t_root *data)
 	{
 		if (data->map.no_path)
 			free_data_arr(data, "NO: Is definied more then one time", split);
-		return (data->map.no_path = ft_strdup(split[1]), 1);
+		return (data->map.no_path = ft_strdup(split[1]), 1); // TODO check if malloc fails
 	}
 	else if (ft_strncmp(split[0], "SO", 3) == 0)
 	{

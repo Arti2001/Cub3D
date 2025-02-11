@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/08 10:49:16 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 08:15:41 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/11 09:12:23 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,16 @@ void	free_data(t_root *data)
 {
 	if (data->map_list)
 		del_list(data->map_list);
+	if (data->map.no_path)
+		ft_free_string(&data->map.no_path);
+	if (data->map.so_path)
+		ft_free_string(&data->map.so_path);
+	if (data->map.we_path)
+		ft_free_string(&data->map.we_path);
+	if (data->map.ea_path)
+		ft_free_string(&data->map.ea_path);
 	if (data->map.map)
 		ft_free_array(data->map.map);
-	
 }
 
 void	free_textures(t_root *data)
@@ -55,5 +62,8 @@ void	free_mlx(t_root *data)
 		mlx_delete_image(data->cub_mlx.win, data->cub_mlx.img.img_ptr);
 	free_textures(data);
 	if (data->cub_mlx.win)
+	{
+		mlx_close_window(data->cub_mlx.win);
 		mlx_terminate(data->cub_mlx.win);
+	}
 }

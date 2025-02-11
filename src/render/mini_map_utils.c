@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/18 09:22:55 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 07:57:18 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/11 09:57:52 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ static void	draw_player_direction(t_root *data)
 	int		i;
 	double	start_x;
 	double	start_y;
+	int		half;
 
 	i = 0;
 	start_x = (MM_DIMENTION - MMPP) / 2 + MMPP / 2;
 	start_y = (MM_DIMENTION - MMPP) / 2 + MMPP / 2;
-	while (i < 20)
+	half = (int)(MMTH + MMTH / 2);
+	while (i < half)
 	{
 		start_x += data->p.x_dir * 0.3;
 		start_y += data->p.y_dir * 0.3;
