@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 14:38:20 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 08:09:16 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/11 13:35:54 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	error_bye_data(t_root *data, char *str)
 void	error_bye_mlx_data(t_root *data, char *str)
 {
 	free_mlx(data);
-	free_data(data);
-	error_p(str);
-	exit(EXIT_FAILURE);
+	error_bye_data(data, str);
+	// free_data(data);
+	// error_p(str);
+	// exit(EXIT_FAILURE);
 }

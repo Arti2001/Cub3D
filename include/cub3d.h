@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 08:23:16 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/11 14:55:13 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 # define MMTW 15 //tile width
 # define FOV 60 //field of view
 # define RAYS_NUMB 320 //number of rays
-# define MMPP 5
+# define MMPP 7
 # define NAME "cub3D"
 # define PLAYER 0
 # define WALL 1
@@ -66,7 +66,7 @@
 # define Y 1
 # define HITBOX 0.2
 # define EPSILON 1e30
-# define MM_DIMENTION 360
+# define MM_DIMENSION 360
 
 typedef enum	e_moves
 {
@@ -119,7 +119,6 @@ typedef struct s_wall
 	int			height;
 	int			start;
 	int			end;
-	int			side;
 	int			map_tile; //the current tile on the map
 	int			tex_x; //x coordinate on the texture
 	int			tex_y; //calculated with wall.step
@@ -129,7 +128,6 @@ typedef struct s_wall
 	double		hit_point; //exact hit point for either y for EW wall or x for NS wall
 	double		step; //the amount to increase the texture coordinate per pixel
 	double		tex_pos; //the texture's starting position
-	uint32_t	*buffer; //is it needed?
 }	t_wall;
 
 typedef struct s_ray //data for the raycasting

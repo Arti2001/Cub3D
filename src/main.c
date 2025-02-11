@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:07:53 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 09:17:02 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/11 15:05:25 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ int	main(int argc, char **argv)
 	run_mlx(&data);
 	free_mlx(&data);
 	free_data(&data);
+	printf("getting out - thanks for playing\n");
 	return (EXIT_SUCCESS);
 }

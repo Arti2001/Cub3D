@@ -6,83 +6,130 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 14:07:46 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 13:19:23 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/11 15:10:37 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-static void	draw_map2(t_root *data, int img[2], int flag)
+
+static void	draw_player_direction(t_root *data)
 {
-	mlx_image_t	*map = data->cub_mlx.img_map.img_ptr;
-	uint32_t	color;
-
-	// Assign color based on flag
-	if (flag == WALL)
-		color = ft_my_pixel(0, 6, 255, 255);
-	else if (flag == FLOOR)
-		color = ft_my_pixel(0, 167, 255, 255);
-	else
-		color = 0x0; // Default to SPACE color (black)
-
-	// Ensure pixel is within bounds before drawing
-	if (img[X] >= 0 && img[X] < MM_DIMENTION && img[Y] >= 0 && img[Y] < MM_DIMENTION)
-		mlx_put_pixel(map, img[X], img[Y], color);
-}
-
-static void	draw_map1(t_root *data, int mm_coord[2], int flag)
-{
-	int i;
+	int			i;
+	double		start[2];
+	int			half;
+	mlx_image_t	*m_map;
 
 	i = 0;
-	while (i < MMTW && mm_coord[X] < MM_DIMENTION)
+	start[X] = MM_DIMENSION / 2;
+	start[Y] = MM_DIMENSION / 2;
+	half = (int)(MMTH + MMTH / 2);
+	m_map = data->cub_mlx.img_map.img_ptr;
+	while (i < half)
 	{
-		draw_map2(data, mm_coord, flag);
-		mm_coord[X]++;
+		start[X] += data->p.x_dir * 0.3;
+		start[Y] += data->p.y_dir * 0.3;
+		mlx_put_pixel(m_map, (int)start[X], (int)start[Y], 0xFF0000FF);
 		i++;
 	}
 }
 
-void	add_mini_map(t_root *data)
+void	draw_player(t_root *data)
 {
-	int y, x;
-	int mm_coord[2];
-	int map_x, map_y;
-	double mm_start[2];
-
-	// Define minimap starting position based on player
-	mm_start[X] = data->p.x_pos - (MM_DIMENTION / MMTH / 2.0);
-	mm_start[Y] = data->p.y_pos - (MM_DIMENTION / MMTH / 2.0);
+	int			x;
+	int			y;
+	double		start[2];
+	mlx_image_t	*m_map;
+	uint32_t	colour;
 
 	y = 0;
-	while (y < MM_DIMENTION)
+	x = 0;
+	start[X] = MM_DIMENSION / 2 - MMPP / 2;
+	start[Y] = MM_DIMENSION / 2 - MMPP / 2;
+	m_map = data->cub_mlx.img_map.img_ptr;
+	colour = 0xFF0000FF;
+	while (y < MMPP)
 	{
 		x = 0;
-		while (x < MM_DIMENTION)
+		while (x < MMPP)
 		{
-			// Convert minimap pixel position to actual map coordinates
-			map_x = (int)(mm_start[X] + (double)x / MMTH);
-			map_y = (int)(mm_start[Y] + (double)y / MMTH);
-
-			mm_coord[X] = x;
-			mm_coord[Y] = y;
-
-			if (map_x >= 0 && map_x < data->map.lenght && map_y >= 0 && map_y < data->map.height)
-			{
-				char tile = data->map.map[map_y][map_x];
-				if (tile == '1')
-					draw_map1(data, mm_coord, WALL);
-				else if (tile == '0')
-					draw_map1(data, mm_coord, FLOOR);
-				else if (tile == ' ')
-					draw_map1(data, mm_coord, SPACE);
-			}
-			else
-				mlx_put_pixel(data->cub_mlx.img_map.img_ptr, x, y, 0x0);
+			mlx_put_pixel(m_map, (int)start[X] + x,(int)start[Y] + y, colour);
 			x++;
 		}
 		y++;
 	}
+	draw_player_direction(data);
+}
 
+
+static void	draw_mm_tile(t_root *data, int	mm_coord[2], int flag)
+{
+	mlx_image_t	*m_map;
+	uint32_t	colour;
+	int			tile_x;
+
+	tile_x = 0;
+	m_map = data->cub_mlx.img_map.img_ptr;
+	if (flag == WALL)
+		colour = ft_my_pixel(0, 6, 255, 255);
+	else if (flag == FLOOR)
+		colour = ft_my_pixel(0, 167, 255, 255);
+	else if (flag == SPACE)
+		colour = 0x0;
+	while (tile_x < MMTW && mm_coord[X] < MM_DIMENSION)
+	{
+		if (mm_coord[X] < MM_DIMENSION && mm_coord[Y] < MM_DIMENSION)
+			mlx_put_pixel(m_map, mm_coord[X], mm_coord[Y], colour);
+		mm_coord[X]++;
+		tile_x++;
+	}
+}
+
+/// @brief gets the coordinates and sends the correct flag to draw the mm_tiles
+/// @param data 
+/// @param mm_coord the minimap pixels' coordinates
+/// @param flag 
+static void	what_to_draw(t_root *data, int mm_coord[2], int map[2])
+{
+	char		tile;
+	mlx_image_t	*m_map;
+		
+	tile = data->map.map[map[Y]][map[X]];
+	m_map = data->cub_mlx.img_map.img_ptr;
+	if (map[X] >= 0 && map[X] < data->map.lenght
+		&& map[Y] >= 0 && map[Y] < data->map.height)
+	{
+		if (tile == '1')
+			draw_mm_tile(data, mm_coord, WALL);
+		else if (tile == '0')
+			draw_mm_tile(data, mm_coord, FLOOR);
+		else if (tile == ' ')
+			draw_mm_tile(data, mm_coord, SPACE);
+	}
+	else
+		mlx_put_pixel(m_map, mm_coord[X], mm_coord[Y], 0x0);
+}
+
+void	add_mini_map(t_root *data)
+{
+	int		mm_coord[2]; //current coordinates on all of the minimap (0 - MM_DIMENSION)
+	double	mm_start[2]; //start of the mm based on the player's position
+	int		map[2]; //the real grid from the file (to check if it's 1, 0 or space)
+
+	mm_start[X] = data->p.x_pos - (MM_DIMENSION / MMTH / 2.0);
+	mm_start[Y] = data->p.y_pos - (MM_DIMENSION / MMTH / 2.0);
+	mm_coord[Y] = 0;
+	while (mm_coord[Y] < MM_DIMENSION)
+	{
+		mm_coord[X] = 0;
+		while (mm_coord[X] < MM_DIMENSION)
+		{
+			map[X] = (int)(mm_start[X] + (double)mm_coord[X] / MMTH);
+			map[Y] = (int)(mm_start[Y] + (double)mm_coord[Y] / MMTH);
+			what_to_draw(data, mm_coord, map);
+			mm_coord[X]++;
+		}
+		mm_coord[Y]++;
+	}
 	draw_player(data);
 }
 
