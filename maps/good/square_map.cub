@@ -1,13 +1,13 @@
-   WE                            src/render/textures/round2.png 
-NO      src/render/textures/stars.png
+   WE                            textures/round2.png 
+NO      textures/stars.png
 
 
 
-SO src/render/textures/round.png
+SO textures/round.png
 
 F   0, 0, 0
 
-EA src/render/textures/blackhole.png
+EA textures/blackhole.png
 
 
 C 255, 255, 255

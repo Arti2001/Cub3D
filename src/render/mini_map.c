@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 14:07:46 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 09:45:49 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/11 13:19:23 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	draw_map2(t_root *data, int img[2], int flag)
 	else if (flag == FLOOR)
 		color = ft_my_pixel(0, 167, 255, 255);
 	else
-		color = ft_my_pixel(0, 0, 0, 255); // Default to SPACE color (black)
+		color = 0x0; // Default to SPACE color (black)
 
 	// Ensure pixel is within bounds before drawing
 	if (img[X] >= 0 && img[X] < MM_DIMENTION && img[Y] >= 0 && img[Y] < MM_DIMENTION)
@@ -77,7 +77,7 @@ void	add_mini_map(t_root *data)
 					draw_map1(data, mm_coord, SPACE);
 			}
 			else
-				mlx_put_pixel(data->cub_mlx.img_map.img_ptr, x, y, 0x0); // Black for out-of-bounds
+				mlx_put_pixel(data->cub_mlx.img_map.img_ptr, x, y, 0x0);
 			x++;
 		}
 		y++;

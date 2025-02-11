@@ -1,12 +1,12 @@
-NO ./path_to_the_north_texture
+NO textures/blackhole.png
 C 225,30,0
-SO ./path_to_the_south_texture
+SO textures/round.png
 
 F 220,100,0
-EA ./path_to_the_east_texture
+EA textures/stars.png
 
 
-WE ./path_to_the_west_texture
+WE textures/round2.png
 
  111111111111111111111111
 1000000000110000000000001

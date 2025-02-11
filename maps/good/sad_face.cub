@@ -1,7 +1,7 @@
-NO src/render/textures/blackhole.png
-SO src/render/textures/round.png
-WE src/render/textures/round2.png
-EA src/render/textures/stars.png
+NO textures/blackhole.png
+SO textures/round.png
+WE textures/round2.png
+EA textures/stars.png
 
 C 53,41,34
 F 45,33,27

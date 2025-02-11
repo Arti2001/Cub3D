@@ -1,7 +1,7 @@
-NO./path_to_the_north_texture
-SO./path_to_the_south_texture
-WE./path_to_the_west_texture
-EA./path_to_the_east_texture
+NOtextures/blackhole.png
+SOtextures/round.png
+WEtextures/round2.png
+EAtextures/stars.png
 
 F220,100,0
 C225,30,0
