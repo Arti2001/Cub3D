@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 10:14:41 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/10 14:14:34 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/11 07:26:51 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ static void	wall_info(t_root *data, t_wall *wall)
 	if ((data->ray.side == NORTH || data->ray.side == SOUTH) && data->ray.dir_y < 0)
 		wall->tex_x = wall->tex_width - wall->tex_x - 1;
 	wall->step = 1.0 * wall->tex_height / wall->height;
-	wall->tex_pos = (wall->start - data->cub_mlx.win_h / 2 + wall->height / 2) * wall->step;
+	wall->tex_pos = fabs((wall->start - data->cub_mlx.win_h / 2 + wall->height / 2) * wall->step);
 }
 
 void	draw_wall(t_root *data, int i, int j, t_wall *wall)
 {
 	mlx_texture_t	*texture;
-	uint32_t	pix;
+	int	pix;
 	int	rgba[4];
 
 	texture = data->textures[data->ray.side];
@@ -48,22 +48,13 @@ void	draw_wall(t_root *data, int i, int j, t_wall *wall)
 	if (wall->tex_y >= (int)wall->tex_height)
 		wall->tex_y = wall->tex_height - 1;
 	wall->tex_pos += wall->step;
-	pix = (wall->tex_x + wall->tex_y * wall->tex_width) * 4;
+	pix = (wall->tex_x + wall->tex_y * wall->tex_width) * texture->bytes_per_pixel;
 	rgba[0] = texture->pixels[pix];
 	rgba[1] = texture->pixels[pix + 1];
 	rgba[2] = texture->pixels[pix + 2];
 	rgba[3] = texture->pixels[pix + 3];
 	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(rgba[0], rgba[1], rgba[2], rgba[3]));
 }
-
-//static bool	mm_check(t_root *data, int i, int j)
-//{
-//	if ((i <= data->map.mm_start_x && j <= data->map.mm_start_y) \
-//		|| ((i > data->map.mm_start_x && j < data->map.mm_start_y) \
-//		|| (j > data->map.mm_start_y && i < data->map.mm_start_x)))
-//		return (true);
-//	return (false);
-//}
 
 static void	draw_screen(t_root *data, int i, uint32_t ceil, uint32_t fl)
 {
@@ -75,23 +66,10 @@ static void	draw_screen(t_root *data, int i, uint32_t ceil, uint32_t fl)
 	wall_info(data, &wall);
 	while (j < data->cub_mlx.win_h)
 	{
-		//if (j < wall.start && mm_check(data, i, j) == true)
 		if (j < wall.start)
 			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ceil);
-		//else if (j >= wall.start && j <= wall.end && mm_check(data, i, j) == true)
 		else if (j >= wall.start && j <= wall.end)
-		{
 			draw_wall(data, i, j, &wall);
-			//if (data->ray.side == EAST)
-			//	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(255, 0, 0, 255));
-			//else if (data->ray.side == WEST)
-			//	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(255, 0, 0, 255));
-			//else if (data->ray.side == NORTH)
-			//	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(255, 0, 0, 255));
-			//else if (data->ray.side == SOUTH)
-			//	mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, ft_my_pixel(255, 255, 255, 255));
-		}
-		//else if (j > wall.end && mm_check(data, i, j) == true)
 		else if (j > wall.end)
 			mlx_put_pixel(data->cub_mlx.img.img_ptr, i, j, fl);
 		j++;

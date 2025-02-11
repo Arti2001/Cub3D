@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   key_hooks.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/18 10:38:05 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/10 10:38:00 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   key_hooks.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/18 10:38:05 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/02/11 08:24:12 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,11 @@ void	key_hooks( void *param)
 	if (mlx_is_key_down(data->cub_mlx.win, MLX_KEY_RIGHT))
 		go(data, TURN_LEFT);
 	if (mlx_is_key_down(data->cub_mlx.win, MLX_KEY_ESCAPE))
+	{
 		mlx_close_window(data->cub_mlx.win);
+		free_mlx(data);
+		free_data(data);
+		write(1, "Thanks for playing\n", 19);
+		exit(EXIT_SUCCESS);
+	}
 }

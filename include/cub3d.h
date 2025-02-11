@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/10 13:49:54 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/02/11 08:23:16 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@
 
 # define TH 64 //tile height
 # define TW 64 //tile width
-# define MMTH 50 //tile height
-# define MMTW 50 //tile width
+# define MMTH 15 //tile height
+# define MMTW 15 //tile width
 # define FOV 60 //field of view
 # define RAYS_NUMB 320 //number of rays
 # define MMPP 5
@@ -196,11 +196,13 @@ typedef struct s_root
 
 //freeing
 void		free_data(t_root *data);
+void		free_mlx(t_root *data);
 
 // errors
 void		error_p(char *str);
 void		err_fd_data_bye(t_root *data, int fd, int flag);
 void		error_bye_data(t_root *data, char *str);
+void		error_bye_mlx_data(t_root *data, char *str);
 void		free_data_arr(t_root *data, char *str, char **arr);
 
 						/**********		PARSING		**********/
@@ -230,7 +232,6 @@ int			are_digits(char *str);
 int			first_digit(char *str);
 bool		is_full(t_map map);
 bool		comma_checker(char *str);
-void		load_textures(t_root *data);
 
 						/**********		RENDERING		**********/
 void		run_mlx(t_root *data);
@@ -240,7 +241,6 @@ void		add_mini_map(t_root *data);
 
 //drawing
 void		draw_player(t_root *data);
-void		draw_ray(t_root *data);
 uint32_t	ft_my_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 uint32_t	extract_rgb(mlx_texture_t *texture, int x, int y);
 
