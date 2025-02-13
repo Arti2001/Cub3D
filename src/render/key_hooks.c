@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   key_hooks.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/18 10:38:05 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 09:59:26 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   key_hooks.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/18 10:38:05 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/13 09:35:35 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static int	move_player_sides(t_root *data, double move_step)
 
 	new_x = data->p.x_pos + data->p.plane_x * move_step;
 	new_y = data->p.y_pos + data->p.plane_y * move_step;
-	if ((data->map.map[(int)(new_y - HITBOX)][(int)(new_x)] == '0')
-	&& (data->map.map[(int)(new_y)][(int)(new_x - HITBOX)] == '0')
-	&& (data->map.map[(int)(new_y + HITBOX)][(int)(new_x)] == '0')
-	&& (data->map.map[(int)(new_y)][(int)(new_x + HITBOX)] == '0')
+	if ((data->map.map[(int)(new_y - HB)][(int)(new_x)] == '0')
+	&& (data->map.map[(int)(new_y)][(int)(new_x - HB)] == '0')
+	&& (data->map.map[(int)(new_y + HB)][(int)(new_x)] == '0')
+	&& (data->map.map[(int)(new_y)][(int)(new_x + HB)] == '0')
 	&& (data->map.map[(int)(new_y)][(int)(new_x)] == '0'))
 	{
 		data->p.x_pos = new_x;
@@ -43,10 +43,10 @@ static	int	move_player(t_root *data, double move_step)
 
 	new_x = data->p.x_pos + data->p.x_dir * move_step;
 	new_y = data->p.y_pos + data->p.y_dir * move_step;
-	if ((data->map.map[(int)(new_y - HITBOX)][(int)(new_x)] == '0')
-	&& (data->map.map[(int)(new_y)][(int)(new_x - HITBOX)] == '0')
-	&& (data->map.map[(int)(new_y + HITBOX)][(int)(new_x)] == '0')
-	&& (data->map.map[(int)(new_y)][(int)(new_x + HITBOX)] == '0')
+	if ((data->map.map[(int)(new_y - HB)][(int)(new_x)] == '0')
+	&& (data->map.map[(int)(new_y)][(int)(new_x - HB)] == '0')
+	&& (data->map.map[(int)(new_y + HB)][(int)(new_x)] == '0')
+	&& (data->map.map[(int)(new_y)][(int)(new_x + HB)] == '0')
 	&& (data->map.map[(int)(new_y)][(int)(new_x)] == '0'))
 	{
 		data->p.x_pos = new_x;
@@ -118,7 +118,6 @@ void	key_hooks( void *param)
 		mlx_close_window(data->cub_mlx.win);
 		free_mlx(data);
 		free_data(data);
-		write(1, "Thanks for playing\n", 19);
 		exit(EXIT_SUCCESS);
 	}
 }

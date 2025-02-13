@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse_texture_utils.c                              :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/10 10:52:36 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/02/11 09:39:41 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse_texture_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/10 10:52:36 by amysiv            #+#    #+#             */
+/*   Updated: 2025/02/11 16:00:36 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-char* skipspace(char* line)
+char	*skipspace(char *line)
 {
 	while (*line && *line == ' ')
 	{
@@ -44,17 +44,15 @@ int	are_digits(char *str)
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
-		if(!ft_isdigit(str[i]))
+		if (!ft_isdigit(str[i]))
 		{
 			return (0);
 		}
-			
 		i++;
 	}
 	return (1);
-
 }
 
 int	first_digit(char *str)
@@ -62,11 +60,11 @@ int	first_digit(char *str)
 	int	i;
 
 	i = 0;
-	while(str[i] && (str[i] == ' ' || str[i] == '\t'))
+	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 	{
 		i++;
 	}
-	if(ft_isdigit(str[i]))
+	if (ft_isdigit(str[i]))
 		return (0);
 	return (1);
 }

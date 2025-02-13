@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   errors.c                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 14:38:20 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 13:35:54 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   errors.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 14:38:20 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/13 09:34:16 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,4 @@ void	error_bye_mlx_data(t_root *data, char *str)
 {
 	free_mlx(data);
 	error_bye_data(data, str);
-	// free_data(data);
-	// error_p(str);
-	// exit(EXIT_FAILURE);
 }

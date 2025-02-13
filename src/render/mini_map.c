@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mini_map.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/16 14:07:46 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/13 08:34:35 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mini_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/16 14:07:46 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/13 09:38:40 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	draw_player(t_root *data)
 		x = 0;
 		while (x < MMPP)
 		{
-			mlx_put_pixel(m_map, (int)start[X] + x,(int)start[Y] + y, colour);
+			mlx_put_pixel(m_map, (int)start[X] + x, (int)start[Y] + y, colour);
 			x++;
 		}
 		y++;
@@ -83,7 +83,8 @@ static void	draw_mm_tile(t_root *data, int	mm_coord[2], int flag)
 	}
 }
 
-/// @brief gets the coordinates and sends the correct flag to draw the mm_tiles
+/// @brief gets the coordinates and sends the correct flag to
+//draw the mm_tiles
 /// @param mm_coord the minimap pixels' coordinates
 static void	what_to_draw(t_root *data, int mm_coord[2], int map[2])
 {
@@ -106,11 +107,21 @@ static void	what_to_draw(t_root *data, int mm_coord[2], int map[2])
 		mlx_put_pixel(m_map, mm_coord[X], mm_coord[Y], 0x0);
 }
 
+	/*
+		mm_coord[2];
+		current coordinates on all of the minimap (0 - MM_DIMENSION)
+		
+		mm_start[2];
+		start of the mm based on the player's position
+		
+		map[2];
+		the real grid from the file (to check if it's 1, 0 or space)
+	*/
 void	add_mini_map(t_root *data)
 {
-	int		mm_coord[2]; //current coordinates on all of the minimap (0 - MM_DIMENSION)
-	double	mm_start[2]; //start of the mm based on the player's position
-	int		map[2]; //the real grid from the file (to check if it's 1, 0 or space)
+	int		mm_coord[2];
+	double	mm_start[2];
+	int		map[2];
 
 	mm_start[X] = data->p.x_pos - (MM_DIMENSION / MMTH / 2.0);
 	mm_start[Y] = data->p.y_pos - (MM_DIMENSION / MMTH / 2.0);
@@ -129,4 +140,3 @@ void	add_mini_map(t_root *data)
 	}
 	draw_player(data);
 }
-
