@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 14:07:46 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 15:10:37 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/13 08:34:35 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,34 +60,31 @@ void	draw_player(t_root *data)
 	draw_player_direction(data);
 }
 
-
 static void	draw_mm_tile(t_root *data, int	mm_coord[2], int flag)
 {
 	mlx_image_t	*m_map;
 	uint32_t	colour;
 	int			tile_x;
+	int			cpy_coord[2];
 
 	tile_x = 0;
 	m_map = data->cub_mlx.img_map.img_ptr;
-	if (flag == WALL)
+	if (flag == WALL || flag == SPACE)
 		colour = ft_my_pixel(0, 6, 255, 255);
 	else if (flag == FLOOR)
 		colour = ft_my_pixel(0, 167, 255, 255);
-	else if (flag == SPACE)
-		colour = 0x0;
-	while (tile_x < MMTW && mm_coord[X] < MM_DIMENSION)
+	cpy_coord[X] = mm_coord[X];
+	cpy_coord[Y] = mm_coord[Y];
+	while (tile_x < MMTW)
 	{
-		if (mm_coord[X] < MM_DIMENSION && mm_coord[Y] < MM_DIMENSION)
-			mlx_put_pixel(m_map, mm_coord[X], mm_coord[Y], colour);
-		mm_coord[X]++;
+		mlx_put_pixel(m_map, cpy_coord[X], cpy_coord[Y], colour);
+		cpy_coord[X]++;
 		tile_x++;
 	}
 }
 
 /// @brief gets the coordinates and sends the correct flag to draw the mm_tiles
-/// @param data 
 /// @param mm_coord the minimap pixels' coordinates
-/// @param flag 
 static void	what_to_draw(t_root *data, int mm_coord[2], int map[2])
 {
 	char		tile;

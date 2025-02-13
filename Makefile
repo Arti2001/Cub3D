@@ -6,7 +6,7 @@
 #    By: amysiv <amysiv@student.42.fr>                +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/06 09:23:22 by mstencel      #+#    #+#                  #
-#    Updated: 2025/02/11 07:44:12 by mstencel      ########   odam.nl          #
+#    Updated: 2025/02/13 08:37:48 by mstencel      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,18 +23,16 @@ SRC_FILES = src/errors.c \
 			src/main.c \
 			src/parsing/check_map.c \
 			src/parsing/get_player.c \
-			src/parsing/parse_map_utils.c \
 			src/parsing/parse_map.c \
 			src/parsing/parse_map2.c \
 			src/parsing/parse_texture_utils.c \
 			src/parsing/parse_texture.c \
 			src/parsing/parse_texture2.c \
 			src/parsing/splitbywhite.c \
-			src/render/color.c \
+			src/render/draw_utils.c \
 			src/render/draw.c \
 			src/render/key_hooks.c \
 			src/render/mini_map.c \
-			src/render/mini_map_utils.c \
 			src/render/mlx_init.c \
 			src/render/rays.c
 

@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 12:30:12 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/04 10:22:03 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/13 08:21:02 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ bool	space_wall_check(t_root *data, int y, int x)
 	{
 		new_y = y + dir[i][0];
 		new_x = x + dir[i][1];
+		if (new_x < 0 || new_y < 0 || new_y >= data->map.height)
+			return (false);
 		len = ft_strlen(data->map.map[new_y]);
-		if (new_x < 0 || new_x > len || new_y < 0
-			|| new_y > data->map.height
-			|| !valid_char(data->map.map[new_y][new_x]))
+		if (new_x >= len)
+			return (false);
+		if (!valid_char(data->map.map[new_y][new_x]))
 			return (false);
 		i++;
 	}
@@ -71,13 +73,11 @@ void	map_check(t_root *data)
 		x = 0;
 		while (data->map.map[y][x])
 		{
-			if (!valid_char(data->map.map[y][x])
-				&& data->map.map[y][x] != ' ')
+			if (!valid_char(data->map.map[y][x]) && data->map.map[y][x] != ' ')
 				error_bye_data(data, ERR_GARBAGE_IN_THE_MAP);
 			if (player_char(data->map.map[y][x]))
 				player_found(data, y, x, &position);
-			if (data->map.map[y][x] == '0'
-				&& !space_wall_check(data, y, x))
+			if (data->map.map[y][x] == '0' && !space_wall_check(data, y, x))
 				error_bye_data(data, ERR_OPEN_MAP);
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 14:55:13 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/13 08:35:56 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@
 
 # define TH 64 //tile height
 # define TW 64 //tile width
-# define MMTH 15 //tile height
-# define MMTW 15 //tile width
+# define MMTH 25 //tile height
+# define MMTW 25 //tile width
 # define FOV 60 //field of view
 # define RAYS_NUMB 320 //number of rays
 # define MMPP 7
@@ -215,7 +215,6 @@ void		player_found(t_root *data, long y, long x, bool *position);
 //parse utils
 char		is_white_space_nline(char c);
 char		**splitbywhite(char const *s, char c);
-t_maplist	*add_node(char *line, t_root *data);
 void		del_list(t_maplist *map);
 
 //texture

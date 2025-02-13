@@ -6,11 +6,38 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:30:08 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 09:24:58 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/13 08:08:47 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+static t_maplist	*add_node(char *line, t_root *data)
+{
+	t_maplist			*new_node;
+
+	new_node = malloc(sizeof(t_maplist));
+	if (!new_node)
+	{
+		error_p(ERR_MAP_MALLOC);
+		return (NULL);
+	}
+	new_node->line = ft_strdup(line);
+	if (!new_node->line)
+	{
+		error_p(ERR_MALLOC_LINE);
+		return (NULL);
+	}
+	new_node->height = data->map.height + 1;
+	data->map.height = new_node->height;
+	if (new_node->height > 350)
+	{
+		error_p(ERR_TOO_MANY_LINES);
+		return (NULL);
+	}
+	new_node->next = NULL;
+	return (new_node);
+}
 
 static int	open_mapfile(char *file, t_root *data)
 {
