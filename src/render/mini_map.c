@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 14:07:46 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/13 09:33:29 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/13 09:51:58 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,16 @@ static void	what_to_draw(t_root *data, int mm_coord[2], int map[2])
 		mlx_put_pixel(m_map, mm_coord[X], mm_coord[Y], 0x0);
 }
 
+	/*
+		mm_coord[2];
+		current coordinates on all of the minimap (0 - MM_DIMENSION)
+		
+		mm_start[2];
+		start of the mm based on the player's position
+		
+		map[2];
+		the real grid from the file (to check if it's 1, 0 or space)
+	*/
 void	add_mini_map(t_root *data)
 {
 	int		mm_coord[2];

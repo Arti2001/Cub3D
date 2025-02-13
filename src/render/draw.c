@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   draw.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/30 10:14:41 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 14:47:11 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/30 10:14:41 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/13 08:57:47 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static void	wall_info(t_root *data, t_wall *wall)
 void	draw_wall(t_root *data, int i, int j, t_wall *wall)
 {
 	mlx_texture_t	*texture;
-	int	pix;
-	int	rgba[4];
+	int				pix;
+	int				rgba[4];
 
 	texture = data->textures[data->ray.side];
 	wall->tex_y = (int)wall->tex_pos;

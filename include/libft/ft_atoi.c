@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:34:22 by mstencel          #+#    #+#             */
-/*   Updated: 2025/01/09 09:53:34 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/02/13 09:46:55 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_atoi(const char *nptr)
 	int	sign;
 	int	digit;
 	int	number;
-	
+
 	digit = 0;
 	number = 0;
 	while (ft_isspace(*nptr))

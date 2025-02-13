@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   rays.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/02/03 12:24:23 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/10 11:32:24 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   rays.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/03 12:24:23 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/11 17:59:09 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,19 @@ static void	get_wall(t_root *data, int step_x, int step_y)
 			else
 				data->ray.side = SOUTH;
 		}
-		if (data->ray.x_map < 0 || data->ray.x_map >= data->map.lenght ||
+		if (data->ray.x_map < 0 || data->ray.x_map >= data->map.lenght || \
 			data->ray.y_map < 0 || data->ray.y_map >= data->map.height)
-			break;
+			break ;
 		if (data->map.map[data->ray.y_map][data->ray.x_map] == '1')
-			break;
+			break ;
 	}
 }
 
 static void	get_offset(t_root *data)
 {
-	int	step_x; //either +1 right or -1 left
-	int	step_y; //either +1 down or -1 up
+	int	step_x;
+	int	step_y;
+
 	if (data->ray.dir_x < 0)
 	{
 		step_x = -1;
@@ -81,7 +82,6 @@ static void	get_step_size(t_root *data)
 		data->ray.steps_y = fabs(1 / data->ray.dir_y);
 }
 
-//it will always be a perpendicular distance, so no fish eye effect
 static void	get_distance(t_root *data)
 {
 	if (data->ray.side == EAST || data->ray.side == WEST)
@@ -95,7 +95,6 @@ void	get_rays(t_root *data, int i)
 	data->ray.x_map = (int)data->p.x_pos;
 	data->ray.y_map = (int)data->p.y_pos;
 	data->ray.camera_x = 2 * i / (double)data->cub_mlx.win_w - 1;
-	//getting the directions of the ray
 	data->ray.dir_x = data->p.x_dir + data->p.plane_x * data->ray.camera_x;
 	data->ray.dir_y = data->p.y_dir + data->p.plane_y * data->ray.camera_x;
 	get_step_size(data);

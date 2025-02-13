@@ -1,0 +1,16 @@
+NO src/render/textures/blackhole.png
+SO src/render/textures/round.png
+WE src/render/textures/round2.png
+EA src/render/textures/stars.png
+
+F 18,53,25
+C 153,204,255
+
+111111111111
+1         11
+1       0001
+1000000 0011
+10S000000001
+111111111111
+11         1
+111111111111
