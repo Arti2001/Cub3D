@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_player.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/04 10:21:15 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/13 08:56:35 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   get_player.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/02/04 10:21:15 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/02/13 09:58:12 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 static void	give_direction(t_root *data, char ch_dir)
 {
-	const double dir[4][4] = {{0.66, 0, 0, -1}, {-0.66, 0, 0, 1},\
+	const double	dir[4][4] = {{0.66, 0, 0, -1}, {-0.66, 0, 0, 1}, \
 		{0, -0.66, -1, 0}, {0, 0.66, 1, 0}};
-	const char dirs[4] = "NSWE";
-	int i = 0;
+	const char		dirs[4] = "NSWE";
+	int				i;
+
+	i = 0;
 	while (i < 4 && dirs[i] != ch_dir)
 		i++;
 	data->p.plane_x = dir[i][0];

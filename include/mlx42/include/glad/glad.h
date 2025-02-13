@@ -438,7 +438,7 @@ typedef void (APIENTRY *GLVULKANPROCNV)(void);
 #define GL_MAP_COLOR 0x0D10
 #define GL_MAP_STENCIL 0x0D11
 #define GL_INDEX_SHIFT 0x0D12
-#define GL_INDEX_OFFSET 0x0D13
+#define GL_INDEx_off 0x0D13
 #define GL_RED_SCALE 0x0D14
 #define GL_RED_BIAS 0x0D15
 #define GL_ZOOM_X 0x0D16

@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/13 09:51:36 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/13 10:00:54 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,8 @@ typedef struct s_ray //data for the raycasting
 	double	dir_y; //y direction of the ray
 	int		x_map; //player's position on the grid
 	int		y_map; //player's position on the grid
-	double	x_offset; //distance -> the actual player's position and nearest x
-	double	y_offset; //distance -> the actual player's position and nearest y
+	double	x_off; //distance -> the actual player's position and nearest x
+	double	y_off; //distance -> the actual player's position and nearest y
 	double	steps_x; //x_step's length (number of y's in between x1 & x2)
 	double	steps_y; //y_step's length (number of x's in between y1 & y2)
 	int		flag; //to show if the step is taken in x or in y direction

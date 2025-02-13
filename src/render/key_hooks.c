@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   key_hooks.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/18 10:38:05 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/13 09:35:35 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   key_hooks.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/18 10:38:05 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/02/13 10:27:22 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ static int	move_player_sides(t_root *data, double move_step)
 		return (1);
 	}
 	else
-	{
-		printf("Hit the wall\n");
 		return (0);
-	}
 }
 
 static	int	move_player(t_root *data, double move_step)
@@ -54,10 +51,7 @@ static	int	move_player(t_root *data, double move_step)
 		return (1);
 	}
 	else
-	{
-		printf("Hit the wall\n");
 		return (0);
-	}
 }
 
 static void	turn_player(t_root *data, double move_step)
