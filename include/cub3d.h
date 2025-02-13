@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/13 10:00:54 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/13 16:43:54 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,10 @@
 # define RAYS_NUMB 320 //number of rays
 # define MMPP 10
 # define NAME "cub3D"
-# define PLAYER 0
-# define WALL 1
-# define FLOOR 2
+# define WALL 0
+# define FLOOR 1
+# define SPACE 2
 # define RAY 3
-# define SPACE 4
 # define X 0
 # define Y 1
 # define HB 0.2

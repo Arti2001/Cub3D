@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_texture.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 15:21:28 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/13 08:56:50 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_texture.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/10 15:21:28 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/02/13 13:15:56 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,25 @@ int	tex_paths_valid(char **split, t_root *data)
 	if (ft_strncmp(split[0], "NO", 3) == 0)
 	{
 		if (data->map.no_path)
-			error_bye_data(data, "NO: Is definied more then one time");
+			error_bye_data(data, "NO: Is definied more then one time\n");
 		return (data->map.no_path = new_mem(split[1], data), 1);
 	}
 	else if (ft_strncmp(split[0], "SO", 3) == 0)
 	{
 		if (data->map.so_path)
-			error_bye_data(data, "SO: Is definied more then one time");
+			error_bye_data(data, "SO: Is definied more then one time\n");
 		return (data->map.so_path = new_mem(split[1], data), 1);
 	}
 	else if (ft_strncmp(split[0], "WE", 3) == 0)
 	{
 		if (data->map.we_path)
-			error_bye_data(data, "WE: Is definied more then one time");
+			error_bye_data(data, "WE: Is definied more then one time\n");
 		return (data->map.we_path = new_mem(split[1], data), 1);
 	}
 	else if (ft_strncmp(split[0], "EA", 3) == 0)
 	{
 		if (data->map.ea_path)
-			error_bye_data(data, "EA: Is definied more then one time");
+			error_bye_data(data, "EA: Is definied more then one time\n");
 		return (data->map.ea_path = new_mem(split[1], data), 1);
 	}
 	return (0);
@@ -69,7 +69,7 @@ int	ceiling_floor_valid(char **split_line, char *line, t_root *data)
 			return (1);
 		}
 		else
-			error_bye_data(data, "C: Is definied more then one time");
+			error_bye_data(data, "C: Is definied more then one time\n");
 	}
 	else if (ft_strncmp(split_line[0], "F", 2) == 0)
 	{
@@ -79,7 +79,7 @@ int	ceiling_floor_valid(char **split_line, char *line, t_root *data)
 			return (1);
 		}
 		else
-			error_bye_data(data, "F: Is definied more then one time");
+			error_bye_data(data, "F: Is definied more then one time\n");
 	}
 	return (0);
 }
@@ -91,7 +91,7 @@ void	tex_validation(char *line, t_root *data)
 	split_line = splitbywhite(line, '\0');
 	if (!split_line || split_line[0] == NULL)
 	{
-		free_data_arr(data, "Split failed", split_line);
+		free_data_arr(data, "Split failed\n", split_line);
 	}
 	if (tex_paths_valid(split_line, data))
 	{
@@ -103,7 +103,7 @@ void	tex_validation(char *line, t_root *data)
 		ft_free_array(split_line);
 		return ;
 	}
-	free_data_arr(data, "Map is no valid!", split_line);
+	free_data_arr(data, "Map is not valid!\n", split_line);
 }
 
 void	if_valid_add(t_root *data)
