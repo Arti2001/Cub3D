@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/13 08:35:56 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/13 08:47:50 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,7 @@ int			are_digits(char *str);
 int			first_digit(char *str);
 bool		is_full(t_map map);
 bool		comma_checker(char *str);
+char		*new_mem(char *str, t_root *data);
 
 						/**********		RENDERING		**********/
 void		run_mlx(t_root *data);
@@ -239,7 +240,6 @@ void		add_mini_map(t_root *data);
 //drawing
 void		draw_player(t_root *data);
 uint32_t	ft_my_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
-uint32_t	extract_rgb(mlx_texture_t *texture, int x, int y);
 
 //math
 void		get_rays(t_root *data, int i);
