@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/13 08:35:56 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/13 08:48:34 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,7 @@ int			are_digits(char *str);
 int			first_digit(char *str);
 bool		is_full(t_map map);
 bool		comma_checker(char *str);
+char		*new_mem(char *str, t_root *data);
 
 						/**********		RENDERING		**********/
 void		run_mlx(t_root *data);
