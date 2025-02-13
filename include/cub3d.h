@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/13 08:55:34 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/02/13 09:45:37 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@
 # define EPSILON 1e30
 # define MM_DIMENSION 360
 
-typedef enum	e_moves
+typedef enum e_moves
 {
 	FORWARD = 1,
 	BACKWARD = 2,
@@ -78,7 +78,7 @@ typedef enum	e_moves
 	TURN_LEFT = 6,
 }	t_moves;
 
-typedef enum	e_sides
+typedef enum e_sides
 {
 	NORTH = 0,
 	SOUTH = 1,
@@ -116,34 +116,34 @@ typedef struct s_floor
 
 typedef struct s_wall
 {
-	int			height;
-	int			start;
-	int			end;
-	int			map_tile; //the current tile on the map
-	int			tex_x; //x coordinate on the texture
-	int			tex_y; //calculated with wall.step
-	int			tex_width; //width of the texture (from the file)
-	int			tex_height; //height of the texture (from the file)
-	int			tex_start; //tex starting position in integer
-	double		hit_point; //exact hit point for either y for EW wall or x for NS wall
-	double		step; //the amount to increase the texture coordinate per pixel
-	double		tex_pos; //the texture's starting position
+	int		height;
+	int		start;
+	int		end;
+	int		map_tile; //the current tile on the map
+	int		tex_x; //x coordinate on the texture
+	int		tex_y; //calculated with wall.step
+	int		tex_width; //width of the texture (from the file)
+	int		tex_height; //height of the texture (from the file)
+	int		tex_start; //tex starting position in integer
+	double	hit_point; //exact hit point for y for EW wall or x for NS wall
+	double	step; //the amount to increase the texture coordinate per pixel
+	double	tex_pos; //the texture's starting position
 }	t_wall;
 
 typedef struct s_ray //data for the raycasting
 {
-	double				camera_x; // x-coordinate along the camera line
-	double				distance; //distance of between the player & wall (total ray length)
-	double				dir_x; //x direction of the ray
-	double				dir_y; //y direction of the ray
-	int					x_map; //player's position on the grid
-	int					y_map; //player's position on the grid
-	double				x_offset; //distance between the actual position of the player and nearest x
-	double				y_offset; //distance between the actual position of the player and nearest y
-	double				steps_x; //length of the actual x_step (number of y's in between x1 & x2)
-	double				steps_y; //length of the actual y_step (number of x's in between y1 & y2)
-	int					flag; //to show if the step is taken in x or in y direction
-	int					side; //NORTH SOUTH EAST WEST
+	double	camera_x; // x-coordinate along the camera line
+	double	distance; //distance of between the player & wall (total ray length)
+	double	dir_x; //x direction of the ray
+	double	dir_y; //y direction of the ray
+	int		x_map; //player's position on the grid
+	int		y_map; //player's position on the grid
+	double	x_offset; //distance -> the actual player's position and nearest x
+	double	y_offset; //distance -> the actual player's position and nearest y
+	double	steps_x; //x_step's length (number of y's in between x1 & x2)
+	double	steps_y; //y_step's length (number of x's in between y1 & y2)
+	int		flag; //to show if the step is taken in x or in y direction
+	int		side; //NORTH SOUTH EAST WEST
 }	t_ray;
 
 typedef struct s_maplist
@@ -177,9 +177,7 @@ typedef struct s_map
 	int					mm_start_y;
 	t_floor				floor;
 	t_ceiling			ceiling;
-	int					MMP;
 }	t_map;
-
 
 typedef struct s_root
 {
@@ -244,7 +242,5 @@ uint32_t	ft_my_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 
 //math
 void		get_rays(t_root *data, int i);
-
-//textures-walls
 
 #endif

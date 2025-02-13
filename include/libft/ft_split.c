@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ft_split.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/10/26 11:04:56 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 13:16:16 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/26 11:04:56 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/13 09:47:12 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static char	**free_mem(char **result)
 	free(result);
 	return (NULL);
 }
+
 static char	**ft_change(char const *s, char c, char **result, int count)
 {
 	int	n;
