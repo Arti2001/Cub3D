@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/14 11:27:33 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
+/*   Updated: 2025/02/14 11:33:32 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,10 @@
 # define RAYS_NUMB 320 //number of rays
 # define MMPP 10
 # define NAME "cub3D"
-# define PLAYER 0
-# define WALL 1
-# define FLOOR 2
+# define WALL 0
+# define FLOOR 1
+# define SPACE 2
 # define RAY 3
-# define SPACE 4
 # define X 0
 # define Y 1
 # define HB 0.2
@@ -241,6 +240,7 @@ void		add_mini_map(t_root *data);
 //drawing
 void		draw_player(t_root *data);
 uint32_t	ft_my_pixel(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
+void		blue_it_all(t_root *data, uint32_t col);
 
 //math
 void		get_rays(t_root *data, int i);

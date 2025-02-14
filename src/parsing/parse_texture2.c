@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_texture2.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 10:49:30 by amysiv            #+#    #+#             */
-/*   Updated: 2025/02/14 11:26:07 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_texture2.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/10 10:49:30 by amysiv        #+#    #+#                 */
+/*   Updated: 2025/02/14 11:34:19 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,15 @@ char	*new_mem(char *str, t_root *data)
 		return (new);
 	new = ft_strdup(str);
 	if (!new)
-		error_bye_data(data, "Failed to allocate memory");
+		error_bye_data(data, "Failed to allocate memory\n");
 	return (new);
 }
 
 void	check_val(char **val, t_root *data)
 {
-	if (!val[1] || !val[2] || !val[3])
-	{
-		free_data_arr(data, ERR_TO_FEW_PARAM_C, val);
-	}
-	if (val[4])
-	{
-		free_data_arr(data, ERR_TO_MANY_PARAM_C, val);
-	}
 	if (!are_digits(val[1]) || !are_digits(val[2]) || !are_digits(val[3]))
 	{
-		free_data_arr(data, "Incorrect color val: Only digits allowed", val);
+		free_data_arr(data, "Incorrect color val: Only digits allowed\n", val);
 	}
 	if (ft_strlen(val[1]) > 3 || ft_strlen(val[2]) > 3 || \
 		ft_strlen(val[3]) > 3)
