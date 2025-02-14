@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 10:21:53 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/02/14 11:20:44 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/14 13:42:43 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ static void	load_textures(t_root *data)
 	data->textures[3] = mlx_load_png(data->map.we_path);
 	if (!data->textures[0] || !data->textures[1] || !data->textures[2]
 		|| !data->textures[3])
-	{
-		free_mlx(data);
-		free_data(data);
-	}
+		error_bye_mlx_data(data, "Provide correct textures\n");
 }
 
 static void	win_init(t_root *data)

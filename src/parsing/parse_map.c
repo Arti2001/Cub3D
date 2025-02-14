@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:30:08 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/13 08:08:47 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/14 13:38:48 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static int	open_mapfile(char *file, t_root *data)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
+		write(2, "Error\n", 6);
 		perror(file);
 		free_data(data);
 		exit(EXIT_FAILURE);
