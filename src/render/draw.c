@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   draw.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/30 10:14:41 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/13 10:26:48 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/30 10:14:41 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/14 11:26:33 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ static void	draw_screen(t_root *data, int i, uint32_t ceil, uint32_t fl)
 	}
 }
 
-// get_rays(data, i) is doing doing all the math 
-// (getting the distance between the wall & the player)
 void	draw_game(void *param)
 {
 	t_root		*data;
@@ -102,5 +100,4 @@ void	draw_game(void *param)
 		draw_screen(data, i, ceil, fl);
 		i++;
 	}
-	add_mini_map(data);
 }

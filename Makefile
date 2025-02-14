@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: amysiv <amysiv@student.42.fr>                +#+                      #
-#                                                    +#+                       #
-#    Created: 2025/01/06 09:23:22 by mstencel      #+#    #+#                  #
-#    Updated: 2025/02/13 08:37:48 by mstencel      ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/01/06 09:23:22 by mstencel          #+#    #+#              #
+#    Updated: 2025/02/14 11:04:06 by amysiv           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,8 @@ MLX42_PATH = include/mlx42
 MLX42 = $(MLX42_PATH)/build/libmlx42.a
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -Ofast
+CFLAGS = -Wall -Werror -Wextra -g -Ofast 
+CFLAGS += -fsanitize=address
 MLX42FLAGS = -Iinclude -ldl -lglfw -pthread -lm
 
 RM = rm -rf

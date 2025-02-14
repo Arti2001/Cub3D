@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mini_map.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/16 14:07:46 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/13 10:27:34 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mini_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/16 14:07:46 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/14 11:26:48 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,9 @@ static void	what_to_draw(t_root *data, int mm_coord[2], int map[2])
 			draw_mm_tile(data, mm_coord, SPACE);
 	}
 	else
+	{
 		mlx_put_pixel(m_map, mm_coord[X], mm_coord[Y], 0x0);
+	}
 }
 
 /*

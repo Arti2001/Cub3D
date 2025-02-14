@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:52:36 by amysiv            #+#    #+#             */
-/*   Updated: 2025/02/11 16:00:36 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/02/14 11:26:19 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,9 @@ int	are_digits(char *str)
 	return (1);
 }
 
-int	first_digit(char *str)
+int	skip_all_space(char *str, int i)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
-	{
+	while (str[i] && is_white_space_nline(str[i]))
 		i++;
-	}
-	if (ft_isdigit(str[i]))
-		return (0);
-	return (1);
+	return (i);
 }

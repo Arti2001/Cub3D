@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse_map2.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/08 11:03:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/11 09:27:18 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse_map2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/08 11:03:03 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/13 13:00:26 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	get_line(t_root *data, t_maplist *current, int y, int len)
 	}
 	if (current->line[len - 1] == '\n')
 	{
-		data->map.map[y] = malloc(sizeof(char) * len);
+		data->map.map[y] = malloc(sizeof(char) * (len));
 		if (!data->map.map[y])
 			error_bye_data(data, ERR_MALLOC_MAP_LINE);
 		ft_strlcpy(data->map.map[y], current->line, len);

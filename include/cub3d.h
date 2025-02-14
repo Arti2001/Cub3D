@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/13 10:00:54 by mstencel      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 10:46:03 by mstencel          #+#    #+#             */
+/*   Updated: 2025/02/14 11:27:33 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@
 
 # define TH 64 //tile height
 # define TW 64 //tile width
-# define MMTH 30 //tile height
-# define MMTW 30 //tile width
+# define MMTH 60 //tile height
+# define MMTW 60 //tile width
 # define FOV 60 //field of view
 # define RAYS_NUMB 320 //number of rays
 # define MMPP 10
@@ -67,6 +67,7 @@
 # define HB 0.2
 # define EPSILON 1e30
 # define MM_DIMENSION 360
+# 
 
 typedef enum e_moves
 {
@@ -225,10 +226,11 @@ void		if_valid_add(t_root *data);
 void		floor_rgb(char *str, t_root *data);
 void		ceiling_rgb(char *str, t_root *data);
 int			are_digits(char *str);
-int			first_digit(char *str);
+bool		validate_format(char *str);
 bool		is_full(t_map map);
 bool		comma_checker(char *str);
 char		*new_mem(char *str, t_root *data);
+int			skip_all_space(char *str, int i);
 
 						/**********		RENDERING		**********/
 void		run_mlx(t_root *data);

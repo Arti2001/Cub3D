@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:21:28 by mstencel          #+#    #+#             */
-/*   Updated: 2025/02/13 08:56:50 by amysiv           ###   ########.fr       */
+/*   Updated: 2025/02/14 11:25:58 by amysiv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,28 @@ bool	comma_checker(char *str)
 	int	i;
 	int	comma_count;
 
-	i = 0;
+	i = skip_all_space(str, 0) + 1;
+	i = skip_all_space(str, i);
+	if (str[i] == ',')
+		return (false);
 	comma_count = 0;
 	while (str[i])
 	{
+		i = skip_all_space(str, i);
 		if (str[i] == ',')
+		{
 			comma_count++;
-		i++;
+			i++;
+			if (!str[i])
+				return (false);
+			i = skip_all_space(str, i);
+			if (!str[i])
+				return (false);
+		}
+		else
+			i++;
 	}
-	if (comma_count == 2)
-		return (true);
-	return (false);
+	return (comma_count == 2);
 }
 
 int	tex_paths_valid(char **split, t_root *data)
@@ -63,6 +74,8 @@ int	ceiling_floor_valid(char **split_line, char *line, t_root *data)
 {
 	if (ft_strncmp(split_line[0], "C", 2) == 0)
 	{
+		if (!comma_checker(line))
+			return (0);
 		if (!is_c_full(data->map.ceiling))
 		{
 			ceiling_rgb(line, data);
@@ -73,6 +86,8 @@ int	ceiling_floor_valid(char **split_line, char *line, t_root *data)
 	}
 	else if (ft_strncmp(split_line[0], "F", 2) == 0)
 	{
+		if (!comma_checker(line))
+			return (0);
 		if (!is_f_full(data->map.floor))
 		{
 			floor_rgb(line, data);

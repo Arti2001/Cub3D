@@ -3,8 +3,9 @@ SO textures/round.png
 WE textures/round2.png
 EA textures/stars.png
 
-F 220,100,0
-C 225,30,0
+     C               1,  77,     0
+	 F 0,   25,    5 
+
 
         1111111111111111111111111
         1000000000110000000000001
