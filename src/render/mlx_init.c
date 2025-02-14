@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 10:21:53 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/02/13 13:17:56 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/14 11:20:44 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	img_init(t_root *data)
 		MM_DIMENSION, MM_DIMENSION);
 	if (data->cub_mlx.img_map.img_ptr == NULL)
 		error_bye_mlx_data(data, "Failure of mlx_new_image() for mini_map\n");
+	blue_it_all(data, ft_my_pixel(0, 6, 255, 255));
 }
 
 static void	cub_init(t_root *data)
