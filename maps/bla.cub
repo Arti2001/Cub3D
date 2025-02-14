@@ -3,8 +3,8 @@ NO textures/blackhole.png
 EA textures/stars.png
 WE textures/round2.png
 
-C 1 1 1
-F 1 1 1
+C 1, 1, 1
+F 1, 1, 1
 
         1111111111111111111111111
         1000000000110000000000001

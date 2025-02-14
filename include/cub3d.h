@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 10:46:03 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/14 11:33:32 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/14 12:14:52 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@
 
 # define TH 64 //tile height
 # define TW 64 //tile width
-# define MMTH 60 //tile height
-# define MMTW 60 //tile width
+# define MMTH 30 //tile height
+# define MMTW 30 //tile width
 # define FOV 60 //field of view
 # define RAYS_NUMB 320 //number of rays
 # define MMPP 10

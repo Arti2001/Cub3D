@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 10:49:30 by amysiv        #+#    #+#                 */
-/*   Updated: 2025/02/14 11:34:19 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/14 12:08:42 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ char	*new_mem(char *str, t_root *data)
 
 void	check_val(char **val, t_root *data)
 {
+	if (!val[1] || !val[2] || !val[3])
+	{
+		free_data_arr(data, ERR_TO_FEW_PARAM_C, val);
+	}
+	if (val[4])
+	{
+		free_data_arr(data, ERR_TO_MANY_PARAM_C, val);
+	}
 	if (!are_digits(val[1]) || !are_digits(val[2]) || !are_digits(val[3]))
 	{
 		free_data_arr(data, "Incorrect color val: Only digits allowed\n", val);

@@ -6,29 +6,11 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 14:07:46 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/14 11:32:53 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/14 12:13:29 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-void	mm_empty_tile(t_root *data, int mm_coord[2])
-{
-	mlx_image_t	*m_map;
-	int			cpy_coord[2];
-	uint32_t	col;
-
-	col = ft_my_pixel(0, 6, 255, 255);
-	m_map = data->cub_mlx.img_map.img_ptr;
-	cpy_coord[X] = mm_coord[X];
-	cpy_coord[Y] = mm_coord[Y];
-	while (cpy_coord[X] < MM_DIMENSION
-		&& cpy_coord[Y] < MM_DIMENSION)
-	{
-		mlx_put_pixel(m_map, cpy_coord[X], cpy_coord[Y], col);
-		cpy_coord[X]++;
-	}
-}
 
 void	mm_tile(t_root *data, int mm_coord[2], int flag, uint32_t colours[2])
 {

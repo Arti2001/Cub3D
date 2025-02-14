@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_texture_utils.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amysiv <amysiv@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 10:52:36 by amysiv            #+#    #+#             */
-/*   Updated: 2025/02/14 11:26:19 by amysiv           ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse_texture_utils.c                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: amysiv <amysiv@student.42.fr>                +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/10 10:52:36 by amysiv        #+#    #+#                 */
+/*   Updated: 2025/02/14 12:11:39 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	are_digits(char *str)
 
 int	skip_all_space(char *str, int i)
 {
-	while (str[i] && is_white_space_nline(str[i]))
+	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 		i++;
 	return (i);
 }

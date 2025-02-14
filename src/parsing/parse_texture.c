@@ -6,7 +6,7 @@
 /*   By: amysiv <amysiv@student.42.fr>                +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 15:21:28 by mstencel      #+#    #+#                 */
-/*   Updated: 2025/02/14 11:33:56 by mstencel      ########   odam.nl         */
+/*   Updated: 2025/02/14 12:54:20 by mstencel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	comma_checker(char *str)
 	int	i;
 	int	comma_count;
 
-	i = skip_all_space(str, 0) + 1;
+	i = skip_all_space(str, 0);
 	i = skip_all_space(str, i);
 	if (str[i] == ',')
 		return (false);
@@ -25,7 +25,7 @@ bool	comma_checker(char *str)
 	while (str[i])
 	{
 		i = skip_all_space(str, i);
-		if (str[i] == ',')
+		if (str[i] && str[i] == ',')
 		{
 			comma_count++;
 			i++;
@@ -41,31 +41,31 @@ bool	comma_checker(char *str)
 	return (comma_count == 2);
 }
 
-int	tex_paths_valid(char **split, t_root *data)
+int	tex_paths_valid(char **s, t_root *data)
 {
-	if (ft_strncmp(split[0], "NO", 3) == 0)
+	if (ft_strncmp(s[0], "NO", 3) == 0 && !s[2])
 	{
 		if (data->map.no_path)
 			error_bye_data(data, "NO: Is definied more then one time\n");
-		return (data->map.no_path = new_mem(split[1], data), 1);
+		return (data->map.no_path = new_mem(s[1], data), 1);
 	}
-	else if (ft_strncmp(split[0], "SO", 3) == 0)
+	else if (ft_strncmp(s[0], "SO", 3) == 0 && !s[2])
 	{
 		if (data->map.so_path)
 			error_bye_data(data, "SO: Is definied more then one time\n");
-		return (data->map.so_path = new_mem(split[1], data), 1);
+		return (data->map.so_path = new_mem(s[1], data), 1);
 	}
-	else if (ft_strncmp(split[0], "WE", 3) == 0)
+	else if (ft_strncmp(s[0], "WE", 3) == 0 && !s[2])
 	{
 		if (data->map.we_path)
 			error_bye_data(data, "WE: Is definied more then one time\n");
-		return (data->map.we_path = new_mem(split[1], data), 1);
+		return (data->map.we_path = new_mem(s[1], data), 1);
 	}
-	else if (ft_strncmp(split[0], "EA", 3) == 0)
+	else if (ft_strncmp(s[0], "EA", 3) == 0 && !s[2])
 	{
 		if (data->map.ea_path)
 			error_bye_data(data, "EA: Is definied more then one time\n");
-		return (data->map.ea_path = new_mem(split[1], data), 1);
+		return (data->map.ea_path = new_mem(s[1], data), 1);
 	}
 	return (0);
 }
@@ -103,11 +103,11 @@ void	tex_validation(char *line, t_root *data)
 {
 	char	**split_line;
 
-	split_line = splitbywhite(line, '\0');
-	if (!split_line || split_line[0] == NULL)
-	{
+	split_line = splitbywhite(line, ' ');
+	if (!split_line)
 		free_data_arr(data, "Split failed\n", split_line);
-	}
+	if (!split_line[0] || !split_line[1])
+		free_data_arr(data, "Map is not valid!\n", split_line);
 	if (tex_paths_valid(split_line, data))
 	{
 		ft_free_array(split_line);
